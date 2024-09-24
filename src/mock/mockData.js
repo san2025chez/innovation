@@ -15,6 +15,7 @@ const mockData=[
     {
         title: "E-commerce",
         image: ecomerce ,
+        description: 'E-comerce- tecnologias utilizada Node, Nest, Postgres, Firebase, React, Materia-UI',
         link:"https://productosnutricionales.com.ar"
     },
     {
@@ -25,11 +26,14 @@ const mockData=[
     {
         title: "Dashboard",
         image: dashcommerce ,
+        description: 'Dashboard, creado con tecnologias Node, Nest, Postgres, Firebase, React, Materia-UI',
+
         link:"https://www.youtube.com/watch?v=q3C8QBhPa9E"
     },
     {
         title: "Ada Software",
         image: ada ,
+        description:'Landing Page - Creado con React, Material UI',
         link:"https://adasoft.com.ar/"
     },
     {
