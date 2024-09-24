@@ -56,7 +56,7 @@ const AboutDesktop = ({ title, dark, id }) => {
     <div className={classes.sectioncontent}>
     <Card className={classes.card}>
       <CardContent className={classes.cardcontent}>
-        <Grid container spacing={3} style={{ minHeight: "100vh" }}>
+        <Grid container spacing={3} >
           <Grid item xs={12} sm={6} className={classes.textContainer}>
             <Typography variant="h4" className={classes.title}>Soy Vanesa Sanchez</Typography>
             <span className={classes.typingText}>
@@ -145,8 +145,7 @@ const AboutMobile = ({ title, dark, id }) => {
     <div className={classes.sectioncontent}>
     <Card className={classes.card}>
       <CardContent className={classes.cardcontent}>
-        <Grid container spacing={0} alignItems="center" justifyContent="center"  style={{ height: "100vh" }}>
-          <Grid item xs={12} sm={12} className={classes.textContainer}>
+        <Grid container spacing={0} alignItems="center" justifyContent="center" >          <Grid item xs={12} sm={12} className={classes.textContainer}>
             <Typography variant="h4" className={classes.title}>Soy Vanesa Sanchez</Typography>
             <span className={classes.typingText}>
               {fullStackText} {developerText}
@@ -203,9 +202,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     justifyContent: 'center', // Centra el contenido horizontalmente
     alignItems: 'center', // Centra el contenido verticalmente
-    minHeight: '100vh', 
+    minHeight: '50vh', //ESTOY CAMBIANOD DE 100A 50
     [theme.breakpoints.down('sm')]: {
-      
+     
       paddingLeft: '0px',
       paddingRight: '0px',
   
