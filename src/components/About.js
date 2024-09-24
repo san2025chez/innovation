@@ -203,8 +203,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     justifyContent: 'center', // Centra el contenido horizontalmente
     alignItems: 'center', // Centra el contenido verticalmente
- 
     [theme.breakpoints.down('sm')]: {
+      minHeight:'100vh',
       paddingTop: '150px',
       paddingLeft: '0px',
       paddingRight: '0px',
