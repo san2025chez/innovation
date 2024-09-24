@@ -60,6 +60,8 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     textAlign: 'center',
+    color: "#1E2A38",
+    backgroundColor: "#1E2A38",
   },
   title: {
     marginBottom: theme.spacing(3),
