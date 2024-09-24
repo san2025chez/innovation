@@ -205,7 +205,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center', // Centra el contenido verticalmente
     minHeight: '100vh', 
     [theme.breakpoints.down('sm')]: {
-      paddingTop: '40px',
+      
       paddingLeft: '0px',
       paddingRight: '0px',
   
@@ -223,11 +223,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '60px',
   
     [theme.breakpoints.down('sm')]: {
-      marginTop: '40px',
+    
       alignItems: 'center', // Centra el contenido horizontalmente
       justifyContent: 'center', // Centra el contenido verticalmente
     justifyContent:'center',
-      paddingTop: '30px',
+     
+    
       textAlign: 'left',
       paddingLeft:'15px',
       paddingRight:'15px',
