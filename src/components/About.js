@@ -205,7 +205,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center', // Centra el contenido verticalmente
     [theme.breakpoints.down('sm')]: {
       minHeight:'100vh',
-      paddingTop: '150px',
+      paddingTop: '140px',
       paddingLeft: '0px',
       paddingRight: '0px',
   
