@@ -1,4 +1,3 @@
-// ProjectCard.js
 import React, { useState } from 'react';
 import { makeStyles, Card, CardMedia, Typography, IconButton } from '@material-ui/core';
 import { motion } from 'framer-motion';
@@ -51,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     transition: 'all 0.3s ease-in-out',
     cursor: 'pointer',
+    backgroundColor: '#000000', // Fondo negro
+    color: '#E0E0E0', // Color de texto por defecto
     '&:hover': {
       boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
     },
@@ -65,8 +66,8 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     width: '100%',
     height: '30%',
-    background: 'rgba(0, 0, 0, 0.7)',
-    color: 'white',
+    background: 'rgba(0, 0, 0, 0.7)', // Fondo oscuro para el overlay
+    color: '#FFFFFF', // Texto en blanco
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -78,10 +79,12 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontWeight: 'bold',
     fontSize: '1.2rem',
+    color: '#FFFFFF', // Color del título en blanco
   },
   description: {
     fontSize: '0.9rem',
     marginTop: theme.spacing(1),
+    color: '#E0E0E0', // Color de la descripción en gris claro
   },
   infoIconContainer: {
     position: 'absolute',
@@ -89,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(1),
   },
   infoIcon: {
-    color: '#FFFFFF',
+    color: '#007ACC', // Color del icono en azul eléctrico
   },
 }));
 

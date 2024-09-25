@@ -3,7 +3,7 @@ import { makeStyles, Grid, Typography, Dialog, DialogContent, IconButton } from 
 import { Card, CardContent } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
-import { FaHtml5, FaReact, FaNodeJs, FaGitAlt, FaCss3Alt, FaDatabase, FaShoppingCart, FaDesktop,FaCode } from 'react-icons/fa';
+import { FaDesktop, FaShoppingCart, FaCode,FaCss3Alt,FaDatabase } from 'react-icons/fa';
 import { GiSettingsKnobs } from 'react-icons/gi';
 import { SiTypescript } from 'react-icons/si';
 import CloseIcon from '@material-ui/icons/Close';
@@ -12,11 +12,11 @@ import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles((theme) => ({
   section: {
     padding: theme.spacing(4),
-    backgroundColor: '#1E2A38',
-    color: '#FFFFFF',
+    backgroundColor: '#000000', // Fondo negro
+    color: '#FFFFFF', // Texto blanco
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center', // Centra horizontalmente el contenido
+    alignItems: 'center',
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(2),
     },
@@ -25,23 +25,23 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontWeight: 'bold',
     marginBottom: theme.spacing(4),
-    fontSize: '2.0rem',
+    fontSize: '2rem',
     fontFamily: 'Space Grotesk, sans-serif',
     textTransform: 'uppercase',
   },
   titles: {
     textAlign: 'center',
     fontWeight: 'bold',
-    marginBottom: theme.spacing(4),
-    fontSize: '1.0rem',
+    marginBottom: theme.spacing(2),
+    fontSize: '1rem',
     fontFamily: 'Space Grotesk, sans-serif',
     textTransform: 'uppercase',
   },
   gridContainer: {
-    maxWidth: '1200px', // Establece un ancho máximo para mantener el contenido centrado
+    maxWidth: '1200px',
     width: '100%',
-    padding: '0 16px', // Padding horizontal para espacios simétricos
-    margin: '0 auto', // Centra el contenedor de la cuadrícula
+    padding: '0 16px',
+    margin: '0 auto',
   },
   cardContainer: {
     padding: '8px',
@@ -49,19 +49,21 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     fontSize: '3rem',
-    color: '#0dd6bb;',
+    color: '#007ACC', // Azul eléctrico para iconos
     marginBottom: '1rem',
   },
   description: {
-    fontSize: '1.0rem',
+    fontSize: '1rem',
     lineHeight: '1.5',
-    color: '#FFFF',
+    color: '#E0E0E0', // Descripción en gris claro
     fontFamily: 'Space Grotesk, sans-serif',
     textAlign: 'center',
   },
   dialog: {
     '& .MuiDialog-paper': {
       padding: theme.spacing(2),
+      backgroundColor: '#000000', // Fondo del diálogo
+      color: '#FFFFFF', // Texto del diálogo
     },
   },
   closeButton: {
@@ -73,14 +75,15 @@ const useStyles = makeStyles((theme) => ({
 
 // Define styled components
 const CardStyled = styled(Card)(({ theme }) => ({
-  backgroundColor: '#2E3A59',
-  color: '#FFFFFF',
+  backgroundColor: '#1E2A38', // Fondo de la tarjeta
+  color: '#FFFFFF', // Texto blanco
   borderRadius: '16px',
   boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
   '&:hover': {
     transform: 'translateY(-8px)',
     boxShadow: '0 12px 24px rgba(0, 0, 0, 0.4)',
+    border: `2px solid #FF6F30`, // Naranja brillante en hover
   },
   display: 'flex',
   flexDirection: 'column',
@@ -92,14 +95,14 @@ const CardStyled = styled(Card)(({ theme }) => ({
 
 const IconStyled = styled('div')(({ theme }) => ({
   fontSize: '3rem',
-  color: "#0dd6bb",
+  color: "#007ACC", // Color del icono
   marginBottom: '1rem',
 }));
 
 const Description = styled(Typography)(({ theme }) => ({
-  fontSize: '1.0rem',
+  fontSize: '1rem',
   lineHeight: '1.5',
-  color: 'white',
+  color: '#E0E0E0', // Descripción en gris claro
   textAlign: 'center',
 }));
 
@@ -146,8 +149,6 @@ const services = [
   },
 ];
 
-
-
 export const Services = ({ title, id }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -176,8 +177,7 @@ export const Services = ({ title, id }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-/*                 onClick={() => handleOpen(service)}
- */              >
+              >
                 <CardStyled>
                   <CardContent>
                     <IconStyled>{service.icon}</IconStyled>

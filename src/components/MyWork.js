@@ -42,7 +42,7 @@ const MyWork = ({ title, id }) => {
         open={open}
         onClose={handleClose}
         fullWidth
-        maxWidth="md" // Ajusta el tamaño máximo del popup
+        maxWidth="md"
         className={classes.dialog}
       >
         <DialogContent>
@@ -68,11 +68,11 @@ const MyWork = ({ title, id }) => {
 const useStyles = makeStyles((theme) => ({
   section: {
     padding: theme.spacing(4),
-    backgroundColor: '#1E2A38',
-    color: '#FFFFFF',
+    backgroundColor: '#000000', // Cambiado a negro
+    color: '#E0E0E0', // Cambiado a gris claro
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center', // Centra el contenido horizontalmente
+    alignItems: 'center',
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(2),
     },
@@ -84,18 +84,21 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2rem',
     fontFamily: 'Space Grotesk, sans-serif',
     textTransform: 'uppercase',
+    color: '#FFFFFF', // Texto en blanco
   },
   gridContainer: {
-    maxWidth: '1200px', // Establece un ancho máximo para centrar la cuadrícula
+    maxWidth: '1200px',
     width: '100%',
-    padding: '0 16px', // Padding horizontal
-    margin: '0 auto', // Centra el contenedor de la cuadrícula
+    padding: '0 16px',
+    margin: '0 auto',
     [theme.breakpoints.down('sm')]: {
       padding: '0 8px',
     },
   },
   dialog: {
     '& .MuiDialog-paper': {
+      backgroundColor: '#1E2A38', // Fondo del diálogo
+      color: '#E0E0E0', // Texto en gris claro
       padding: theme.spacing(2),
     },
   },
@@ -103,12 +106,15 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     right: theme.spacing(1),
     top: theme.spacing(1),
+    color: '#FFFFFF', // Color del botón de cerrar
   },
   dialogTitle: {
     marginBottom: theme.spacing(2),
+    color: '#FFFFFF', // Texto del título en blanco
   },
   dialogDescription: {
     fontSize: '1rem',
+    color: '#E0E0E0', // Texto en gris claro
   },
 }));
 

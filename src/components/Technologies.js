@@ -3,7 +3,7 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { motion } from 'framer-motion'; // Importación de motion para el movimiento de los iconos
+import { motion } from 'framer-motion';
 import { CardMedia } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core";
 import Typography from '@mui/material/Typography';
@@ -23,12 +23,12 @@ import express from '../img/ex8.png';
 import nest from '../img/nest8.png';
 
 const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: '#1E2A38',
+    backgroundColor: '#000000', // Cambiado a negro
     ...theme.typography.body2,
     padding: theme.spacing(2),
     textAlign: 'center',
-    color: theme.palette.text.secondary,
-    fontFamily: 'Space Grotesk, sans-serif', // Aplica la fuente a todos las letras
+    color: '#E0E0E0', // Cambiado a gris claro
+    fontFamily: 'Space Grotesk, sans-serif',
 }));
 
 export default function Technologies() {
@@ -40,22 +40,15 @@ export default function Technologies() {
                 <Grid item xs={12}>
                     <Typography 
                         style={{ 
-                            fontSize: window.innerWidth > 600 ? '18px' : '16px', // Ajusta el tamaño de la fuente para dispositivos de escritorio
+                            fontSize: window.innerWidth > 600 ? '18px' : '16px',
                             color: '#FFFFFF', 
                             textAlign: 'justify', 
                             lineHeight: '1.6',
-                            fontFamily: 'Space Grotesk, sans-serif', // Aplica la fuente a todos las letras
-                            fontWeight: window.innerWidth > 600 ? '200' : '150' // Ajusta el peso de la fuente para dispositivos móviles
+                            fontFamily: 'Space Grotesk, sans-serif',
+                            fontWeight: window.innerWidth > 600 ? '200' : '150'
                         }}
                     >
-   
-   
-Ingeniera en Informática y Desarrolladora Full-Stack con más de 4 años de experiencia en el desarrollo de sistemas y aplicaciones. Me especializo en crear soluciones innovadoras y eficientes utilizando nuevas tecnologías. Mi capacidad analítica me permite resolver problemas de manera efectiva, y siempre busco mejorar mis habilidades para enfrentar nuevos desafíos. 
-
-Si necesitas digitalizar tu negocio, desarrollar un nuevo proyecto o simplemente ofrecer soluciones tecnológicas, estoy disponible para ayudarte. Además, también estoy abierta a oportunidades para trabajar en empresas y colaborar en proyectos que marquen la diferencia.
-
-¡Estoy emocionada de colaborar contigo y hacer realidad tus ideas!
-                    
+                        Ingeniera en Informática y Desarrolladora Full-Stack con más de 4 años de experiencia en el desarrollo de sistemas y aplicaciones...
                     </Typography>
                     <br /><br />
                 </Grid>
@@ -70,10 +63,10 @@ Si necesitas digitalizar tu negocio, desarrollar un nuevo proyecto o simplemente
                     ].map((tech, index) => (
                         <Grid item xs={4} sm={3} md={2} key={index}>
                             <motion.div
-                                initial={{ rotateY: 0 }} // Estado inicial
-                                animate={{ rotateY: 360 }} // Rotación a lo largo del eje Y
-                                transition={{ duration: 5, repeat: Infinity }} // Animación continua
-                                style={{ transformOrigin: 'center' }} // Establece el centro de rotación
+                                initial={{ rotateY: 0 }} 
+                                animate={{ rotateY: 360 }} 
+                                transition={{ duration: 5, repeat: Infinity }}
+                                style={{ transformOrigin: 'center' }}
                             >
                                 <CardMedia image={tech.img} className={classes.image} />
                             </motion.div>
@@ -87,7 +80,7 @@ Si necesitas digitalizar tu negocio, desarrollar un nuevo proyecto o simplemente
 
 const useStyles = makeStyles((theme) => ({
     box1: {
-        backgroundColor: '#1E2A38',
+        backgroundColor: '#000000', // Cambiado a negro
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

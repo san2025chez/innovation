@@ -7,21 +7,21 @@ const MobileAbout = () => {
     const [fullStackText, setFullStackText] = useState('');
     const [developerText, setDeveloperText] = useState('');
     const [isTypingDeveloper, setIsTypingDeveloper] = useState(true);
-  
+
     const fullStack = "Software";
     const developer = "Engineer";
     const whatsappLink = "https://wa.link/2ogmx1"; // Cambia este enlace por el tuyo
-  
+
     useEffect(() => {
         const typeFullStack = () => {
             setFullStackText(fullStack.substring(0, fullStackText.length + 1));
         };
-  
+
         if (fullStackText !== fullStack) {
             setTimeout(typeFullStack, 100);
         }
     }, [fullStackText]);
-  
+
     useEffect(() => {
         const typeDeveloper = () => {
             if (isTypingDeveloper) {
@@ -36,15 +36,15 @@ const MobileAbout = () => {
                 }
             }
         };
-  
+
         const typingTimeout = setTimeout(typeDeveloper, 100);
         return () => clearTimeout(typingTimeout);
     }, [developerText, isTypingDeveloper]);
-  
+
     const handleClick = () => {
         window.open(whatsappLink, '_blank');
     };
-  
+
     const classes = useStyles();
 
     return (
@@ -84,16 +84,16 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '20px',
     },
     title: {
-        color: '#FFFFFF',
+        color: '#FFFFFF', // Blanco
         fontSize: '2rem',
         fontWeight: '700',
-         marginBottom:'20px',
+        marginBottom: '20px',
         textAlign: 'center', // Centra el título
     },
     typingText: {
         fontSize: "1.5rem",
         fontWeight: "600",
-        color: '#FFD700',
+        color: '#007ACC', // Azul Eléctrico
         textTransform: 'uppercase',
         textAlign: 'center', // Centra el texto
         marginBottom: '30px', // Espacio entre el texto y la imagen
@@ -104,13 +104,17 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
     },
     contactButton: {
-        color: '#FFFFFF',
-        backgroundColor: '#00BFA5',
+        color: '#FFFFFF', // Blanco
+        backgroundColor: '#007ACC', // Azul Eléctrico
         borderRadius: '20px',
         padding: '10px 20px',
         textDecoration: 'none',
+        transition: 'background-color 0.3s',
+        '&:hover': {
+            backgroundColor: '#FF6F30', // Naranja Brillante en hover
+        },
     },
-    imageContainer:{
+    imageContainer: {
         marginTop: '40px',
     }
 }));

@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <CssBaseline /> {/* Normaliza los estilos y asegura una base consistente */}
-      <div style={{  backgroundColor: '#1E2A38'}}>
+      <div style={{  backgroundColor: '#000000'}}>
         <Navbar />
         <About title="Inicio" id="about" />
         <Skills title="Sobre Mi" id="skill" dark={"#00BFA5"} />
@@ -33,7 +33,7 @@ function App() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#1E2A38',
+    backgroundColor: '#000000',
   
     display: 'flex',
     flexDirection: 'column',

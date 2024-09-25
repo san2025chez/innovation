@@ -7,7 +7,6 @@ const About = ({ id }) => {
   const classes = useStyles();
   const [isMobile, setIsMobile] = useState(false);
 
-  // Función para detectar si es móvil
   const checkIfMobile = () => {
     setIsMobile(window.innerWidth < 600);
   };
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   section: {
     paddingTop: '50px',
     textAlign: 'center',
-    backgroundColor: "#1E2A38",
+    backgroundColor: "#000000", // Negro
   },
 }));
 
