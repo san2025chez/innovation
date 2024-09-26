@@ -8,7 +8,7 @@ const About = ({ id }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   const checkIfMobile = () => {
-    setIsMobile(window.innerWidth < 600);
+    setIsMobile(window.innerWidth < 860);
   };
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const About = ({ id }) => {
 
 const useStyles = makeStyles((theme) => ({
   section: {
-    paddingTop: '50px',
+   
     textAlign: 'center',
     padding: theme.spacing(5),
     backgroundColor: "#000000", // Negro
@@ -36,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
    
     },
     mobileSection: { // Additional class for mobile-specific styling (optional)
-      height: '100vh', // Optional: Set full height for mobile
+      height: '90vh', // Optional: Set full height for mobile
+   paddingTop:'10px'
     }
   },
 }));
