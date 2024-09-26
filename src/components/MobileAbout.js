@@ -53,7 +53,8 @@ const MobileAbout = () => {
                 <Typography variant="h5" className={classes.title}>Soy Vanesa Sanchez</Typography>
                 <span className={classes.typingText}>
                     {fullStackText} {developerText}
-                </span>
+                </span><br/>
+              
                 <div className={classes.imageContainer}>
                     <img src={portada} alt="Vanesa Sanchez" className={classes.roundedImage} />
                 </div>
@@ -116,7 +117,15 @@ const useStyles = makeStyles((theme) => ({
     },
     imageContainer: {
         marginTop: '40px',
-    }
+    },
+    description: {
+        marginTop: '10px',
+        color: '#E0E0E0', // Gris Claro
+        fontSize: '1.0rem',
+        lineHeight: '1.6',
+        fontWeight: '150',
+        fontFamily: 'Space Grotesk, sans-serif',
+    },
 }));
 
 export default MobileAbout;

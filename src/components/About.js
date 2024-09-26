@@ -29,7 +29,12 @@ const useStyles = makeStyles((theme) => ({
   section: {
     paddingTop: '50px',
     textAlign: 'center',
+  
     backgroundColor: "#000000", // Negro
+    [theme.breakpoints.down('sm')]: { // Para pantallas pequeñas (menor a 600px)
+      paddingTop: '35px',
+      height: '100vh', 
+    },
   },
 }));
 
