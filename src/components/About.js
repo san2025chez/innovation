@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     },
     mobileSection: { // Additional class for mobile-specific styling (optional)
       height: '90vh', // Optional: Set full height for mobile
-   paddingTop:'10px'
+
     }
   },
 }));

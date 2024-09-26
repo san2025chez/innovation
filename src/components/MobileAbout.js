@@ -83,9 +83,10 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center', // Centra el contenido horizontalmente
     },
     roundedImage: {
-        width: '60%',
+        width: '70%',
         borderRadius: '50%',
-        marginBottom: '20px',
+        marginTop:'20px',
+        marginBottom: '30px',
     },
     title: {
         color: '#FFFFFF', // Blanco
