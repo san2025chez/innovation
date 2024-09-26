@@ -19,7 +19,7 @@ const About = ({ id }) => {
   }, []);
 
   return (
-    <div className={classes.section} id={id}>
+    <div className={`${classes.section} ${isMobile ? classes.mobileSection : ''}`} id={id}>
       {isMobile ? <MobileAbout /> : <DesktopAbout />}
     </div>
   );
@@ -29,11 +29,14 @@ const useStyles = makeStyles((theme) => ({
   section: {
     paddingTop: '50px',
     textAlign: 'center',
-  
+    padding: theme.spacing(5),
     backgroundColor: "#000000", // Negro
     [theme.breakpoints.down('sm')]: { // Para pantallas pequeñas (menor a 600px)
-      paddingTop: '35px',
+      padding: theme.spacing(2), 
       height: '100vh', 
+    },
+    mobileSection: { // Additional class for mobile-specific styling (optional)
+      height: '100vh', // Optional: Set full height for mobile
     },
   },
 }));
