@@ -50,6 +50,7 @@ const MobileAbout = () => {
     return (
         <Card className={classes.card}>
             <CardContent className={classes.cardContent}>
+            <div className={classes.contentContainer}> 
                 <Typography variant="h5" className={classes.title}>Soy Vanesa Sanchez</Typography>
                 <span className={classes.typingText}>
                     {fullStackText} {developerText}
@@ -63,6 +64,7 @@ const MobileAbout = () => {
                         CONTÁCTAME
                     </a>
                 </div>
+                </div>
             </CardContent>
         </Card>
     );
@@ -73,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "transparent",
         boxShadow: 'none',
         border: 'none',
+       
         height: '100vh', // Asegúrate de que el card ocupe toda la altura de la vista
         display: 'flex',
         flexDirection: 'column',
@@ -126,6 +129,14 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: '150',
         fontFamily: 'Space Grotesk, sans-serif',
     },
+   
+    cardContent: {
+      padding: theme.spacing(1), // Ajusta el padding según tus necesidades
+  },
+  contentContainer: {
+    marginTop: -theme.spacing(2),
+   
+},
 }));
 
 export default MobileAbout;
