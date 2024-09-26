@@ -27,7 +27,7 @@ const About = ({ id }) => {
 
 const useStyles = makeStyles((theme) => ({
   section: {
-   
+   marginTop:'10px',
     textAlign: 'center',
     padding: theme.spacing(5),
     backgroundColor: "#000000", // Negro

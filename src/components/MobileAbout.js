@@ -52,9 +52,15 @@ const MobileAbout = () => {
             <CardContent className={classes.cardContent}>
             <div className={classes.contentContainer}> 
                 <Typography variant="h5" className={classes.title}>Soy Vanesa Sanchez</Typography>
-                <span className={classes.typingText}>
+               
+               <div className={classes.typingText}>
+               <span >
                     {fullStackText} {developerText}
-                </span><br/>
+                </span></div>
+                <br/>
+                <Typography variant="h7" className={classes.description}>
+                            Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías. Me apasiona transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
+                        </Typography>
               
                 <div className={classes.imageContainer}>
                     <img src={portada} alt="Vanesa Sanchez" className={classes.roundedImage} />
@@ -83,16 +89,17 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center', // Centra el contenido horizontalmente
     },
     roundedImage: {
-        width: '70%',
+        width: '50%',
         borderRadius: '50%',
         marginTop:'20px',
-        marginBottom: '30px',
+        marginBottom: '20px',
     },
     title: {
         color: '#FFFFFF', // Blanco
-        fontSize: '2rem',
+        fontSize: '1.5rem',
         fontWeight: '700',
-        marginBottom: '20px',
+    marginTop:'10px',
+        marginBottom: '10px',
         textAlign: 'center', // Centra el título
     },
     typingText: {
@@ -101,11 +108,12 @@ const useStyles = makeStyles((theme) => ({
         color: '#007ACC', // Azul Eléctrico
         textTransform: 'uppercase',
         textAlign: 'center', // Centra el texto
-        marginBottom: '30px', // Espacio entre el texto y la imagen
+        marginBottom: '10px', // Espacio entre el texto y la imagen
+      
         fontFamily: 'Space Grotesk, sans-serif',
     },
     buttonContainer: {
-        marginTop: '30px',
+        marginTop: '40px',
         textAlign: 'center',
     },
     contactButton: {
@@ -120,10 +128,11 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     imageContainer: {
-        marginTop: '40px',
+        marginTop: '30px',
     },
     description: {
-        marginTop: '10px',
+        marginTop: '40px',
+        paddingTop:'10px',paddingBottom:'10px',
         color: '#E0E0E0', // Gris Claro
         fontSize: '1.0rem',
         lineHeight: '1.6',
@@ -132,12 +141,9 @@ const useStyles = makeStyles((theme) => ({
     },
    
     cardContent: {
-      padding: theme.spacing(1), // Ajusta el padding según tus necesidades
+      padding: theme.spacing(2), // Ajusta el padding según tus necesidades
   },
-  contentContainer: {
-    marginTop: -theme.spacing(2),
-   
-},
+
 }));
 
 export default MobileAbout;
