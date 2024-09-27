@@ -81,12 +81,12 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "transparent",
         boxShadow: 'none',
         border: 'none',
-       
+   paddingTop:'50px',
         height: '100vh', // Asegúrate de que el card ocupe toda la altura de la vista
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center', // Centra el contenido verticalmente
-        alignItems: 'center', // Centra el contenido horizontalmente
+       // justifyContent: 'flex-start', // Centra el contenido verticalmente
+        //alignItems: 'flex-start', // Centra el contenido horizontalmente
     },
     roundedImage: {
         width: '50%',
@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#FFFFFF', // Blanco
         fontSize: '1.5rem',
         fontWeight: '700',
-    marginTop:'10px',
+    marginTop:'40px',
         marginBottom: '10px',
         textAlign: 'center', // Centra el título
     },
