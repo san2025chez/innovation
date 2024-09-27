@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "transparent",
         boxShadow: 'none',
         border: 'none',
-   paddingTop:'50px',
+   paddingTop:'40px',
         height: '100vh', // Asegúrate de que el card ocupe toda la altura de la vista
         display: 'flex',
         flexDirection: 'column',
