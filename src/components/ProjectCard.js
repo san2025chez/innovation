@@ -16,18 +16,18 @@ const ProjectCard = ({ title, description, image, onOpen }) => {
           className={classes.caratula}
           title={title}
         />
-        <div className={classes.overlay}>
-          <Typography variant="h6" className={classes.title}>
-            {title}
-          </Typography>
+<div className={classes.cardContent}>
+          <div className={classes.infoContainer}>
+            <Typography variant="h6" className={classes.title}>
+              {title}
+            </Typography>
+            <IconButton className={classes.infoIcon} onClick={onOpen}>
+              <InfoIcon />
+            </IconButton>
+          </div>
           <Typography className={classes.description}>
             {description}
           </Typography>
-        </div>
-        <div className={classes.infoIconContainer}>
-          <IconButton className={classes.infoIcon} onClick={onOpen}>
-            <InfoIcon />
-          </IconButton>
         </div>
       </Card>
     </motion.div>
@@ -48,8 +48,10 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF', // White text for better contrast
     height: 300, // Set a fixed height
     borderRadius: 10,
-    justifyContent: 'space-between'
-
+    justifyContent: 'space-between',
+  },
+  cardContent: {
+    padding: theme.spacing(2),
   },
   caratula: {
     width: '100%',
@@ -62,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     width: '100%',
     height: '100%', // Full height for a more immersive overlay
-    background: 'rgba(0, 0, 0, 0.7)',
+    /*     background: 'rgba(0, 0, 0, 0.7)', */
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -72,25 +74,26 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: 'border-box',
     flexGrow: 1,
   },
+  infoContainer: {
+    display: 'flex',
+    alignItems: 'center', // Center title and infoIcon vertically
+    marginBottom: theme.spacing(1), // Add spacing between title and description
+  },
   title: {
     fontWeight: 'bold',
     fontSize: '1.2rem',
     color: '#FFFFFF',
+  },
+  infoIcon: {
+    marginLeft: theme.spacing(1), // Add spacing between title and infoIcon
+    color: '#007ACC',
   },
   description: {
     fontSize: '0.9rem',
     marginTop: theme.spacing(1),
     color: '#E0E0E0',
     textAlign: 'justify',
-    hyphens: 'auto'
-  },
-  infoIconContainer: {
-    position: 'absolute',
-    bottom: theme.spacing(1),
-    right: theme.spacing(1),
-  },
-  infoIcon: {
-    color: '#007ACC',
+    hyphens: 'auto',
   },
 }));
 

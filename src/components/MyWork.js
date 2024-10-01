@@ -30,9 +30,11 @@ const MyWork = ({ title, id }) => {
             <Grid item xs={12} sm={6} md={4} key={index}>
               <ProjectCard
                 title={project.title}
-                description={project.description}
+               /*  description={project.description} */
                 image={project.image}
                 onOpen={() => handleOpen(project)}
+                // Pass a hover state prop to ProjectCard
+                isHovered={false}
               />
             </Grid>
           ))}
@@ -68,8 +70,8 @@ const MyWork = ({ title, id }) => {
 const useStyles = makeStyles((theme) => ({
   section: {
     padding: theme.spacing(4),
-    backgroundColor: '#000000', // Cambiado a negro
-    color: '#E0E0E0', // Cambiado a gris claro
+    backgroundColor: '#000000', // Black background
+    color: '#E0E0E0', // Light gray text
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -84,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2rem',
     fontFamily: 'Space Grotesk, sans-serif',
     textTransform: 'uppercase',
-    color: '#FFFFFF', // Texto en blanco
+    color: '#FFFFFF', // White text
   },
   gridContainer: {
     maxWidth: '1200px',
@@ -97,8 +99,8 @@ const useStyles = makeStyles((theme) => ({
   },
   dialog: {
     '& .MuiDialog-paper': {
-      backgroundColor: '#1E2A38', // Fondo del diálogo
-      color: '#E0E0E0', // Texto en gris claro
+      backgroundColor: '#1E2A38', // Dialog background
+      color: '#E0E0E0', // Light gray text
       padding: theme.spacing(2),
     },
   },
@@ -106,15 +108,15 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: '#FFFFFF', // Color del botón de cerrar
+    color: '#FFFFFF', // White close button color
   },
   dialogTitle: {
     marginBottom: theme.spacing(2),
-    color: '#FFFFFF', // Texto del título en blanco
+    color: '#FFFFFF', // White title text
   },
   dialogDescription: {
     fontSize: '1rem',
-    color: '#E0E0E0', // Texto en gris claro
+    color: '#E0E0E0', // Light gray text
   },
 }));
 
