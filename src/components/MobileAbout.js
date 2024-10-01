@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Space Grotesk, sans-serif',
     },
     buttonContainer: {
-        marginTop: '40px',
+        marginTop: '10px',
         textAlign: 'center',
     },
     contactButton: {
@@ -131,8 +131,9 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '30px',
     },
     description: {
-        marginTop: '40px',
-        paddingTop:'10px',paddingBottom:'10px',
+       /*  marginTop: '40px',
+        paddingTop:'10px', */
+        paddingBottom:'10px',
         color: '#E0E0E0', // Gris Claro
         fontSize: '1.0rem',
         lineHeight: '1.6',
@@ -142,6 +143,12 @@ const useStyles = makeStyles((theme) => ({
    
     cardContent: {
       padding: theme.spacing(2), // Ajusta el padding según tus necesidades
+      padding: theme.spacing(2),
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center', // Center content vertically
+      alignItems: 'center', // Center content horizontally   
+  
   },
 
 }));
