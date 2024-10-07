@@ -27,18 +27,18 @@ const About = ({ id }) => {
 
 const useStyles = makeStyles((theme) => ({
   section: {
-   marginTop:'10px',
+  
     textAlign: 'center',
-    padding: theme.spacing(5),
+ padding: theme.spacing(1),
+    height: '100vh',
     backgroundColor: "#000000", // Negro
     [theme.breakpoints.down('sm')]: { // Para pantallas pequeñas (menor a 600px)
-      padding: theme.spacing(2), 
+   
+      height: '100vh',
+   
    
     },
-    mobileSection: { // Additional class for mobile-specific styling (optional)
-      height: '90vh', // Optional: Set full height for mobile
-
-    }
+ 
   },
 }));
 

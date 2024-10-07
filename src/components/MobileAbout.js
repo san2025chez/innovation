@@ -50,7 +50,7 @@ const MobileAbout = () => {
     return (
         <Card className={classes.card}>
             <CardContent className={classes.cardContent}>
-            <div className={classes.contentContainer}> 
+          
                 <Typography variant="h5" className={classes.title}>Soy Vanesa Sanchez</Typography>
                
                <div className={classes.typingText}>
@@ -70,7 +70,7 @@ const MobileAbout = () => {
                         CONTÁCTAME
                     </a>
                 </div>
-                </div>
+             
             </CardContent>
         </Card>
     );
@@ -78,15 +78,16 @@ const MobileAbout = () => {
 
 const useStyles = makeStyles((theme) => ({
     card: {
-        backgroundColor: "transparent",
+          backgroundColor: "#000000",
         boxShadow: 'none',
         border: 'none',
-   paddingTop:'40px',
-        height: '100vh', // Asegúrate de que el card ocupe toda la altura de la vista
+ 
+       
         display: 'flex',
-        flexDirection: 'column',
-       // justifyContent: 'flex-start', // Centra el contenido verticalmente
-        //alignItems: 'flex-start', // Centra el contenido horizontalmente
+        flexDirection: 'column', // Maintain vertical layout
+        justifyContent: 'center',
+        alignItems: 'center',
+ 
     },
     roundedImage: {
         width: '50%',
@@ -98,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#FFFFFF', // Blanco
         fontSize: '1.5rem',
         fontWeight: '700',
-    marginTop:'40px',
+
         marginBottom: '10px',
         textAlign: 'center', // Centra el título
     },
@@ -128,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     imageContainer: {
-        marginTop: '30px',
+     
     },
     description: {
        /*  marginTop: '40px',
@@ -139,15 +140,18 @@ const useStyles = makeStyles((theme) => ({
         lineHeight: '1.6',
         fontWeight: '150',
         fontFamily: 'Space Grotesk, sans-serif',
+        textAlign: 'center', // Center description text
     },
    
     cardContent: {
-      padding: theme.spacing(2), // Ajusta el padding según tus necesidades
-      padding: theme.spacing(2),
+   
+  
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center', // Center content vertically
       alignItems: 'center', // Center content horizontally   
+      height:'100vh',
+  
   
   },
 

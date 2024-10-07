@@ -49,9 +49,9 @@ const DesktopAbout = () => {
     const classes = useStyles();
 
     return (
-        <Card className={classes.card}>
+        <Card className={classes.card} style={{padding:0, margin:0}}>
             <CardContent className={classes.cardcontent}>
-                <Grid container spacing={3} style={{ minHeight: "100vh", paddingTop: '50px' }}>
+                <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} className={classes.textContainer}>
                         <Typography variant="h4" className={classes.title}>Soy Vanesa Sanchez</Typography>
                         <span className={classes.typingText}>
@@ -80,10 +80,13 @@ const DesktopAbout = () => {
 
 const useStyles = makeStyles((theme) => ({
     card: {
-        backgroundColor: "transparent",
+        backgroundColor: "#000000",
         boxShadow: 'none',
         border: 'none',
         display: "flex",
+        height:'100vh',
+        padding:0,
+        margin:0,
         flexDirection: "column",
     },
     cardcontent: {
@@ -137,23 +140,40 @@ const useStyles = makeStyles((theme) => ({
     imageContainer: {
         width: '100%',
         display: 'flex',
-        marginTop: '-50px', // Eleva la imagen
+     
         justifyContent: 'center',
+  
+        alignItems: 'center',
+
+        height: '100vh'
     },
     media: {
-        width: '85%',
-        height: 'auto',
-        maxHeight: '600px',
+        width: '80%',
+        height: '100vh',
+        maxHeight: '100vh',
         objectFit: 'cover',
-        borderRadius: "10px",
+       
     },
     textContainer: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+     
         padding: '60px 30px 0',
         alignItems: 'center',
         height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+    },
+     container: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+
     }
 }));
 
