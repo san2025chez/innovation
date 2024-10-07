@@ -19,7 +19,7 @@ function App() {
     <>
       <CssBaseline /> {/* Normaliza los estilos y asegura una base consistente */}
       <div style={{  backgroundColor: '#000000', padding:0, margin:0}}>
-        <Navbar />
+       {/*  <Navbar /> */}
         <About title="Inicio" id="about" />
         <Skills title="Sobre Mi" id="skill" dark={"#00BFA5"} />
         <MyWork title="Trabajos" id="work" dark={false} />

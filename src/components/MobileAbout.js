@@ -144,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
     },
    
     cardContent: {
-   
+   paddingTop:'10px',
   
       display: 'flex',
       flexDirection: 'column',
