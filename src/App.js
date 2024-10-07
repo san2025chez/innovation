@@ -18,8 +18,8 @@ function App() {
   return (
     <>
       <CssBaseline /> {/* Normaliza los estilos y asegura una base consistente */}
-      <div style={{  backgroundColor: '#000000', padding:0, margin:0}}>
-       {/*  <Navbar /> */}
+      <div style={{  backgroundColor: '#000000', padding:0, margin:0}} className={classes.root}>
+        <Navbar />
         <About title="Inicio" id="about" />
         <Skills title="Sobre Mi" id="skill" dark={"#00BFA5"} />
         <MyWork title="Trabajos" id="work" dark={false} />
@@ -51,6 +51,14 @@ const useStyles = makeStyles((theme) => ({
       margin: 0,
       padding: 0,
     },
+  },
+  navbar: {
+    position: 'fixed', // Ensures the navbar stays fixed at the top
+    top: 0,
+    left: 0,
+    width: '100%',
+
+    zIndex: 1000, // Assigns a high z-index to position it above other elements
   },
 }));
 

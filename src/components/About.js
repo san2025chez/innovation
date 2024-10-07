@@ -21,7 +21,7 @@ const About = ({ id }) => {
 
   return (
     <div> 
-    <Navbar className={classes.navbar} /> 
+  
     <div className={`${classes.section} ${isMobile ? classes.mobileSection : ''}`} id={id}>
     
       {isMobile ? <MobileAbout /> : <DesktopAbout />}
