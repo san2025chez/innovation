@@ -135,10 +135,10 @@ const useStyles = makeStyles((theme) => ({
        /*  marginTop: '40px',
         paddingTop:'10px', */
         paddingBottom:'10px',
-        color: '#E0E0E0', // Gris Claro
-        fontSize: '1.0rem',
-        lineHeight: '1.6',
-        fontWeight: '150',
+        color: '#FFFFFF',  // Gris Claro
+        fontSize: '0.9rem',
+        lineHeight: '1.8',
+        fontWeight: '100',
         fontFamily: 'Space Grotesk, sans-serif',
         textAlign: 'center', // Center description text
     },

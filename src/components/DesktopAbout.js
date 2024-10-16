@@ -88,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
         padding:0,
         margin:0,
         flexDirection: "column",
+        
     },
     cardcontent: {
         display: 'flex',
@@ -116,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#E0E0E0', // Gris Claro
         fontSize: '1.1rem',
         lineHeight: '1.6',
-        fontWeight: '200',
+        fontWeight: '150',
         fontFamily: 'Space Grotesk, sans-serif',
     },
     buttonContainer: {

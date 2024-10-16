@@ -58,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#E0E0E0', // Descripción en gris claro
     fontFamily: 'Space Grotesk, sans-serif',
     textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.6rem', // Reduce el tamaño de fuente para pantallas pequeñas
+    },
   },
   dialog: {
     '& .MuiDialog-paper': {

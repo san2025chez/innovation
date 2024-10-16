@@ -9,7 +9,12 @@ import ContactForm from './components/ContactForm';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {Services} from './components/Services'
 const theme = createTheme({
-  // Define tu tema aquí
+  
+    typography: {
+      fontSize: 16,   
+   // Tamaño de fuente base
+    },
+
 });
 
 function App() {

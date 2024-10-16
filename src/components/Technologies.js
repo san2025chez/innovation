@@ -38,14 +38,16 @@ export default function Technologies() {
         <Box sx={{ flexGrow: 1 }} className={classes.box1}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <Typography 
+                   
+                    <Typography variant="h7"
                         style={{ 
-                            fontSize: window.innerWidth > 600 ? '18px' : '16px',
+                            fontSize: window.innerWidth > 600 ? '1.1rem' : '0.9rem',
                             color: '#FFFFFF', 
-                            textAlign: 'justify', 
-                            lineHeight: '1.6',
+                        
+                            lineHeight: '1.8',
                             fontFamily: 'Space Grotesk, sans-serif',
-                            fontWeight: window.innerWidth > 600 ? '200' : '150'
+                            fontWeight: window.innerWidth > 600 ? '150' : '100',
+                            textAlign: 'justify',
                         }}
                     >
                        Ingeniera en Informática y Desarrolladora Full-Stack con más de 3 años de experiencia en el desarrollo de sistemas y aplicaciones. Me especializo en crear soluciones innovadoras y eficientes utilizando nuevas tecnologías. Mi capacidad analítica me permite resolver problemas de manera efectiva, y siempre busco mejorar mis habilidades para enfrentar nuevos desafíos.
