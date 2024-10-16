@@ -3,6 +3,7 @@ import { makeStyles, Grid, Typography, Dialog, DialogContent, IconButton } from 
 import ProjectCard from './ProjectCard';
 import mockData from '../mock/mockData';
 import CloseIcon from '@material-ui/icons/Close';
+import { Link } from 'react-router-dom';
 
 const MyWork = ({ title, id }) => {
   const classes = useStyles();
@@ -59,6 +60,9 @@ const MyWork = ({ title, id }) => {
               <Typography className={classes.dialogDescription}>
                 {selectedProject.description}
               </Typography>
+              <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className={classes.link}>
+              Ir al enlace
+            </a>
             </div>
           )}
         </DialogContent>

@@ -26,7 +26,7 @@ const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#000000', // Cambiado a negro
     ...theme.typography.body2,
     padding: theme.spacing(2),
-    textAlign: 'center',
+   
     color: '#E0E0E0', // Cambiado a gris claro
     fontFamily: 'Space Grotesk, sans-serif',
 }));
@@ -40,6 +40,7 @@ export default function Technologies() {
                 <Grid item xs={12}>
                    
                     <Typography variant="h7"
+                       className={classes.justifiedText}
                         style={{ 
                             fontSize: window.innerWidth > 600 ? '1.1rem' : '0.9rem',
                             color: '#FFFFFF', 
@@ -47,7 +48,7 @@ export default function Technologies() {
                             lineHeight: '1.8',
                             fontFamily: 'Space Grotesk, sans-serif',
                             fontWeight: window.innerWidth > 600 ? '150' : '100',
-                            textAlign: 'justify',
+                            
                         }}
                     >
                        Ingeniera en Informática y Desarrolladora Full-Stack con más de 3 años de experiencia en el desarrollo de sistemas y aplicaciones. Me especializo en crear soluciones innovadoras y eficientes utilizando nuevas tecnologías. Mi capacidad analítica me permite resolver problemas de manera efectiva, y siempre busco mejorar mis habilidades para enfrentar nuevos desafíos.
@@ -98,4 +99,12 @@ const useStyles = makeStyles((theme) => ({
         height: 50,
         margin: 'auto',
     },
+justifiedText :{
+    textAlign: 'justify',
+    textJustify: 'inter-word',
+        fontFamily: 'Space Grotesk', /* Asegúrate de que la fuente esté cargada correctamente */
+        [theme.breakpoints.down('sm')]: {
+            textAlign:'right'
+        },
+    }
 }));
