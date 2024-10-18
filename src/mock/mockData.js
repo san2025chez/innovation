@@ -16,7 +16,7 @@ const mockData=[
         title: "E-commerce",
         image: ecomerce ,
         description: 'E-comerce- tecnologias utilizada Node, Nest, Postgres, Firebase, React, Materia-UI',
-        link:"https://productosnutricionales.com.ar"
+        link:"https://tiendamabel.netlify.app/"
     },
     {
         title: "Prestamos Personales",
