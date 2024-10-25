@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , Suspense } from 'react';
 import { Typography, Card, CardContent } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress'; // Ejemplo de indicador de carga
 import portada from "../img/original-ana.png";
 
 const MobileAbout = () => {
@@ -48,7 +49,9 @@ const MobileAbout = () => {
     const classes = useStyles();
 
     return (
-        <Card className={classes.card}>
+        <div>
+             <Suspense fallback={<div className="loading"><CircularProgress   color="secondary" size={50} /></div>}>
+             <Card className={classes.card}>
             <CardContent className={classes.cardContent}>
           
                 <Typography variant="h5" className={classes.title}>Soy Vanesa Sanchez</Typography>
@@ -59,7 +62,10 @@ const MobileAbout = () => {
                 </span></div>
                 <br/>
                 <Typography variant="h7" className={classes.description}>
-                            Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías. Me apasiona transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
+                            Soy Ingeniera de Software, especialista en crear soluciones 
+                            tecnológicas usando nuevas tecnologías.
+                             Me gusta transformar ideas en productos digitales innovadores y eficientes.
+                              ¡Juntos, podemos impulsar tu proyecto!
                         </Typography>
               
                 <div className={classes.imageContainer}>
@@ -73,6 +79,9 @@ const MobileAbout = () => {
              
             </CardContent>
         </Card>
+             </Suspense>
+        </div>
+       
     );
 };
 
@@ -150,7 +159,7 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'column',
       justifyContent: 'center', // Center content vertically
       alignItems: 'center', // Center content horizontally   
-      height:'100vh',
+      height:'80vh',
   
   
   },

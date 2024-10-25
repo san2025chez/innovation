@@ -85,7 +85,7 @@ Estoy disponible para trabajar en empresas, así como para digitalizar tu negoci
 
 const useStyles = makeStyles((theme) => ({
     box1: {
-        backgroundColor: '#000000', // Cambiado a negro
+        backgroundColor: "#000000", // Cambiado a negro
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
