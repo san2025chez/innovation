@@ -11,7 +11,7 @@ const DesktopAbout = () => {
 
     const fullStack = "Software";
     const developer = "Engineer";
-    const whatsappLink = "https://wa.link/2ogmx1";
+    const whatsappLink = "https://wa.link/cns6bw";
 
     useEffect(() => {
         const typeFullStack = () => {

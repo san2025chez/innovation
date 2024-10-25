@@ -11,7 +11,7 @@ const MobileAbout = () => {
 
     const fullStack = "Software";
     const developer = "Engineer";
-    const whatsappLink = "https://wa.link/2ogmx1"; // Cambia este enlace por el tuyo
+    const whatsappLink = "https://wa.link/cns6bw"; // Cambia este enlace por el tuyo
 
     useEffect(() => {
         const typeFullStack = () => {
