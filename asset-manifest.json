@@ -1,23 +1,24 @@
 {
   "files": {
     "main.css": "/innovation/static/css/main.f4dc68ec.css",
-    "main.js": "/innovation/static/js/main.880f2618.js",
+    "main.js": "/innovation/static/js/main.423d351c.js",
     "static/js/787.1ed0c42c.chunk.js": "/innovation/static/js/787.1ed0c42c.chunk.js",
     "static/media/sistemamedico.png": "/innovation/static/media/sistemamedico.770bba9f56e37154fc19.png",
     "static/media/newada.png": "/innovation/static/media/newada.a608c91bb4b7e501b353.png",
     "static/media/original-ana.png": "/innovation/static/media/original-ana.00833341e12d3496eab7.png",
     "static/media/personales.jpeg": "/innovation/static/media/personales.4024f3e32f21724ef4e7.jpeg",
+    "static/media/microservicio.png": "/innovation/static/media/microservicio.4b7ff352cbefdf0a3286.png",
     "static/media/dash.jpeg": "/innovation/static/media/dash.bf452871e09835548e3b.jpeg",
     "static/media/dashcommerce.png": "/innovation/static/media/dashcommerce.93348be09f00a649e5bb.png",
     "static/media/ecomerce.jpeg": "/innovation/static/media/ecomerce.d9b56c28959c4a38eb48.jpeg",
     "static/media/prestamo.png": "/innovation/static/media/prestamo.960dc03c28fd0926f672.png",
     "index.html": "/innovation/index.html",
     "main.f4dc68ec.css.map": "/innovation/static/css/main.f4dc68ec.css.map",
-    "main.880f2618.js.map": "/innovation/static/js/main.880f2618.js.map",
+    "main.423d351c.js.map": "/innovation/static/js/main.423d351c.js.map",
     "787.1ed0c42c.chunk.js.map": "/innovation/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f4dc68ec.css",
-    "static/js/main.880f2618.js"
+    "static/js/main.423d351c.js"
   ]
 }
