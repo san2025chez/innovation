@@ -139,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     imageContainer: {
-        width: '100%',
+        width: '80%',
         display: 'flex',
      
         justifyContent: 'center',

@@ -8,39 +8,36 @@ const MobileAbout = () => {
     const [fullStackText, setFullStackText] = useState('');
     const [developerText, setDeveloperText] = useState('');
     const [isTypingDeveloper, setIsTypingDeveloper] = useState(true);
+    const [typingTimeout, setTypingTimeout] = useState(null);
 
     const fullStack = "Software";
     const developer = "Engineer";
     const whatsappLink = "https://wa.link/cns6bw"; // Cambia este enlace por el tuyo
 
     useEffect(() => {
-        const typeFullStack = () => {
-            setFullStackText(fullStack.substring(0, fullStackText.length + 1));
-        };
-
-        if (fullStackText !== fullStack) {
-            setTimeout(typeFullStack, 100);
+        if (!typingTimeout) {
+            setTypingTimeout(
+                setTimeout(() => {
+                    setFullStackText(fullStack.substring(0, fullStackText.length + 1));
+                }, 100)
+            );
         }
-    }, [fullStackText]);
 
-    useEffect(() => {
-        const typeDeveloper = () => {
-            if (isTypingDeveloper) {
-                setDeveloperText(developer.substring(0, developerText.length + 1));
-                if (developerText === developer) {
-                    setTimeout(() => setIsTypingDeveloper(false), 1000);
-                }
-            } else {
-                setDeveloperText(developer.substring(0, developerText.length - 1));
-                if (developerText === '') {
-                    setTimeout(() => setIsTypingDeveloper(true), 1000);
-                }
+        return () => {
+            if (typingTimeout) {
+                clearTimeout(typingTimeout);
+                setTypingTimeout(null);
             }
         };
+    }, [fullStackText, typingTimeout]);
 
-        const typingTimeout = setTimeout(typeDeveloper, 100);
-        return () => clearTimeout(typingTimeout);
-    }, [developerText, isTypingDeveloper]);
+    useEffect(() => {
+        if (developerText === developer) {
+            setIsTypingDeveloper(false);
+        } else if (developerText === '') {
+            setIsTypingDeveloper(true);
+        }
+    }, [developerText]);
 
     const handleClick = () => {
         window.open(whatsappLink, '_blank');
@@ -50,38 +47,33 @@ const MobileAbout = () => {
 
     return (
         <div>
-             <Suspense fallback={<div className="loading"><CircularProgress   color="secondary" size={50} /></div>}>
-             <Card className={classes.card}>
-            <CardContent className={classes.cardContent}>
-          
-                <Typography variant="h5" className={classes.title}>Soy Vanesa Sanchez</Typography>
-               
-               <div className={classes.typingText}>
-               <span >
-                    {fullStackText} {developerText}
-                </span></div>
-                <br/>
-                <Typography variant="h7" className={classes.description}>
-                            Soy Ingeniera de Software, especialista en crear soluciones 
-                            tecnológicas usando nuevas tecnologías.
-                             Me gusta transformar ideas en productos digitales innovadores y eficientes.
-                              ¡Juntos, podemos impulsar tu proyecto!
-                        </Typography>
-              
-                <div className={classes.imageContainer}>
-                    <img src={portada} alt="Vanesa Sanchez" className={classes.roundedImage} />
-                </div>
-                <div className={classes.buttonContainer}>
-                    <a href={whatsappLink} className={classes.contactButton}>
-                        CONTÁCTAME
-                    </a>
-                </div>
-             
-            </CardContent>
-        </Card>
-             </Suspense>
+            <Suspense fallback={<div className="loading"><CircularProgress   color="secondary" size={50} /></div>}>
+            <Card className={classes.card}>
+                <CardContent className={classes.cardContent}>
+                    <Typography variant="h5" className={classes.title}>Soy Vanesa Sanchez</Typography>
+                    <div className={classes.typingText}>
+                        <span>
+                            {fullStackText} {developerText}
+                        </span>
+                    </div>
+                    <br/>
+                    <Typography variant="h7" className={classes.description}>
+                        Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías.
+                        Me gusta transformar ideas en productos digitales innovadores y eficientes.
+                        ¡Juntos, podemos impulsar tu proyecto!
+                    </Typography>
+                    <div className={classes.imageContainer}>
+                        <img src={portada} alt="Vanesa Sanchez" className={classes.roundedImage} />
+                    </div>
+                    <div className={classes.buttonContainer}>
+                        <a href={whatsappLink} className={classes.contactButton}>
+                            CONTÁCTAME
+                        </a>
+                    </div>
+                </CardContent>
+            </Card>
+            </Suspense>
         </div>
-       
     );
 };
 
@@ -123,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Space Grotesk, sans-serif',
     },
     buttonContainer: {
-        marginTop: '10px',
+        marginTop: '30px',
         textAlign: 'center',
     },
     contactButton: {
@@ -138,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     imageContainer: {
-     
+     paddingBottom:'30px'
     },
     description: {
        /*  marginTop: '40px',
@@ -159,11 +151,11 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'column',
       justifyContent: 'center', // Center content vertically
       alignItems: 'center', // Center content horizontally   
-      height:'80vh',
+      height:'85vh',
   
   
   },
 
 }));
 
-export default MobileAbout;
+export default MobileAbout
