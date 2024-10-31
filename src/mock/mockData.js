@@ -5,7 +5,7 @@ import personales from "../img/personales.jpeg"
 import dashcommerce from "../img/dashcommerce.png"
 import ada from "../img/newada.png"
 import medico from "../img/sistemamedico.png"
-import microservicio from "../img/microservicio.png"
+import microservicio from "../img/microservicios.png"
 const mockData=[
     {
         title: "Prestamos Personales",
@@ -20,7 +20,7 @@ const mockData=[
         link:"https://tiendamabel.netlify.app/"
     },
     {
-        title: "E-commerce",
+        title: "Microservicio E-commerce",
         image: microservicio ,
         description: 'Backend construido con Microservicios; tecnoligias utilizadas: Nest, Node, Mongo, Postgres,Mysql, Gateway',
         link:"https://github.com/Nest-Micosevices-ADA/products-launcher"
