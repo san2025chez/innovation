@@ -166,11 +166,11 @@ const useStyles = makeStyles((theme) => ({
     listItem: {
         color: '#E0E0E0', // Color de los elementos de la lista
         textTransform: "uppercase",
-        fontSize: '0.7rem'
+        fontSize: '1.0rem'
     },
     listIcon: {
         color: '#E0E0E0', // Color de los iconos
-        fontSize: '5px' // Tamaño de los iconos
+        fontSize: '7px' // Tamaño de los iconos
     }
 }));
 
