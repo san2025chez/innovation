@@ -130,16 +130,7 @@ const services = [
     description: 'Realizo software a medida que se adapta perfectamente a tus requerimientos específicos, ofreciendo soluciones personalizadas que optimizan tus procesos y mejoran la eficiencia de tu negocio.', 
     icon: <FaCode /> 
   },
-  { 
-    title: 'Mantenimiento y Soporte Técnico', 
-    description: 'Ofrezco servicios de mantenimiento y soporte para asegurar que tus sistemas funcionen sin problemas, incluyendo actualizaciones y solución de problemas.', 
-    icon: <GiSettingsKnobs /> 
-  },
-  { 
-    title: 'Formateo e Instalación de Software', 
-    description: 'Proporciono servicios completos de formateo, instalación y configuración de software, asegurando que tu equipo esté listo para funcionar de manera óptima.', 
-    icon: <FaCss3Alt /> 
-  },
+
   { 
     title: 'Actualización y Optimización de Sistemas', 
     description: 'Realizo actualizaciones y optimizaciones para mejorar el rendimiento de tus sistemas, garantizando que estén al día con las últimas características y correcciones de seguridad.', 

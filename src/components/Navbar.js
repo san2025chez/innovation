@@ -71,7 +71,7 @@ const Navbar = () => {
                     <IconButton onClick={() => setOpen(false)}>
                         <CancelIcon fontSize="medium" className={classes.cancelicon} />
                     </IconButton>
-                    <Divider />
+                    <Divider style={{ marginBottom: '1rem'}}/>
                     {
                         links.map(({ id, text, icon }, index) => (
                             <Link key={index}
@@ -83,7 +83,7 @@ const Navbar = () => {
                                 smooth={true}
                                 duration={500}
                                 offset={70}>
-                                <ListItem component="h5" className={classes.listItem}>
+                                <ListItem  className={classes.listItem}>
                                     <span>
                                         <ListItemIcon className={classes.listIcon}>
                                             {icon}
@@ -165,9 +165,12 @@ const useStyles = makeStyles((theme) => ({
     },
     listItem: {
         color: '#E0E0E0', // Color de los elementos de la lista
+        textTransform: "uppercase",
+        fontSize: '0.7rem'
     },
     listIcon: {
         color: '#E0E0E0', // Color de los iconos
+        fontSize: '5px' // Tamaño de los iconos
     }
 }));
 
