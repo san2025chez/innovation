@@ -166,7 +166,9 @@ const useStyles = makeStyles((theme) => ({
     listItem: {
         color: '#E0E0E0', // Color de los elementos de la lista
         textTransform: "uppercase",
-        fontSize: '1.0rem'
+        fontSize: '1.0rem',
+        paddingRight: theme.spacing(3)
+   
     },
     listIcon: {
         color: '#E0E0E0', // Color de los iconos
