@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#000000", // Negro
     [theme.breakpoints.down('sm')]: { // Para pantallas pequeñas (menor a 600px)
    
-      height: '85vh',
+      height: '90vh',
    
    
     },
