@@ -1,4 +1,4 @@
-import React, { useState, useEffect , Suspense } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Typography, Card, CardContent } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress'; // Ejemplo de indicador de carga
@@ -6,29 +6,31 @@ import portada from "../img/original-ana.png";
 import { motion } from 'framer-motion';
 
 const MobileAbout = () => {
-    const [fullStackText, setFullStackText] = useState('');
-    const [developerText, setDeveloperText] = useState('');
-    const [isTypingDeveloper, setIsTypingDeveloper] = useState(true);
-    const [typingTimeout, setTypingTimeout] = useState(null);
+    const [fullStackText, setFullStackText] = React.useState('');
+    const [developerText, setDeveloperText] = React.useState('');
+    const [isTypingDeveloper, setIsTypingDeveloper] = React.useState(true);
+    const [typingTimeout, setTypingTimeout] = React.useState(null);
 
     const fullStack = "Software";
     const developer = "Engineer";
     const whatsappLink = "https://wa.link/cns6bw"; // Cambia este enlace por el tuyo
-    const handleClick = () => {
-        window.open(whatsappLink, '_blank');
-    };
 
-    useEffect(() => {
+    const handleClick = React.useCallback(() => {
+        window.open(whatsappLink, '_blank');
+    }, [whatsappLink]);
+
+    React.useEffect(() => {
         const typeFullStack = () => {
             setFullStackText(fullStack.substring(0, fullStackText.length + 1));
         };
 
         if (fullStackText !== fullStack) {
-            setTimeout(typeFullStack, 100);
+            const timerId = setTimeout(typeFullStack, 100);
+            return () => clearTimeout(timerId);
         }
     }, [fullStackText]);
 
-    useEffect(() => {
+    React.useEffect(() => {
         const typeDeveloper = () => {
             if (isTypingDeveloper) {
                 setDeveloperText(developer.substring(0, developerText.length + 1));
@@ -43,17 +45,15 @@ const MobileAbout = () => {
             }
         };
 
-        const typingTimeout = setTimeout(typeDeveloper, 100);
-        return () => clearTimeout(typingTimeout);
+        const typingTimeoutId = setTimeout(typeDeveloper, 100);
+        return () => clearTimeout(typingTimeoutId);
     }, [developerText, isTypingDeveloper]);
-
-
 
     const classes = useStyles();
 
     return (
         <div>
-            <Suspense fallback={<div className="loading"><CircularProgress   color="secondary" size={50} /></div>}>
+            <Suspense fallback={<div className="loading"><CircularProgress color="secondary" size={50} /></div>}>
             <Card className={classes.card}>
                 <CardContent className={classes.cardContent}>
                     <Typography variant="h5" className={classes.title}>Soy Vanesa Sanchez</Typography>
@@ -77,21 +77,16 @@ const MobileAbout = () => {
                     <div className={classes.imageContainer}>
                         <img src={portada} alt="Vanesa Sanchez" className={classes.roundedImage} />
                     </div>
-                   {/*  <div className={classes.buttonContainer}>
-                        <a href={whatsappLink} className={classes.contactButton}>
-                            CONTÁCTAME
-                        </a>
-                    </div> */}
-                      <div className={classes.buttonContainer}>
-                            <motion.button
-                                className={classes.contactButton}
-                                onClick={handleClick}
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                            >
-                                CONTACTARME
-                            </motion.button>
-                        </div>
+                    <div className={classes.buttonContainer}>
+                        <motion.button
+                            className={classes.contactButton}
+                            onClick={handleClick}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            CONTACTARME
+                        </motion.button>
+                    </div>
                 </CardContent>
             </Card>
             </Suspense>
@@ -101,39 +96,34 @@ const MobileAbout = () => {
 
 const useStyles = makeStyles((theme) => ({
     card: {
-          backgroundColor: "#000000",
+        backgroundColor: "#000000",
         boxShadow: 'none',
         border: 'none',
- 
-       
         display: 'flex',
-        flexDirection: 'column', // Maintain vertical layout
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
- 
     },
     roundedImage: {
         width: '50%',
         borderRadius: '50%',
-        marginTop:'20px',
+        marginTop: '20px',
         marginBottom: '20px',
     },
     title: {
-        color: '#FFFFFF', // Blanco
+        color: '#FFFFFF',
         fontSize: '1.5rem',
         fontWeight: '700',
-
         marginBottom: '10px',
-        textAlign: 'center', // Centra el título
+        textAlign: 'center',
     },
     typingText: {
         fontSize: "1.5rem",
         fontWeight: "600",
-        color: '#007ACC', // Azul Eléctrico
+        color: '#007ACC',
         textTransform: 'uppercase',
-        textAlign: 'center', // Centra el texto
-        marginBottom: '10px', // Espacio entre el texto y la imagen
-      
+        textAlign: 'center',
+        marginBottom: '10px',
         fontFamily: 'Space Grotesk, sans-serif',
     },
     buttonContainer: {
@@ -141,45 +131,38 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
     },
     contactButton: {
-        color: '#FFFFFF', // Blanco
-        backgroundColor: '#007ACC', // Azul Eléctrico
+        color: '#FFFFFF',
+        backgroundColor: '#007ACC',
         borderRadius: '20px',
         padding: '10px 20px',
         textDecoration: 'none',
         transition: 'background-color 0.3s',
         '&:hover': {
-            backgroundColor: '#FF6F30', // Naranja Brillante en hover
+            backgroundColor: '#FF6F30',
             boxShadow: 'none',
         },
     },
     imageContainer: {
-     paddingBottom:'30px'
+        paddingBottom: '30px',
     },
     description: {
-       /*  marginTop: '40px',
-        paddingTop:'10px', */
-        paddingBottom:'10px',
-        color: '#FFFFFF',  // Gris Claro
+        paddingBottom: '10px',
+        color: '#FFFFFF',
         fontSize: '0.9rem',
         lineHeight: '1.8',
         fontWeight: '100',
         fontFamily: 'Space Grotesk, sans-serif',
-        textAlign: 'center', // Center description text
+        textAlign: 'center',
     },
-   
     cardContent: {
-   paddingTop:'10px',
-  
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center', // Center content vertically
-      alignItems: 'center', // Center content horizontally   
-      height:'85vh',
-  
-  
-  },
-
+        paddingTop: '10px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '85vh',
+    },
 }));
 
-export default MobileAbout
+export default MobileAbout;
 

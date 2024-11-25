@@ -168,9 +168,10 @@ export const Services = ({ title, id }) => {
           {services.map((service, index) => (
             <Grid item xs={12} sm={6} md={3} key={index} className={classes.cardContainer}>
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                viewport={{ once: true, amount: 0.2 + (index * 0.1) }}
               >
                 <CardStyled>
                   <CardContent>
@@ -212,3 +213,4 @@ export const Services = ({ title, id }) => {
     </div>
   );
 };
+

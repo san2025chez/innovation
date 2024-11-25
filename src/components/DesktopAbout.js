@@ -49,7 +49,7 @@ const DesktopAbout = () => {
     const classes = useStyles();
 
     return (
-        <Card className={classes.card} style={{padding:0, margin:0}}>
+        <Card className={classes.card} style={{ padding: 0, margin: 0 }}>
             <CardContent className={classes.cardcontent}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} className={classes.textContainer}>
@@ -57,9 +57,14 @@ const DesktopAbout = () => {
                         <span className={classes.typingText}>
                             {fullStackText} {developerText}
                         </span>
-                        <Typography variant="h7" className={classes.description}>
-                            Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías. Me apasiona transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
-                        </Typography>
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5, ease: 'easeInOut' }}
+                        >
+                            <Typography variant="h7" className={classes.description}>
+                                Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías. Me apasiona transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
+                            </Typography></motion.div>
                         <div className={classes.buttonContainer}>
                             <motion.button
                                 className={classes.contactButton}
@@ -86,11 +91,11 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: 'none',
         border: 'none',
         display: "flex",
-        height:'100vh',
-        padding:0,
-        margin:0,
+        height: '100vh',
+        padding: 0,
+        margin: 0,
         flexDirection: "column",
-        
+
     },
     cardcontent: {
         display: 'flex',
@@ -143,9 +148,9 @@ const useStyles = makeStyles((theme) => ({
     imageContainer: {
         width: '80%',
         display: 'flex',
-     
+
         justifyContent: 'center',
-  
+
         alignItems: 'center',
 
         height: '100vh'
@@ -155,12 +160,12 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
         maxHeight: '100vh',
         objectFit: 'cover',
-       
+
     },
     textContainer: {
         display: 'flex',
         flexDirection: 'column',
-     
+
         padding: '60px 30px 0',
         alignItems: 'center',
         height: '100%',
@@ -170,12 +175,12 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         minHeight: '100vh',
     },
-     container: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: '100vh',
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
 
     }
 }));
