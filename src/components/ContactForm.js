@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { makeStyles, TextField, Button, Typography, Grid, Container, Paper } from '@material-ui/core';
 import emailjs from '@emailjs/browser';
+import { motion } from 'framer-motion';
+
 
 const ContactForm = ({ title, id }) => {
   const form = useRef();
@@ -83,13 +85,16 @@ const ContactForm = ({ title, id }) => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <Button
+                <motion.button
+                  className={classes.contactButton}
                   type="submit"
                   variant="contained"
-                  className={classes.submitButton}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                 >
-                  Enviar
-                </Button>
+                  ENVIAR
+                </motion.button>
+
               </Grid>
             </Grid>
           </form>
@@ -139,6 +144,19 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#005C7F', // Un tono más oscuro al pasar el mouse
     },
   },
+  contactButton: {
+    color: '#FFFFFF',
+    backgroundColor: '#007ACC', // Azul Eléctrico
+    borderRadius: '10px',
+    padding: '10px 20px',
+    fontSize: '16px',
+    border: 'none',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s, transform 0.2s',
+    '&:hover': {
+        backgroundColor: '#FF6F30', // Naranja Brillante en hover
+    },
+},
 }));
 
 export default ContactForm;

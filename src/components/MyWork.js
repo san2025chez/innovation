@@ -4,7 +4,7 @@ import ProjectCard from './ProjectCard';
 import mockData from '../mock/mockData';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
 const MyWork = ({ title, id }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -29,14 +29,20 @@ const MyWork = ({ title, id }) => {
         <Grid container spacing={3}>
           {mockData.map((project, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <ProjectCard
-                title={project.title}
-               /*  description={project.description} */
-                image={project.image}
-                onOpen={() => handleOpen(project)}
-                // Pass a hover state prop to ProjectCard
-                isHovered={false}
-              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                viewport={{ once: true, amount: 0.2 + (index * 0.1) }}
+              >
+                <ProjectCard
+                  title={project.title}
+                  /*  description={project.description} */
+                  image={project.image}
+                  onOpen={() => handleOpen(project)}
+                  isHovered={false}
+                />
+              </motion.div>
             </Grid>
           ))}
         </Grid>

@@ -38,7 +38,12 @@ export default function Technologies() {
         <Box sx={{ flexGrow: 1 }} className={classes.box1}>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                   
+                <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, ease: 'easeInOut' }}
+                        viewport={{ once: true }}
+                    >  
                     <Typography variant="h7"
                        className={classes.justifiedText}
                         style={{ 
@@ -55,6 +60,7 @@ export default function Technologies() {
 
 Estoy disponible para trabajar en empresas, así como para digitalizar tu negocio, desarrollar un nuevo proyecto o simplemente ofrecer soluciones tecnológicas. ¡Estoy emocionada de colaborar contigo y hacer realidad tus ideas!
                     </Typography>
+                    </motion.div>
                     <br /><br />
                 </Grid>
 
@@ -108,3 +114,4 @@ justifiedText :{
         },
     }
 }));
+

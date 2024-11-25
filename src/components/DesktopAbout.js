@@ -64,6 +64,8 @@ const DesktopAbout = () => {
                             <motion.button
                                 className={classes.contactButton}
                                 onClick={handleClick}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
                             >
                                 CONTACTARME
                             </motion.button>

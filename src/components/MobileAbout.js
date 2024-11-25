@@ -3,6 +3,7 @@ import { Typography, Card, CardContent } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress'; // Ejemplo de indicador de carga
 import portada from "../img/original-ana.png";
+import { motion } from 'framer-motion';
 
 const MobileAbout = () => {
     const [fullStackText, setFullStackText] = useState('');
@@ -13,35 +14,40 @@ const MobileAbout = () => {
     const fullStack = "Software";
     const developer = "Engineer";
     const whatsappLink = "https://wa.link/cns6bw"; // Cambia este enlace por el tuyo
-
-    useEffect(() => {
-        if (!typingTimeout) {
-            setTypingTimeout(
-                setTimeout(() => {
-                    setFullStackText(fullStack.substring(0, fullStackText.length + 1));
-                }, 100)
-            );
-        }
-
-        return () => {
-            if (typingTimeout) {
-                clearTimeout(typingTimeout);
-                setTypingTimeout(null);
-            }
-        };
-    }, [fullStackText, typingTimeout]);
-
-    useEffect(() => {
-        if (developerText === developer) {
-            setIsTypingDeveloper(false);
-        } else if (developerText === '') {
-            setIsTypingDeveloper(true);
-        }
-    }, [developerText]);
-
     const handleClick = () => {
         window.open(whatsappLink, '_blank');
     };
+
+    useEffect(() => {
+        const typeFullStack = () => {
+            setFullStackText(fullStack.substring(0, fullStackText.length + 1));
+        };
+
+        if (fullStackText !== fullStack) {
+            setTimeout(typeFullStack, 100);
+        }
+    }, [fullStackText]);
+
+    useEffect(() => {
+        const typeDeveloper = () => {
+            if (isTypingDeveloper) {
+                setDeveloperText(developer.substring(0, developerText.length + 1));
+                if (developerText === developer) {
+                    setTimeout(() => setIsTypingDeveloper(false), 1000);
+                }
+            } else {
+                setDeveloperText(developer.substring(0, developerText.length - 1));
+                if (developerText === '') {
+                    setTimeout(() => setIsTypingDeveloper(true), 1000);
+                }
+            }
+        };
+
+        const typingTimeout = setTimeout(typeDeveloper, 100);
+        return () => clearTimeout(typingTimeout);
+    }, [developerText, isTypingDeveloper]);
+
+
 
     const classes = useStyles();
 
@@ -57,19 +63,35 @@ const MobileAbout = () => {
                         </span>
                     </div>
                     <br/>
-                    <Typography variant="h7" className={classes.description}>
-                        Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías.
-                        Me gusta transformar ideas en productos digitales innovadores y eficientes.
-                        ¡Juntos, podemos impulsar tu proyecto!
-                    </Typography>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    >
+                        <Typography variant="h7" className={classes.description}>
+                            Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías.
+                            Me gusta transformar ideas en productos digitales innovadores y eficientes.
+                            ¡Juntos, podemos impulsar tu proyecto!
+                        </Typography>
+                    </motion.div>
                     <div className={classes.imageContainer}>
                         <img src={portada} alt="Vanesa Sanchez" className={classes.roundedImage} />
                     </div>
-                    <div className={classes.buttonContainer}>
+                   {/*  <div className={classes.buttonContainer}>
                         <a href={whatsappLink} className={classes.contactButton}>
                             CONTÁCTAME
                         </a>
-                    </div>
+                    </div> */}
+                      <div className={classes.buttonContainer}>
+                            <motion.button
+                                className={classes.contactButton}
+                                onClick={handleClick}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                            >
+                                CONTACTARME
+                            </motion.button>
+                        </div>
                 </CardContent>
             </Card>
             </Suspense>
@@ -127,6 +149,7 @@ const useStyles = makeStyles((theme) => ({
         transition: 'background-color 0.3s',
         '&:hover': {
             backgroundColor: '#FF6F30', // Naranja Brillante en hover
+            boxShadow: 'none',
         },
     },
     imageContainer: {
@@ -159,3 +182,4 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default MobileAbout
+

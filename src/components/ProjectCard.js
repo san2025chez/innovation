@@ -3,7 +3,7 @@ import { makeStyles, Card, CardMedia, Typography, IconButton } from '@material-u
 import { motion } from 'framer-motion';
 import InfoIcon from '@material-ui/icons/Info';
 
-const ProjectCard = ({ title, description, image, onOpen }) => {
+const ProjectCard = ({ title, description, image, onOpen , inView}) => {
   const classes = useStyles();
   const [hover, setHover] = useState(false);
 
