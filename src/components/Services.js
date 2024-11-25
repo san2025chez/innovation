@@ -173,7 +173,7 @@ export const Services = ({ title, id }) => {
                 transition={{ duration: 2, ease: 'easeInOut' }}
                 viewport={{ once: true, amount: 0.2 + (index * 0.1) }}
                 animate={{
-                  scale:[0.5,1.5],
+                  scale:[0,1.2],
                   rotate:[0,360]
                 }}
               >

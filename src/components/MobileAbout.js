@@ -66,7 +66,7 @@ const MobileAbout = () => {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, ease: 'easeInOut' }}
+                        transition={{ duration: 1, ease: 'easeInOut' }}
                     >
                         <Typography variant="h7" className={classes.description}>
                             Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías.
