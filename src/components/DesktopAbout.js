@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Card, CardContent, Grid, CardMedia } from "@material-ui/core";
+import { Typography, Card, CardContent, Grid, CardMedia, Box } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import portada from "../img/original-ana.png";
 import { motion } from 'framer-motion';
@@ -77,7 +77,19 @@ const DesktopAbout = () => {
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={6} className={classes.imageContainer}>
-                        <CardMedia className={classes.media} image={portada} title="Vanesa Sanchez" />
+                        <Box
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                            style={{ position: 'relative', top: '-10vh' }}
+                        >
+                            <CardMedia
+                                className={classes.media}
+                                image={portada}
+                                title="Vanesa Sanchez"
+                                style={{ height: '70vh', width: '70vh', borderRadius: '50%' }}
+                            />
+                        </Box>
                     </Grid>
                 </Grid>
             </CardContent>
@@ -156,11 +168,12 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh'
     },
     media: {
-        width: '80%',
-        height: '100vh',
-        maxHeight: '100vh',
+        width: '70vh',
+        height: '70vh',
+        maxWidth: '70vh',
+        maxHeight: '70vh',
         objectFit: 'cover',
-
+        borderRadius: '50%',
     },
     textContainer: {
         display: 'flex',
@@ -186,3 +199,4 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default DesktopAbout;
+

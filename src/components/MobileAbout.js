@@ -143,10 +143,11 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     imageContainer: {
-        paddingBottom: '30px',
+        paddingTop: '30px',
+        paddingBottom: '20px',
     },
     description: {
-        paddingBottom: '10px',
+        paddingBottom: '15px',
         color: '#FFFFFF',
         fontSize: '0.9rem',
         lineHeight: '1.8',
