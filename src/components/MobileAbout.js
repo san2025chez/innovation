@@ -56,7 +56,7 @@ const MobileAbout = () => {
             <Suspense fallback={<div className="loading"><CircularProgress color="secondary" size={50} /></div>}>
             <Card className={classes.card}>
                 <CardContent className={classes.cardContent}>
-                    <Typography variant="h5" className={classes.title}>Soy Vanesa Sanchez</Typography>
+                    <Typography variant="h5" className={classes.title}>Soy Vanesa</Typography>
                     <div className={classes.typingText}>
                         <span>
                             {fullStackText} {developerText}
@@ -75,7 +75,7 @@ const MobileAbout = () => {
                         </Typography>
                     </motion.div>
                     <div className={classes.imageContainer}>
-                        <img src={portada} alt="Vanesa Sanchez" className={classes.roundedImage} />
+                        <img src={portada} alt="Vanesa" className={classes.roundedImage} />
                     </div>
                     <div className={classes.buttonContainer}>
                         <motion.button
@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         color: '#FFFFFF',
-        fontSize: '1.5rem',
+        fontSize: '2rem',
         fontWeight: '700',
         marginBottom: '10px',
         textAlign: 'center',

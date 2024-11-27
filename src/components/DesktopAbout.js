@@ -49,32 +49,38 @@ const DesktopAbout = () => {
     const classes = useStyles();
 
     return (
-        <Card className={classes.card} style={{ padding: 0, margin: 0 }}>
+        <Card className={classes.card} style={{ padding: 0, margin: 5 }}>
             <CardContent className={classes.cardcontent}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} className={classes.textContainer}>
-                        <Typography variant="h4" className={classes.title}>Soy Vanesa Sanchez</Typography>
-                        <span className={classes.typingText}>
-                            {fullStackText} {developerText}
-                        </span>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1, ease: 'easeInOut' }}
-                        >
-                            <Typography variant="h7" className={classes.description}>
-                                Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías. Me apasiona transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
-                            </Typography></motion.div>
-                        <div className={classes.buttonContainer}>
-                            <motion.button
-                                className={classes.contactButton}
-                                onClick={handleClick}
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
+                        <Box sx={{ margin: { xs: '0 20px', md: '0 50px' }, marginTop: '-20px' }}>
+                            <Typography variant="h4" className={classes.title}>Soy Vanesa</Typography>
+                           
+                            <span className={classes.typingText}>
+                                {fullStackText} {developerText}
+                            </span>
+                            <br />  <br />
+
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 1, ease: 'easeInOut' }}
                             >
-                                CONTACTARME
-                            </motion.button>
-                        </div>
+                                <Typography variant="h7" className={classes.description}>
+                                    Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías. Me apasiona transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
+                                </Typography>
+                            </motion.div>
+                            <div className={classes.buttonContainer}>
+                                <motion.button
+                                    className={classes.contactButton}
+                                    onClick={handleClick}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                >
+                                    CONTACTARME
+                                </motion.button>
+                            </div>
+                        </Box>
                     </Grid>
                     <Grid item xs={12} sm={6} className={classes.imageContainer}>
                         <Box
@@ -118,13 +124,13 @@ const useStyles = makeStyles((theme) => ({
     title: {
         marginBottom: '15px',
         color: '#FFFFFF', // Blanco
-        fontSize: '2.5rem',
-        fontWeight: '700',
+        fontSize: '3rem',
+        fontWeight: '900',
         textTransform: 'uppercase',
         fontFamily: 'Space Grotesk, sans-serif',
     },
     typingText: {
-        fontSize: "3rem",
+        fontSize: "2.0rem",
         fontWeight: "700",
         color: '#007ACC', // Azul Eléctrico
         textTransform: 'uppercase',
@@ -134,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
     description: {
         marginTop: '20px',
         color: '#E0E0E0', // Gris Claro
-        fontSize: '1.1rem',
+        fontSize: '1.0rem',
         lineHeight: '1.6',
         fontWeight: '150',
         fontFamily: 'Space Grotesk, sans-serif',
@@ -178,10 +184,10 @@ const useStyles = makeStyles((theme) => ({
     textContainer: {
         display: 'flex',
         flexDirection: 'column',
-
-        padding: '60px 30px 0',
+        padding: '40px 30px 0',
         alignItems: 'center',
         height: '100%',
+      
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -199,4 +205,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default DesktopAbout;
+
+
+
 

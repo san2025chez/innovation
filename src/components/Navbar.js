@@ -1,12 +1,14 @@
-import { AppBar, Toolbar, makeStyles, List, IconButton, Drawer, Divider, ListItem, ListItemIcon } from '@material-ui/core';
+import { AppBar, Toolbar, makeStyles, List, IconButton, Drawer, Divider, ListItem, ListItemIcon, Link } from '@material-ui/core';
 import React, { useState } from 'react';
-import { Link } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 import InfoIcon from '@mui/icons-material/Info';
 import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 import BuildTwoToneIcon from '@mui/icons-material/BuildTwoTone';
 import ContactMailTwoToneIcon from "@mui/icons-material/ContactMailTwoTone";
 import MenuIcon from "@mui/icons-material/Menu";
 import CancelIcon from "@mui/icons-material/Cancel";
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { Typography } from '@material-ui/core';
 
 const links = [
     {
@@ -34,6 +36,12 @@ const links = [
         text: "Contactos",
         icon: <ContactMailTwoToneIcon fontSize="medium" />
     },
+    {
+        id: "download",
+        text: "CV",
+        link: "https://google.com",
+        icon: <FileDownloadIcon fontSize="medium" />
+    },
 ];
 
 const Navbar = () => {
@@ -46,16 +54,22 @@ const Navbar = () => {
                 <Toolbar className='toolbar'>
                     <List className={classes.menu}>
                         {
-                            links.map(({ id, text }, index) => (
-                                <Link key={index}
-                                    to={id}
-                                    spy={true}
-                                    activeClass="active"
-                                    smooth={true}
-                                    duration={500}
-                                    offset={-70}>
-                                    {text}
-                                </Link>
+                            links.map(({ id, text, link }, index) => (
+                                id === "download" ? (
+                                    <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+                                        {text}
+                                    </a>
+                                ) : (
+                                    <ScrollLink key={index}
+                                        to={id}
+                                        spy={true}
+                                        activeClass="active"
+                                        smooth={true}
+                                        duration={500}
+                                        offset={-70}>
+                                        {text}
+                                    </ScrollLink>
+                                )
                             ))
                         }
                     </List>
@@ -73,24 +87,36 @@ const Navbar = () => {
                     </IconButton>
                     <Divider style={{ marginBottom: '1rem'}}/>
                     {
-                        links.map(({ id, text, icon }, index) => (
-                            <Link key={index}
-                                className={classes.sidebar}
-                                to={id}
-                                spy={true}
-                                onClick={() => setOpen(false)}
-                                activeClass="active"
-                                smooth={true}
-                                duration={500}
-                                offset={70}>
-                                <ListItem  className={classes.listItem}>
-                                    <span>
-                                        <ListItemIcon className={classes.listIcon}>
-                                            {icon}
-                                        </ListItemIcon>
-                                    </span>{text}
-                                </ListItem>
-                            </Link>
+                        links.map(({ id, text, icon, link }, index) => (
+                            id === "download" ? (
+                                <a key={index} href={link} target="_blank" rel="noopener noreferrer">
+                                    <ListItem className={classes.listItem}>
+                                        <span>
+                                            <ListItemIcon className={classes.listIcon}>
+                                                {icon}
+                                            </ListItemIcon>
+                                        </span>{text}
+                                    </ListItem>
+                                </a>
+                            ) : (
+                                <ScrollLink key={index}
+                                    className={classes.sidebar}
+                                    to={id}
+                                    spy={true}
+                                    onClick={() => setOpen(false)}
+                                    activeClass="active"
+                                    smooth={true}
+                                    duration={500}
+                                    offset={70}>
+                                    <ListItem className={classes.listItem}>
+                                        <span>
+                                            <ListItemIcon className={classes.listIcon}>
+                                                {icon}
+                                            </ListItemIcon>
+                                        </span>{text}
+                                    </ListItem>
+                                </ScrollLink>
+                            )
                         ))
                     }
                 </div>
@@ -168,12 +194,20 @@ const useStyles = makeStyles((theme) => ({
         textTransform: "uppercase",
         fontSize: '1.0rem',
         paddingRight: theme.spacing(3)
-   
     },
     listIcon: {
         color: '#E0E0E0', // Color de los iconos
         fontSize: '7px' // Tamaño de los iconos
+    },
+    downloadButton: {
+        color: "#007ACC", // Color del botón de descarga
+        position: "absolute",
+        right: 10, // Espaciado a la derecha
+        [theme.breakpoints.down("sm")]: {
+            display: "none" // Ocultar el botón para dispositivos móviles
+        }
     }
 }));
 
 export default Navbar;
+
