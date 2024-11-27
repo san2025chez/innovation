@@ -39,7 +39,7 @@ const links = [
     {
         id: "download",
         text: "CV",
-        link: "https://google.com",
+        link: "https://cvdesignr.com/p/674630e02f2e9",
         icon: <FileDownloadIcon fontSize="medium" />
     },
 ];
