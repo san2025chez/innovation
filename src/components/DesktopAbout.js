@@ -53,7 +53,7 @@ const DesktopAbout = () => {
             <CardContent className={classes.cardcontent}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} className={classes.textContainer}>
-                        <Box sx={{ margin: { xs: '0 20px', md: '0 50px' }, marginTop: '-20px' }}>
+                        <Box sx={{ margin: { xs: '0 20px', md: '0 50px' }, marginTop: '-30px' }}>
                             <Typography variant="h4" className={classes.title}>Soy Vanesa</Typography>
                            
                             <span className={classes.typingText}>
@@ -77,7 +77,7 @@ const DesktopAbout = () => {
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
                                 >
-                                    CONTACTARME
+                                    CONTÁCTAME
                                 </motion.button>
                             </div>
                         </Box>
@@ -93,7 +93,7 @@ const DesktopAbout = () => {
                                 className={classes.media}
                                 image={portada}
                                 title="Vanesa Sanchez"
-                                style={{ height: '70vh', width: '70vh', borderRadius: '50%' }}
+                                style={{ height: '60vh', width: '60vh', borderRadius: '50%' }}
                             />
                         </Box>
                     </Grid>
@@ -124,13 +124,13 @@ const useStyles = makeStyles((theme) => ({
     title: {
         marginBottom: '15px',
         color: '#FFFFFF', // Blanco
-        fontSize: '3rem',
+        fontSize: '2.8rem',
         fontWeight: '900',
         textTransform: 'uppercase',
         fontFamily: 'Space Grotesk, sans-serif',
     },
     typingText: {
-        fontSize: "2.0rem",
+        fontSize: "1.8rem",
         fontWeight: "700",
         color: '#007ACC', // Azul Eléctrico
         textTransform: 'uppercase',
@@ -155,7 +155,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#007ACC', // Azul Eléctrico
         borderRadius: '20px',
         padding: '10px 20px',
-        fontSize: '16px',
+        fontSize: '14px',
         border: 'none',
         cursor: 'pointer',
         transition: 'background-color 0.3s, transform 0.2s',
@@ -184,7 +184,7 @@ const useStyles = makeStyles((theme) => ({
     textContainer: {
         display: 'flex',
         flexDirection: 'column',
-        padding: '40px 30px 0',
+        padding: '20px 30px 0',
         alignItems: 'center',
         height: '100%',
       
