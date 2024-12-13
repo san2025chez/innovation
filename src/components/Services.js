@@ -165,32 +165,36 @@ export const Services = ({ title, id }) => {
       </Typography>
       <div className={classes.gridContainer}>
         <Grid container spacing={3}>
-          {services.map((service, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index} className={classes.cardContainer}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 2, ease: 'easeInOut' }}
-                viewport={{ once: true, amount: 0.2 + (index * 0.1) }}
-                animate={{
-                  scale:[0,1.2],
-                  rotate:[0,360]
-                }}
-              >
-                <CardStyled>
-                  <CardContent>
-                    <IconStyled>{service.icon}</IconStyled>
-                    <Typography variant="h5" className={classes.titles}>
-                      {service.title}
-                    </Typography>
-                    <Description>
-                      {service.description}
-                    </Description>
-                  </CardContent>
-                </CardStyled>
-              </motion.div>
-            </Grid>
-          ))}
+          {services.map((service, index) => {
+            const columnIndex = Math.floor(index / 3);
+            const rowIndex = index % 3;
+            return (
+              <Grid item xs={12} sm={6} md={4} key={index} className={classes.cardContainer}>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 2, ease: 'easeInOut' }}
+                  viewport={{ once: true, amount: 0.2 + (columnIndex * 0.1) }}
+                  animate={{
+                    scale:[0,1.2],
+                    rotate:[0,360]
+                  }}
+                >
+                  <CardStyled>
+                    <CardContent>
+                      <IconStyled>{service.icon}</IconStyled>
+                      <Typography variant="h5" className={classes.titles}>
+                        {service.title}
+                      </Typography>
+                      <Description>
+                        {service.description}
+                      </Description>
+                    </CardContent>
+                  </CardStyled>
+                </motion.div>
+              </Grid>
+            );
+          })}
         </Grid>
       </div>
       {selectedService && (

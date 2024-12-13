@@ -31,6 +31,13 @@ const Item = styled(Paper)(({ theme }) => ({
     fontFamily: 'Space Grotesk, sans-serif',
 }));
 
+const StyledGrid = styled(Grid)(({ theme }) => ({
+  '.MuiGrid-item': {
+    paddingLeft: 16,
+    textAlign: 'justify',
+  },
+}));
+
 export default function Technologies() {
     const classes = useStyles();
 
@@ -42,25 +49,22 @@ export default function Technologies() {
                         transition={{ duration: 0.5, ease: 'easeInOut' }}
                         viewport={{ once: true }}
                     >
-            <Grid container spacing={2}>
+            <StyledGrid container spacing={2}>
                 <Grid item xs={12}>
-                  
-                        <Typography variant="h7"
-                            className={classes.justifiedText}
-                            style={{
-                                fontSize: window.innerWidth > 600 ? '1.0rem' : '0.9rem',
-                                color: '#FFFFFF',
-                                lineHeight: '1.8',
-                                fontFamily: 'Space Grotesk, sans-serif',
-                                fontWeight: window.innerWidth > 600 ? '150' : '100',
-                                textAlign: 'justify',
-                            }}
-                        >
-                            Ingeniera en Informática y Desarrolladora Full-Stack con más de 3 años de experiencia en el desarrollo de sistemas y aplicaciones. Me especializo en crear soluciones innovadoras y eficientes utilizando nuevas tecnologías. Mi capacidad analítica me permite resolver problemas de manera efectiva, y siempre busco mejorar mis habilidades para enfrentar nuevos desafíos.
-
-                            Estoy disponible para trabajar en empresas, así como para digitalizar tu negocio, desarrollar un nuevo proyecto o simplemente ofrecer soluciones tecnológicas. ¡Estoy emocionada de colaborar contigo y hacer realidad tus ideas!
-                        </Typography>
-                   
+                    <Typography variant="h7"
+                        className={classes.justifiedText}
+                        style={{
+                            fontSize: window.innerWidth > 600 ? '1.0rem' : '0.9rem',
+                            color: '#FFFFFF',
+                            lineHeight: '1.8',
+                            fontFamily: 'Space Grotesk, sans-serif',
+                            fontWeight: window.innerWidth > 600 ? '150' : '100',
+                        }}
+                    >
+                        Ingeniera en Informática y Desarrolladora Full-Stack con más de 3 años de experiencia en el desarrollo de sistemas y aplicaciones. Me especializo en crear soluciones innovadoras y eficientes utilizando nuevas tecnologías. Mi capacidad analítica me permite resolver problemas de manera efectiva, y siempre busco mejorar mis habilidades para enfrentar nuevos desafíos.
+                        
+                        Estoy disponible para trabajar en empresas, así como para digitalizar tu negocio, desarrollar un nuevo proyecto o simplemente ofrecer soluciones tecnológicas. ¡Estoy emocionada de colaborar contigo y hacer realidad tus ideas!
+                    </Typography>
                     <br /><br />
                 </Grid>
 
@@ -84,7 +88,7 @@ export default function Technologies() {
                         </Grid>
                     ))}
                 </Grid>
-            </Grid>
+            </StyledGrid>
              </motion.div>
         </Box>
     );
@@ -108,11 +112,6 @@ const useStyles = makeStyles((theme) => ({
     },
     justifiedText: {
         textAlign: 'justify',
-        textJustify: 'inter-word',
         fontFamily: 'Space Grotesk', /* Asegúrate de que la fuente esté cargada correctamente */
-        [theme.breakpoints.down('sm')]: {
-            textAlign: 'right'
-        },
-    }
+    },
 }));
-
