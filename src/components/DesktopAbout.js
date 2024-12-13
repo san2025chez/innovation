@@ -53,16 +53,8 @@ const DesktopAbout = () => {
             <CardContent className={classes.cardcontent}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} className={classes.textContainer}>
-                        <Box
-                            sx={{
-                                margin: { xs: '0 20px', md: '0 50px' },
-                             
-                                display: 'flex',
-                               
-                            }}
-                            style={{ position: 'relative', top:'-8vh'}}
-                        >
-                            <Typography variant="h4" className={classes.title}>Soy Vanesa Sanchez</Typography>
+                        <Box sx={{ margin: { xs: '0 20px', md: '0 50px' }, marginTop: '-20px' }}>
+                            <Typography variant="h4" className={classes.title}>Soy Vanesa</Typography>
                            
                             <span className={classes.typingText}>
                                 {fullStackText} {developerText}
@@ -75,7 +67,7 @@ const DesktopAbout = () => {
                                 transition={{ duration: 1, ease: 'easeInOut' }}
                             >
                                 <Typography variant="h7" className={classes.description}>
-                                    Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías. Me gusta transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
+                                    Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías. Me apasiona transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
                                 </Typography>
                             </motion.div>
                             <div className={classes.buttonContainer}>
@@ -85,7 +77,7 @@ const DesktopAbout = () => {
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
                                 >
-                                    CONTÁCTAME
+                                    CONTACTARME
                                 </motion.button>
                             </div>
                         </Box>
@@ -95,13 +87,13 @@ const DesktopAbout = () => {
                             display="flex"
                             justifyContent="center"
                             alignItems="center"
-                            style={{ position: 'relative', top:'-10vh'}}
+                            style={{ position: 'relative', top: '-10vh' }}
                         >
                             <CardMedia
                                 className={classes.media}
                                 image={portada}
                                 title="Vanesa Sanchez"
-                                style={{ height: '60vh', width: '60vh', borderRadius: '50%' }}
+                                style={{ height: '70vh', width: '70vh', borderRadius: '50%' }}
                             />
                         </Box>
                     </Grid>
@@ -132,13 +124,13 @@ const useStyles = makeStyles((theme) => ({
     title: {
         marginBottom: '15px',
         color: '#FFFFFF', // Blanco
-        fontSize: '2.2rem',
+        fontSize: '3rem',
         fontWeight: '900',
         textTransform: 'uppercase',
         fontFamily: 'Space Grotesk, sans-serif',
     },
     typingText: {
-        fontSize: "1.7rem",
+        fontSize: "2.0rem",
         fontWeight: "700",
         color: '#007ACC', // Azul Eléctrico
         textTransform: 'uppercase',
@@ -147,10 +139,6 @@ const useStyles = makeStyles((theme) => ({
     },
     description: {
         marginTop: '20px',
-        marginLeft: '20px',
-        marginRight: '20px',
-        paddingLeft:'20px',
-        paddingRight:'20px',
         color: '#E0E0E0', // Gris Claro
         fontSize: '1.0rem',
         lineHeight: '1.6',
@@ -158,16 +146,16 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Space Grotesk, sans-serif',
     },
     buttonContainer: {
-        marginTop: '60px',
+        marginTop: '70px',
         textAlign: 'center',
-        marginBottom: '0px',
+        marginBottom: '10px',
     },
     contactButton: {
         color: '#FFFFFF',
         backgroundColor: '#007ACC', // Azul Eléctrico
         borderRadius: '20px',
         padding: '10px 20px',
-        fontSize: '14px',
+        fontSize: '16px',
         border: 'none',
         cursor: 'pointer',
         transition: 'background-color 0.3s, transform 0.2s',
@@ -196,14 +184,13 @@ const useStyles = makeStyles((theme) => ({
     textContainer: {
         display: 'flex',
         flexDirection: 'column',
-        padding: '0px 30px 0',
-      
-        height: '100vh',
-        justifyContent: 'center',
+        padding: '40px 30px 0',
+        alignItems: 'center',
+        height: '100%',
       
         display: 'flex',
         flexDirection: 'column',
-    
+        justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
     },
