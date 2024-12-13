@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.f4dc68ec.css",
-    "main.js": "/static/js/main.04e34fc5.js",
+    "main.js": "/static/js/main.ba48e129.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/sistemamedico.png": "/static/media/sistemamedico.770bba9f56e37154fc19.png",
     "static/media/newada.png": "/static/media/newada.a608c91bb4b7e501b353.png",
@@ -14,11 +14,11 @@
     "static/media/prestamo.png": "/static/media/prestamo.960dc03c28fd0926f672.png",
     "index.html": "/index.html",
     "main.f4dc68ec.css.map": "/static/css/main.f4dc68ec.css.map",
-    "main.04e34fc5.js.map": "/static/js/main.04e34fc5.js.map",
+    "main.ba48e129.js.map": "/static/js/main.ba48e129.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f4dc68ec.css",
-    "static/js/main.04e34fc5.js"
+    "static/js/main.ba48e129.js"
   ]
 }
