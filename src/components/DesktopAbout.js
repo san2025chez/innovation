@@ -60,7 +60,7 @@ const DesktopAbout = () => {
                                 display: 'flex',
                                
                             }}
-                            style={{ position: 'relative', top:'-6vh'}}
+                            style={{ position: 'relative', top:'-8vh'}}
                         >
                             <Typography variant="h4" className={classes.title}>Soy Vanesa Sanchez</Typography>
                            
