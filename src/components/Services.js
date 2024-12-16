@@ -173,11 +173,11 @@ export const Services = ({ title, id }) => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 2, ease: 'easeInOut' }}
+                  transition={{ duration: 1, ease: 'easeInOut' }}
                   viewport={{ once: true, amount: 0.2 + (columnIndex * 0.1) }}
                   animate={{
                     scale:[0,1.2],
-                    rotate:[0,360]
+                   // rotate:[0,360]
                   }}
                 >
                   <CardStyled>
