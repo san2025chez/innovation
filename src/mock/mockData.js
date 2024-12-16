@@ -28,7 +28,7 @@ const mockData=[
     {
         title: "Prestamos Personales",
         image: dash,
-        link:"https://youtu.be/ASrncm_u3Ys"
+        link:"https://youtu.be/eZZJ8THIEAE?feature=shared"
     },
     {
         title: "Dashboard",
