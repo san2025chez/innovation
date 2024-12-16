@@ -54,7 +54,7 @@ const DesktopAbout = () => {
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} className={classes.textContainer}>
                         <Box sx={{ margin: { xs: '0 20px', md: '0 50px' }, marginTop: '-30px' }}>
-                            <Typography variant="h4" className={classes.title}>Soy Vanesa</Typography>
+                            <Typography variant="h4" className={classes.title}>Soy Ana Sanchez</Typography>
                            
                             <span className={classes.typingText}>
                                 {fullStackText} {developerText}

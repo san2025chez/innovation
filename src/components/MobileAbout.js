@@ -56,7 +56,7 @@ const MobileAbout = () => {
             <Suspense fallback={<div className="loading"><CircularProgress color="secondary" size={50} /></div>}>
             <Card className={classes.card}>
                 <CardContent className={classes.cardContent}>
-                    <Typography variant="h5" className={classes.title}>Soy Vanesa</Typography>
+                    <Typography variant="h5" className={classes.title}>Soy Ana Sanchez</Typography>
                     <div className={classes.typingText}>
                         <span>
                             {fullStackText} {developerText}
@@ -137,9 +137,9 @@ const useStyles = makeStyles((theme) => ({
         padding: '10px 20px',
         textDecoration: 'none',
         transition: 'background-color 0.3s',
+        boxShadow: 'none',
         '&:hover': {
             backgroundColor: '#FF6F30',
-            boxShadow: 'none',
         },
     },
     imageContainer: {
