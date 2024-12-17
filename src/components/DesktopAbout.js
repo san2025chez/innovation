@@ -67,7 +67,9 @@ const DesktopAbout = () => {
                                 transition={{ duration: 1, ease: 'easeInOut' }}
                             >
                                 <Typography variant="h7" className={classes.description}>
-                                    Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías. Me apasiona transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
+                                    Soy Ingeniera de Software, especialista en crear soluciones 
+                                    tecnológicas usando nuevas tecnologías.
+                                     Me gusta transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
                                 </Typography>
                             </motion.div>
                             <div className={classes.buttonContainer}>
