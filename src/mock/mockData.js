@@ -1,5 +1,5 @@
 import prestamo from "../img/prestamo.png";
-import ecomerce from "../img/ecomerce.jpeg"
+import portada from "../img/portadatienda.png";
 import dash from "../img/dash.jpeg"
 import personales from "../img/personales.jpeg"
 import dashcommerce from "../img/dashcommerce.png"
@@ -15,7 +15,7 @@ const mockData=[
     },
     {
         title: "E-commerce",
-        image: ecomerce ,
+        image: portada ,
         description: 'E-comerce- tecnologias utilizada Node, Nest, Postgres, Firebase, React, Materia-UI',
         link:"https://tiendamabel.netlify.app/"
     },
