@@ -61,7 +61,7 @@ export default function Technologies() {
                             fontWeight: window.innerWidth > 600 ? '150' : '100',
                         }}
                     >
-                        Ingeniera en Informática y Desarrolladora Full-Stack con más de 4
+                        Ingeniera Informática y Desarrolladora Full-Stack con más de 3
                          años de experiencia en el desarrollo de sistemas y aplicaciones.
                           Me especializo en crear soluciones innovadoras y eficientes utilizando nuevas
                            tecnologías. Mi capacidad analítica me permite resolver problemas de 
@@ -70,7 +70,7 @@ export default function Technologies() {
                         
                        Ofrezco Soluciones tecnologicas para digitalizar tu negocio o servicio, 
                        desarrollar un nuevo proyecto o mejorar tus procesos.
-                        Tambien estoy disponible para trabajar y colaborar con empresas.
+                        Tambien estoy disponible para trabajar con empresas, proyectos personales o emprendimientos.
                         ¡Estoy emocionada de colaborar contigo y hacer realidad tus ideas!
                     </Typography>
                     <br /><br />
