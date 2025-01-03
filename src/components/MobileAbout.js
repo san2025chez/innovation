@@ -56,6 +56,9 @@ const MobileAbout = () => {
             <Suspense fallback={<div className="loading"><CircularProgress color="secondary" size={50} /></div>}>
             <Card className={classes.card}>
                 <CardContent className={classes.cardContent}>
+                <div className={classes.imageContainer}>
+                        <img src={portada} alt="Vanesa" className={classes.roundedImage} />
+                    </div>
                     <Typography variant="h5" className={classes.title}>Soy Ana</Typography>
                     <div className={classes.typingText}>
                         <span>
@@ -69,14 +72,12 @@ const MobileAbout = () => {
                         transition={{ duration: 1, ease: 'easeInOut' }}
                     >
                         <Typography variant="h7" className={classes.description}>
-                            Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías.
+                           Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías.
                             Me gusta transformar ideas en productos digitales innovadores y eficientes.
                             ¡Juntos, podemos impulsar tu proyecto!
                         </Typography>
                     </motion.div>
-                    <div className={classes.imageContainer}>
-                        <img src={portada} alt="Vanesa" className={classes.roundedImage} />
-                    </div>
+                   
                     <div className={classes.buttonContainer}>
                         <motion.button
                             className={classes.contactButton}
@@ -112,14 +113,14 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         color: '#FFFFFF',
-        fontSize: '2rem',
-        fontWeight: '700',
+        fontSize: '1.3rem',
+        fontWeight: '600',
         marginBottom: '10px',
         textTransform: 'uppercase',
         textAlign: 'center',
     },
     typingText: {
-        fontSize: "1.5rem",
+        fontSize: "1.3rem",
         fontWeight: "600",
         color: '#007ACC',
         textTransform: 'uppercase',
@@ -144,7 +145,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     imageContainer: {
-        paddingTop: '30px',
         paddingBottom: '20px',
     },
     description: {
