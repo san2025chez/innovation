@@ -17,8 +17,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    minHeight: '500px', // Ajusta la altura mínima para que las tarjetas se vean completas
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(1),
+      minHeight: '300px', // Altura mínima para pantallas pequeñas
     },
   },
   title: {
@@ -36,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     fontFamily: 'Space Grotesk, sans-serif',
     textTransform: 'uppercase',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.8rem',
+    },
   },
   gridContainer: {
     maxWidth: '1200px',
@@ -44,22 +49,30 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
   },
   cardContainer: {
-    padding: '8px',
+    padding: '5px',
     textAlign: 'center',
+    height: '300px', // Altura fija para las tarjetas
+    [theme.breakpoints.down('sm')]: {
+      height: '280px', // Altura fija para pantallas pequeñas
+      marginBottom: theme.spacing(3), 
+    },
   },
   icon: {
     fontSize: '3rem',
     color: '#007ACC', // Azul eléctrico para iconos
     marginBottom: '1rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.5rem', // Reduce el tamaño de fuente para iconos en pantallas pequeñas
+    },
   },
   description: {
-    fontSize: '1rem',
+    fontSize: '0.9rem',
     lineHeight: '1.5',
     color: '#E0E0E0', // Descripción en gris claro
     fontFamily: 'Space Grotesk, sans-serif',
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '0.6rem', // Reduce el tamaño de fuente para pantallas pequeñas
+      fontSize: '0.4rem', // Reduce el tamaño de fuente para pantallas pequeñas
     },
   },
   dialog: {
@@ -97,9 +110,12 @@ const CardStyled = styled(Card)(({ theme }) => ({
 }));
 
 const IconStyled = styled('div')(({ theme }) => ({
-  fontSize: '3rem',
+  fontSize: '2.3rem',
   color: "#007ACC", // Color del icono
   marginBottom: '1rem',
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '2.0rem',
+  },
 }));
 
 const Description = styled(Typography)(({ theme }) => ({
@@ -107,37 +123,40 @@ const Description = styled(Typography)(({ theme }) => ({
   lineHeight: '1.5',
   color: '#E0E0E0', // Descripción en gris claro
   textAlign: 'center',
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '0.8rem',
+  },
 }));
 
 const services = [
   { 
-    title: 'Desarrollo de Aplicaciones Web', 
-    description: 'Desarrollo aplicaciones web innovadoras y dinámicas que proporcionan una experiencia de usuario excepcional y soluciones eficientes a tus necesidades digitales.', 
+    title: 'Aplicaciones Web', 
+    description: 'Diseño y desarrollo de aplicaciones web personalizadas que simplifican tus procesos, aumentan tu eficiencia y te ayudan a destacar en tu sector.', 
     icon: <FaDesktop /> 
   },
   { 
-    title: 'Desarrollo de E-Commerce', 
+    title: 'E-Commerce', 
     description: 'Diseño y desarrollo tiendas en línea completas que maximizan las ventas y facilitan una experiencia de compra intuitiva y segura para tus clientes.', 
     icon: <FaShoppingCart /> 
   },
   { 
-    title: 'Desarrollo de Landing Pages', 
+    title: 'Landing Pages', 
     description: 'Creo landing pages optimizadas que capturan leads y convierten visitantes en clientes, ayudando a alcanzar tus objetivos de marketing y ventas.', 
     icon: <FaDesktop /> 
   },
   { 
-    title: 'Desarrollo de Software a Medida', 
-    description: 'Realizo software a medida que se adapta perfectamente a tus requerimientos específicos, ofreciendo soluciones personalizadas que optimizan tus procesos y mejoran la eficiencia de tu negocio.', 
+    title: 'Software a Medida', 
+    description: 'Realizo software a medida que se adapta a tus requerimientos, ofreciendo soluciones personalizadas que optimizan tus procesos y mejoran la eficiencia de tu negocio.', 
     icon: <FaCode /> 
   },
 
   { 
-    title: 'Actualización y Optimización de Sistemas', 
+    title: 'Actualización y Optimización', 
     description: 'Realizo actualizaciones y optimizaciones para mejorar el rendimiento de tus sistemas, garantizando que estén al día con las últimas características y correcciones de seguridad.', 
     icon: <SiTypescript /> 
   },
   { 
-    title: 'Consultoría en Arquitectura de Software', 
+    title: 'Consultoría en Arquitectura', 
     description: 'Ofrezco asesoramiento experto para diseñar arquitecturas de software robustas y escalables que satisfagan tus necesidades actuales y futuras.', 
     icon: <FaDatabase /> 
   },
@@ -186,7 +205,7 @@ export const Services = ({ title, id }) => {
                       <Typography variant="h5" className={classes.titles}>
                         {service.title}
                       </Typography>
-                      <Description>
+                      <Description style={{ fontSize: '0.9rem' }}>
                         {service.description}
                       </Description>
                     </CardContent>
@@ -197,7 +216,7 @@ export const Services = ({ title, id }) => {
           })}
         </Grid>
       </div>
-      {selectedService && (
+     {/*  {selectedService && (
         <Dialog
           open={open}
           onClose={handleClose}
@@ -217,8 +236,12 @@ export const Services = ({ title, id }) => {
             </Typography>
           </DialogContent>
         </Dialog>
-      )}
+      )} */}
     </div>
   );
 };
+
+
+
+
 
