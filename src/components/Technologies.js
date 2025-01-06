@@ -79,20 +79,32 @@ export default function Technologies() {
                 {/* Grid de iconos */}
                 <Grid container spacing={2}>
                     {[
-                        { img: node }, { img: css }, { img: javascript },
-                        { img: mongo }, { img: mysql }, { img: html },
-                        { img: react }, { img: git }, { img: ts },
-                        { img: pg }, { img: express }, { img: nest }
+                        { img: node, name: 'Node.js' },
+                        { img: css, name: 'CSS' },
+                        { img: javascript, name: 'JavaScript' },
+                        { img: mongo, name: 'MongoDB' },
+                        { img: mysql, name: 'MySQL' },
+                        { img: html, name: 'HTML' },
+                        { img: react, name: 'React' },
+                        { img: git, name: 'Git' },
+                        { img: ts, name: 'TypeScript' },
+                        { img: pg, name: 'PostgreSQL' },
+                        { img: express, name: 'Express' },
+                        { img: nest, name: 'Nest' },
                     ].map((tech, index) => (
                         <Grid item xs={4} sm={3} md={2} key={index}>
                             <motion.div
                                 initial={{ rotateY: 0 }}
                                 animate={{ rotateY: 360 }}
-                                transition={{ duration: 5, repeat: Infinity }}
+                                transition={{ duration: 10, repeat: Infinity }}
                                 style={{ transformOrigin: 'center' }}
                             >
                                 <CardMedia image={tech.img} className={classes.image} />
+                               
                             </motion.div>
+                            <Typography variant="body2" className={classes.techName} align="center">
+                                    {tech.name}
+                                </Typography>
                         </Grid>
                     ))}
                 </Grid>
@@ -111,6 +123,22 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(4),
         [theme.breakpoints.down('sm')]: {
             padding: theme.spacing(1),
+        },
+    },
+    techName: {
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: 'white',
+      
+            fontSize: window.innerWidth > 600 ? '1.0rem' : '0.9rem',
+            color: '#FFFFFF',
+            lineHeight: '1.8',
+            fontFamily: 'Space Grotesk, sans-serif',
+            fontWeight:  '150',
+      
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '0.8rem',
+            fontWeight:  '150',
         },
     },
     image: {

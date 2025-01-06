@@ -53,21 +53,27 @@ const MyWork = ({ title, id }) => {
         fullWidth
         maxWidth="md"
         className={classes.dialog}
+        scroll="paper"
+        style={{ overflow: 'hidden' }}
       >
-        <DialogContent>
+        <DialogContent style={{ overflow: 'hidden', padding: 0 }}>
           <IconButton edge="end" color="inherit" onClick={handleClose} className={classes.closeButton}>
             <CloseIcon />
           </IconButton>
           {selectedProject && (
-            <div>
+            <div className={classes.dialogContent}>
               <Typography variant="h4" className={classes.dialogTitle}>
                 {selectedProject.title}
               </Typography>
               <Typography className={classes.dialogDescription}>
                 {selectedProject.description}
               </Typography>
-              <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className={classes.link}>
-              Ir al enlace
+              <Typography className={classes.dialogDescription}>
+                {selectedProject.technology}
+              </Typography>
+              
+              <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className={classes.link} style={{ color: '#007ACC', textDecoration: 'none', fontSize: '1.0rem', fontFamily: 'Space Grotesk, sans-serif' }}>
+              Ir a la página
             </a>
             </div>
           )}
@@ -112,6 +118,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#1E2A38', // Dialog background
       color: '#E0E0E0', // Light gray text
       padding: theme.spacing(2),
+      overflowX: 'hidden', // Remove horizontal scroll
     },
   },
   closeButton: {
@@ -121,13 +128,17 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF', // White close button color
   },
   dialogTitle: {
+    fontSize: '1.5rem',
     marginBottom: theme.spacing(2),
     color: '#FFFFFF', // White title text
+    fontFamily: 'Space Grotesk, sans-serif',
   },
   dialogDescription: {
     fontSize: '1rem',
     color: '#E0E0E0', // Light gray text
+    fontFamily: 'Space Grotesk, sans-serif',
   },
 }));
 
 export default MyWork;
+

@@ -4,7 +4,9 @@ import { Link as ScrollLink } from "react-scroll";
 import InfoIcon from '@mui/icons-material/Info';
 import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 import BuildTwoToneIcon from '@mui/icons-material/BuildTwoTone';
-import ContactMailTwoToneIcon from "@mui/icons-material/ContactMailTwoTone";
+import WorkRoundedIcon from '@material-ui/icons/WorkRounded';
+
+import ContactsRoundedIcon from '@material-ui/icons/ContactsRounded';
 import MenuIcon from "@mui/icons-material/Menu";
 import CancelIcon from "@mui/icons-material/Cancel";
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
@@ -24,7 +26,7 @@ const links = [
     {
         id: "work",
         text: "Trabajos",
-        icon: <BuildTwoToneIcon fontSize="medium" />
+        icon: <WorkRoundedIcon fontSize="medium" />
     },
     {
         id: "servic",
@@ -34,7 +36,7 @@ const links = [
     {
         id: "contact",
         text: "Contactos",
-        icon: <ContactMailTwoToneIcon fontSize="medium" />
+        icon: <ContactsRoundedIcon fontSize="medium" />
     },
     {
         id: "download",
@@ -164,7 +166,8 @@ const useStyles = makeStyles((theme) => ({
     cancelicon: {
         color: "#FFFFFF", // Blanco
         position: "absolute",
-        top: 0
+        top: 5,
+        left:7
     },
     sidebar: {
         width: "40vh",

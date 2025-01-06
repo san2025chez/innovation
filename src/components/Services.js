@@ -3,24 +3,23 @@ import { makeStyles, Grid, Typography, Dialog, DialogContent, IconButton } from 
 import { Card, CardContent } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
-import { FaDesktop, FaShoppingCart, FaCode,FaCss3Alt,FaDatabase } from 'react-icons/fa';
-import { GiSettingsKnobs } from 'react-icons/gi';
+import { FaDesktop, FaShoppingCart, FaCode, FaDatabase } from 'react-icons/fa';
 import { SiTypescript } from 'react-icons/si';
 import CloseIcon from '@material-ui/icons/Close';
 
 // Define styles using makeStyles
 const useStyles = makeStyles((theme) => ({
   section: {
-    padding: theme.spacing(4),
-    backgroundColor: '#000000', // Fondo negro
-    color: '#FFFFFF', // Texto blanco
+    padding: theme.spacing(3),
+    backgroundColor: '#000000',
+    color: '#FFFFFF',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    minHeight: '500px', // Ajusta la altura mínima para que las tarjetas se vean completas
+    minHeight: '500px',
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(1),
-      minHeight: '300px', // Altura mínima para pantallas pequeñas
+      minHeight: '250px',
     },
   },
   title: {
@@ -39,47 +38,57 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Space Grotesk, sans-serif',
     textTransform: 'uppercase',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '0.8rem',
+      fontSize: '0.9rem',
     },
   },
   gridContainer: {
     maxWidth: '1200px',
     width: '100%',
-    padding: '0 16px',
+  
+    padding: '0 8px',
     margin: '0 auto',
+    [theme.breakpoints.down('sm')]: {
+      padding: '0 5px',
+      },
   },
   cardContainer: {
-    padding: '5px',
+ /*    padding: '5px', */
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     textAlign: 'center',
-    height: '300px', // Altura fija para las tarjetas
+    height: '300px',
+ 
     [theme.breakpoints.down('sm')]: {
-      height: '280px', // Altura fija para pantallas pequeñas
-      marginBottom: theme.spacing(3), 
+      height: '300px',
+      marginBottom: theme.spacing(1),
+      padding:'20px',
+    
     },
   },
   icon: {
     fontSize: '3rem',
-    color: '#007ACC', // Azul eléctrico para iconos
+    color: '#007ACC',
     marginBottom: '1rem',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '1.5rem', // Reduce el tamaño de fuente para iconos en pantallas pequeñas
+      fontSize: '1.5rem',
     },
   },
   description: {
     fontSize: '0.9rem',
     lineHeight: '1.5',
-    color: '#E0E0E0', // Descripción en gris claro
+    color: '#E0E0E0',
     fontFamily: 'Space Grotesk, sans-serif',
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '0.4rem', // Reduce el tamaño de fuente para pantallas pequeñas
+      fontSize: '0.4rem',
     },
   },
   dialog: {
     '& .MuiDialog-paper': {
       padding: theme.spacing(2),
-      backgroundColor: '#000000', // Fondo del diálogo
-      color: '#FFFFFF', // Texto del diálogo
+      backgroundColor: '#000000',
+      color: '#FFFFFF',
     },
   },
   closeButton: {
@@ -91,27 +100,33 @@ const useStyles = makeStyles((theme) => ({
 
 // Define styled components
 const CardStyled = styled(Card)(({ theme }) => ({
-  backgroundColor: '#1E2A38', // Fondo de la tarjeta
-  color: '#FFFFFF', // Texto blanco
+  backgroundColor: '#1E2A38',
+  color: '#FFFFFF',
   borderRadius: '16px',
   boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
   '&:hover': {
-    transform: 'translateY(-8px)',
     boxShadow: '0 12px 24px rgba(0, 0, 0, 0.4)',
-    border: `2px solid #FF6F30`, // Naranja brillante en hover
+    border: `2px solid #FF6F30`,
   },
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   height: '100%',
-  padding: '16px',
+  padding: '14px',
   fontFamily: 'Space Grotesk, sans-serif',
+  [theme.breakpoints.down('sm')]: {
+    paddingRight: '15px',
+    paddingLeft: '15px',
+    width: '100%',
+  },
+
+
 }));
 
 const IconStyled = styled('div')(({ theme }) => ({
   fontSize: '2.3rem',
-  color: "#007ACC", // Color del icono
+  color: "#007ACC",
   marginBottom: '1rem',
   [theme.breakpoints.down('sm')]: {
     fontSize: '2.0rem',
@@ -119,9 +134,9 @@ const IconStyled = styled('div')(({ theme }) => ({
 }));
 
 const Description = styled(Typography)(({ theme }) => ({
-  fontSize: '1rem',
+  fontSize: '0.9rem',
   lineHeight: '1.5',
-  color: '#E0E0E0', // Descripción en gris claro
+  color: '#E0E0E0',
   textAlign: 'center',
   [theme.breakpoints.down('sm')]: {
     fontSize: '0.8rem',
@@ -149,7 +164,6 @@ const services = [
     description: 'Realizo software a medida que se adapta a tus requerimientos, ofreciendo soluciones personalizadas que optimizan tus procesos y mejoran la eficiencia de tu negocio.', 
     icon: <FaCode /> 
   },
-
   { 
     title: 'Actualización y Optimización', 
     description: 'Realizo actualizaciones y optimizaciones para mejorar el rendimiento de tus sistemas, garantizando que estén al día con las últimas características y correcciones de seguridad.', 
@@ -184,64 +198,32 @@ export const Services = ({ title, id }) => {
       </Typography>
       <div className={classes.gridContainer}>
         <Grid container spacing={3}>
-          {services.map((service, index) => {
-            const columnIndex = Math.floor(index / 3);
-            const rowIndex = index % 3;
-            return (
-              <Grid item xs={12} sm={6} md={4} key={index} className={classes.cardContainer}>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1, ease: 'easeInOut' }}
-                  viewport={{ once: true, amount: 0.2 + (columnIndex * 0.1) }}
-                  animate={{
-                    scale:[0,1.2],
-                   // rotate:[0,360]
-                  }}
-                >
-                  <CardStyled>
-                    <CardContent>
-                      <IconStyled>{service.icon}</IconStyled>
-                      <Typography variant="h5" className={classes.titles}>
-                        {service.title}
-                      </Typography>
-                      <Description style={{ fontSize: '0.9rem' }}>
-                        {service.description}
-                      </Description>
-                    </CardContent>
-                  </CardStyled>
-                </motion.div>
-              </Grid>
-            );
-          })}
+          {services.map((service, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index} className={classes.cardContainer}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: 'easeInOut' }}
+                viewport={{ once: true, amount: 0.2 + (index * 0.1) }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <CardStyled>
+                  <CardContent>
+                    <IconStyled>{service.icon}</IconStyled>
+                    <Typography variant="h5" className={classes.titles}>
+                      {service.title}
+                    </Typography>
+                    <Description>
+                      {service.description}
+                    </Description>
+                  </CardContent>
+                </CardStyled>
+              </motion.div>
+            </Grid>
+          ))}
         </Grid>
       </div>
-     {/*  {selectedService && (
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          fullWidth
-          maxWidth="md"
-          className={classes.dialog}
-        >
-          <DialogContent>
-            <IconButton edge="end" color="inherit" onClick={handleClose} className={classes.closeButton}>
-              <CloseIcon />
-            </IconButton>
-            <Typography variant="h4" className={classes.title}>
-              {selectedService.title}
-            </Typography>
-            <Typography className={classes.description}>
-              {selectedService.description}
-            </Typography>
-          </DialogContent>
-        </Dialog>
-      )} */}
     </div>
   );
 };
-
-
-
-
 
