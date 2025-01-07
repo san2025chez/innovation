@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Space Grotesk, sans-serif',
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '0.4rem',
+      fontSize: '0.6rem',
     },
   },
   dialog: {
