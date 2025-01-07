@@ -7,7 +7,6 @@ import { FaDesktop, FaShoppingCart, FaCode, FaDatabase } from 'react-icons/fa';
 import { SiTypescript } from 'react-icons/si';
 import CloseIcon from '@material-ui/icons/Close';
 
-// Define styles using makeStyles
 const useStyles = makeStyles((theme) => ({
   section: {
     padding: theme.spacing(3),
@@ -44,26 +43,27 @@ const useStyles = makeStyles((theme) => ({
   gridContainer: {
     maxWidth: '1200px',
     width: '100%',
-  
     padding: '0 8px',
     margin: '0 auto',
     [theme.breakpoints.down('sm')]: {
-      padding: '0 5px',
-      },
+      padding: '0 25px',
+      paddingTop: '0px',
+    },
+    '& .MuiGrid-spacing-xs-3 > .MuiGrid-item': {
+      paddingTop: '0px',
+      paddinbgBottom: '0px',
+    },
   },
   cardContainer: {
- /*    padding: '5px', */
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
     height: '300px',
- 
     [theme.breakpoints.down('sm')]: {
       height: '300px',
       marginBottom: theme.spacing(1),
-      padding:'20px',
-    
+      padding: '20px',
     },
   },
   icon: {
@@ -98,7 +98,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Define styled components
 const CardStyled = styled(Card)(({ theme }) => ({
   backgroundColor: '#1E2A38',
   color: '#FFFFFF',
@@ -120,8 +119,6 @@ const CardStyled = styled(Card)(({ theme }) => ({
     paddingLeft: '15px',
     width: '100%',
   },
-
-
 }));
 
 const IconStyled = styled('div')(({ theme }) => ({
