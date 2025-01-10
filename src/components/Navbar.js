@@ -129,7 +129,7 @@ const Navbar = () => {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: 'transparent', // Color de fondo del Navbar
+        backgroundColor: 'black', // Color de fondo del Navbar
         boxShadow: 'none',
         borderBottom: 'none',
     },

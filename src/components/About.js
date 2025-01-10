@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     width: '100%',
     zIndex: 10, //
-    backgroundColor: 'transparent',
+    backgroundColor: '#0000',
     // ... otros estilos para el Navbar
   },
   section: {
@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: { // Para pantallas pequeñas (menor a 600px)
    
       height: '90vh',
+      backgroundColor:"#000000", // Negro
    
    
     },

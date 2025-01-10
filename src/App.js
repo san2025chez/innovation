@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       <CssBaseline /> {/* Normaliza los estilos y asegura una base consistente */}
-      <div style={{  backgroundColor: '#000000', padding:0, margin:0}} className={classes.root}>
+      <div style={{ padding:0, margin:0}} className={classes.root}>
         <Navbar />
         <About title="Inicio" id="about" />
         <Skills title="Sobre Mi" id="skill" dark={"#00BFA5"} />
@@ -46,13 +46,13 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     [theme.breakpoints.down('xs')]: {
       // Estilos específicos para dispositivos móviles
-      backgroundColor: '#1E2A38',
+      backgroundColor: '#000000',
       margin: 0,
       padding: 0,
     },
     [theme.breakpoints.up('md')]: {
       // Estilos específicos para dispositivos de escritorio
-      backgroundColor: '#1E2A38', // Elimina la capa de color azul marino
+      backgroundColor: '#000000', // Elimina la capa de color azul marino
       margin: 0,
       padding: 0,
     },
