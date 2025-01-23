@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a8e07947.css",
-    "main.js": "/static/js/main.228d0e52.js",
+    "main.css": "/static/css/main.40ad9780.css",
+    "main.js": "/static/js/main.a6f342e1.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/portadatienda.png": "/static/media/portadatienda.cb9ed6c06fd612eef273.png",
     "static/media/sistemamedico.png": "/static/media/sistemamedico.770bba9f56e37154fc19.png",
@@ -13,12 +13,12 @@
     "static/media/dashcommerce.png": "/static/media/dashcommerce.93348be09f00a649e5bb.png",
     "static/media/prestamo.png": "/static/media/prestamo.960dc03c28fd0926f672.png",
     "index.html": "/index.html",
-    "main.a8e07947.css.map": "/static/css/main.a8e07947.css.map",
-    "main.228d0e52.js.map": "/static/js/main.228d0e52.js.map",
+    "main.40ad9780.css.map": "/static/css/main.40ad9780.css.map",
+    "main.a6f342e1.js.map": "/static/js/main.a6f342e1.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a8e07947.css",
-    "static/js/main.228d0e52.js"
+    "static/css/main.40ad9780.css",
+    "static/js/main.a6f342e1.js"
   ]
 }
