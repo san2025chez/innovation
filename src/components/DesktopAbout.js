@@ -61,17 +61,7 @@ const DesktopAbout = () => {
                             </span>
                             <br />  <br />
 
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 1, ease: 'easeInOut' }}
-                            >
-                                <Typography variant="h7" className={classes.description}>
-                                    Soy Ingeniera de Software, especialista en crear soluciones 
-                                    tecnológicas usando nuevas tecnologías.
-                                     Me gusta transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
-                                </Typography>
-                            </motion.div>
+                            <Description />
                             <div className={classes.buttonContainer}>
                                 <motion.button
                                     className={classes.contactButton}
@@ -102,6 +92,23 @@ const DesktopAbout = () => {
                 </Grid>
             </CardContent>
         </Card>
+    );
+};
+
+const Description = () => {
+    const classes = useStyles();
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: 'easeInOut' }}
+        >
+            <Typography variant="h7" className={classes.description}>
+                Soy Ingeniera de Software, especialista en crear soluciones 
+                tecnológicas usando nuevas tecnologías.
+                 Me gusta transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
+            </Typography>
+        </motion.div>
     );
 };
 
@@ -207,7 +214,4 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default DesktopAbout;
-
-
-
 
