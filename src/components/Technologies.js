@@ -43,12 +43,6 @@ export default function Technologies() {
 
     return (
         <Box sx={{ flexGrow: 1 }} className={classes.box1}>
-          <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, ease: 'easeInOut' }}
-                        viewport={{ once: true }}
-                    >
             <StyledGrid container spacing={2}>
                 <Grid item xs={12}>
                     <Typography variant="h7"
@@ -94,22 +88,20 @@ export default function Technologies() {
                     ].map((tech, index) => (
                         <Grid item xs={4} sm={3} md={2} key={index}>
                             <motion.div
-                                initial={{ rotateY: 0 }}
-                                animate={{ rotateY: 360 }}
-                                transition={{ duration: 10, repeat: Infinity }}
-                                style={{ transformOrigin: 'center' }}
+                                whileHover={{ scale: 1.1, rotateY: 360 }}
+                                transition={{ duration: 2 }}
                             >
                                 <CardMedia image={tech.img} className={classes.image} />
-                               
+                             
                             </motion.div>
                             <Typography variant="body2" className={classes.techName} align="center">
                                     {tech.name}
-                                </Typography>
+                            </Typography>
+                         
                         </Grid>
                     ))}
                 </Grid>
             </StyledGrid>
-             </motion.div>
         </Box>
     );
 }
@@ -151,3 +143,4 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Space Grotesk', /* Asegúrate de que la fuente esté cargada correctamente */
     },
 }));
+
