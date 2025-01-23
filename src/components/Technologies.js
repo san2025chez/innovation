@@ -26,7 +26,6 @@ const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#000000', // Cambiado a negro
     ...theme.typography.body2,
     padding: theme.spacing(2),
-
     color: '#E0E0E0', // Cambiado a gris claro
     fontFamily: 'Space Grotesk, sans-serif',
 }));
@@ -56,14 +55,14 @@ export default function Technologies() {
                         }}
                     >
                         Ingeniera Informática y Desarrolladora Full-Stack con más de 3
-                         años de experiencia en el desarrollo de sistemas y aplicaciones.
-                          Me especializo en crear soluciones innovadoras y eficientes utilizando nuevas
-                           tecnologías. Mi capacidad analítica me permite resolver problemas de 
-                           manera efectiva, y siempre busco mejorar mis habilidades para enfrentar
-                            nuevos desafíos.
+                        años de experiencia en el desarrollo de sistemas y aplicaciones.
+                        Me especializo en crear soluciones innovadoras y eficientes utilizando nuevas
+                        tecnologías. Mi capacidad analítica me permite resolver problemas de 
+                        manera efectiva, y siempre busco mejorar mis habilidades para enfrentar
+                        nuevos desafíos.
                         
-                       Ofrezco Soluciones tecnologicas para digitalizar tu negocio o servicio, 
-                       desarrollar un nuevo proyecto o mejorar tus procesos.
+                        Ofrezco Soluciones tecnologicas para digitalizar tu negocio o servicio, 
+                        desarrollar un nuevo proyecto o mejorar tus procesos.
                         Tambien estoy disponible para trabajar con empresas, proyectos personales o emprendimientos.
                         ¡Estoy emocionada de colaborar contigo y hacer realidad tus ideas!
                     </Typography>
@@ -89,15 +88,14 @@ export default function Technologies() {
                         <Grid item xs={4} sm={3} md={2} key={index}>
                             <motion.div
                                 whileHover={{ scale: 1.1, rotateY: 360 }}
+                                whileTap={{ rotateY: 360 }}
                                 transition={{ duration: 2 }}
                             >
                                 <CardMedia image={tech.img} className={classes.image} />
-                             
                             </motion.div>
                             <Typography variant="body2" className={classes.techName} align="center">
-                                    {tech.name}
+                                {tech.name}
                             </Typography>
-                         
                         </Grid>
                     ))}
                 </Grid>
@@ -121,16 +119,14 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
         textAlign: 'center',
         color: 'white',
-      
-            fontSize: window.innerWidth > 600 ? '1.0rem' : '0.9rem',
-            color: '#FFFFFF',
-            lineHeight: '1.8',
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontWeight:  '150',
-      
+        fontSize: window.innerWidth > 600 ? '1.0rem' : '0.9rem',
+        color: '#FFFFFF',
+        lineHeight: '1.8',
+        fontFamily: 'Space Grotesk, sans-serif',
+        fontWeight: '150',
         [theme.breakpoints.down('sm')]: {
             fontSize: '0.8rem',
-            fontWeight:  '150',
+            fontWeight: '150',
         },
     },
     image: {
