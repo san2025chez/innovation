@@ -6,6 +6,7 @@ import dashcommerce from "../img/dashcommerce.png"
 import ada from "../img/newada.png"
 import medico from "../img/sistemamedico.png"
 import microservicio from "../img/microservicios.png"
+import deepseek from "../img/deepseek.avif"
 const mockData=[
     {
         title: "Prestamos Personales",
@@ -48,6 +49,13 @@ const mockData=[
         description:'Landing Page para Empresa de Desarrollo de Software ',
         technology:' Tecnologias utilizadas: React,Javascript, Material UI',
         link:"https://adasoft.com.ar/"
+    },
+    {
+        title: "Chatbot Deepseek",
+        image: deepseek ,
+        description:'Chatboot local construido con Modelo Local de Deepseek' ,
+        technology:' Tecnologias utilizadas: Node, Express, React, DeepSeek, LMS Studio ',
+        link:"https://vm.tiktok.com/ZMkv6RPKw/"
     },
     {
         title: "Sistema de Fisioterapia",
