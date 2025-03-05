@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { CardMedia } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import Typography from '@mui/material/Typography';
+import { useInView } from 'react-intersection-observer';
 
 // Image imports
 import node from '../img/node10.png';
@@ -23,116 +24,257 @@ import express from '../img/ex8.png';
 import nest from '../img/nest8.png';
 
 const technologies = [
-  { img: node, name: 'Node.js' },
-  { img: css, name: 'CSS' },
-  { img: javascript, name: 'JavaScript' },
-  { img: mongo, name: 'MongoDB' },
-  { img: mysql, name: 'MySQL' },
-  { img: html, name: 'HTML' },
-  { img: react, name: 'React' },
-  { img: git, name: 'Git' },
-  { img: ts, name: 'TypeScript' },
-  { img: pg, name: 'PostgreSQL' },
-  { img: express, name: 'Express' },
-  { img: nest, name: 'Nest' },
+  { img: javascript, name: 'JavaScript', level: 90 },
+  { img: react, name: 'React', level: 85 },
+  { img: node, name: 'Node.js', level: 85 },
+  { img: ts, name: 'TypeScript', level: 80 },
+  { img: mongo, name: 'MongoDB', level: 85 },
+  { img: mysql, name: 'MySQL', level: 80 },
+  { img: html, name: 'HTML', level: 90 },
+  { img: css, name: 'CSS', level: 85 },
+  { img: git, name: 'Git', level: 85 },
+  { img: pg, name: 'PostgreSQL', level: 80 },
+  { img: express, name: 'Express', level: 85 },
+  { img: nest, name: 'NestJS', level: 80 },
 ];
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#000000',
-  ...theme.typography.body2,
+  backgroundColor: 'rgba(255, 255, 255, 0.02)',
+  backdropFilter: 'blur(10px)',
+  background: 'linear-gradient(135deg, rgba(30, 42, 56, 0.4) 0%, rgba(30, 42, 56, 0.1) 100%)',
+  border: '1px solid rgba(255, 255, 255, 0.05)',
+  borderRadius: '15px',
   padding: theme.spacing(2),
   color: '#E0E0E0',
-  fontFamily: 'Space Grotesk, sans-serif',
-}));
-
-const StyledGrid = styled(Grid)(({ theme }) => ({
-  '.MuiGrid-item': {
-    paddingLeft: 16,
-    textAlign: 'justify',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
+  overflow: 'hidden',
+  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+  '&:hover': {
+    transform: 'translateY(-5px)',
+    background: 'linear-gradient(135deg, rgba(255, 0, 255, 0.1) 0%, rgba(255, 111, 48, 0.1) 100%)',
+    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.3)',
+    '& .skill-level': {
+      opacity: 1,
+      transform: 'translateY(0)',
+    },
+  },
+  '&:before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%)',
+    opacity: 0,
+    transition: 'opacity 0.3s ease',
+  },
+  '&:hover:before': {
+    opacity: 1,
   },
 }));
 
 const useStyles = makeStyles((theme) => ({
-  box1: {
-    backgroundColor: '#000000',
+  section: {
+    padding: theme.spacing(12, 4),
+    background: '#000000',
+    minHeight: '100vh',
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
     alignItems: 'center',
-    padding: theme.spacing(4),
+    position: 'relative',
+    overflow: 'hidden',
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(1),
+      padding: theme.spacing(8, 2),
+    },
+  },
+  container: {
+    maxWidth: '1400px',
+    width: '100%',
+    margin: '0 auto',
+    position: 'relative',
+    zIndex: 1,
+  },
+  titleContainer: {
+    textAlign: 'center',
+    marginBottom: theme.spacing(8),
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: theme.spacing(6),
+    },
+  },
+  title: {
+    color: '#FFFFFF',
+    fontFamily: 'Space Grotesk, sans-serif',
+    fontWeight: 700,
+    fontSize: '2.5rem',
+    marginBottom: theme.spacing(2),
+    background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2rem',
+    },
+  },
+  subtitle: {
+    color: '#FFFFFF',
+    fontFamily: 'Space Grotesk, sans-serif',
+    fontSize: '1.1rem',
+    maxWidth: '600px',
+    margin: '0 auto',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1rem',
     },
   },
   techName: {
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: '#FFFFFF',
-    fontSize: window.innerWidth > 600 ? '1.0rem' : '0.9rem',
-    lineHeight: '1.8',
+    marginTop: theme.spacing(1),
+    fontSize: '0.9rem',
+    fontWeight: 600,
     fontFamily: 'Space Grotesk, sans-serif',
-    fontWeight: '150',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '0.8rem',
-    },
+    background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    textAlign: 'center',
   },
   image: {
-    width: 50,
-    height: 50,
-    margin: 'auto',
+    width: 40,
+    height: 40,
+    objectFit: 'contain',
+    transition: 'all 0.3s ease',
+    filter: 'brightness(0.9) contrast(1.1)',
+    [theme.breakpoints.down('sm')]: {
+      width: 35,
+      height: 35,
+    },
   },
-  justifiedText: {
-    textAlign: 'justify',
-    fontFamily: 'Space Grotesk',
+  skillLevel: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    height: '4px',
+    background: 'rgba(255, 255, 255, 0.1)',
+    overflow: 'hidden',
+    opacity: 0,
+    transform: 'translateY(10px)',
+    transition: 'all 0.3s ease',
+  },
+  skillBar: {
+    height: '100%',
+    background: 'linear-gradient(90deg, rgb(255, 0, 255), #FF6F30)',
+    transition: 'width 1s ease-out',
+  },
+  gridContainer: {
+    margin: 0,
+    width: '100%',
   },
 }));
 
-const TechnologyGrid = ({ technologies, classes }) => (
-  <Grid container spacing={2}>
-    {technologies.map((tech, index) => (
-      <Grid item xs={4} sm={3} md={2} key={index}>
-        <motion.div
-          whileHover={{ scale: 1.1, rotateY: 360 }}
-          whileTap={{ rotateY: 360 }}
-          transition={{ duration: 2 }}
-        >
-          <CardMedia image={tech.img} className={classes.image} />
-        </motion.div>
-        <Typography variant="body2" className={classes.techName} align="center">
-          {tech.name}
-        </Typography>
-      </Grid>
-    ))}
-  </Grid>
-);
-
 export default function Technologies() {
   const classes = useStyles();
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.43, 0.13, 0.23, 0.96],
+      },
+    },
+  };
 
   return (
-    <Box sx={{ flexGrow: 1 }} className={classes.box1}>
-      <StyledGrid container spacing={2}>
-        <Grid item xs={12}>
-          <Typography
-            variant="h7"
-            className={classes.justifiedText}
-            style={{
-              fontSize: window.innerWidth > 600 ? '1.0rem' : '0.9rem',
-              color: '#FFFFFF',
-              lineHeight: '1.8',
-              fontFamily: 'Space Grotesk, sans-serif',
-              fontWeight: window.innerWidth > 600 ? '150' : '100',
-            }}
+    <section className={classes.section} ref={ref}>
+      <div className={classes.container}>
+        <div className={classes.titleContainer}>
+          <motion.h2
+            className={classes.title}
+            initial={{ opacity: 0, y: -20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
           >
-            Ingeniera Informática y Desarrolladora Full-Stack con más de 3 años de experiencia en el desarrollo de sistemas y aplicaciones. Me especializo en crear soluciones innovadoras y eficientes utilizando nuevas tecnologías. Mi capacidad analítica me permite resolver problemas de manera efectiva, y siempre busco mejorar mis habilidades para enfrentar nuevos desafíos.
-            
-            Ofrezco Soluciones tecnologicas para digitalizar tu negocio o servicio, desarrollar un nuevo proyecto o mejorar tus procesos. Tambien estoy disponible para trabajar con empresas, proyectos personales o emprendimientos. ¡Estoy emocionada de colaborar contigo y hacer realidad tus ideas!
-          </Typography>
-          <br />
-          <br />
-        </Grid>
-        <TechnologyGrid technologies={technologies} classes={classes} />
-      </StyledGrid>
-    </Box>
+            Tecnologías & Habilidades
+          </motion.h2>
+          <motion.p
+            className={classes.subtitle}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Dominio de tecnologías modernas para crear soluciones innovadoras y eficientes
+          </motion.p>
+        </div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+        >
+          <Grid container spacing={2} className={classes.gridContainer}>
+            {technologies.map((tech, index) => (
+              <Grid item xs={4} sm={3} md={2} key={index}>
+                <motion.div
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Item>
+                    <motion.div
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 1, type: "spring" }}
+                    >
+                      <CardMedia
+                        component="img"
+                        image={tech.img}
+                        className={classes.image}
+                        alt={tech.name}
+                      />
+                    </motion.div>
+                    <Typography className={classes.techName}>
+                      {tech.name}
+                    </Typography>
+                    <div className={`${classes.skillLevel} skill-level`}>
+                      <motion.div
+                        className={classes.skillBar}
+                        initial={{ width: 0 }}
+                        animate={inView ? { width: `${tech.level}%` } : {}}
+                        transition={{ duration: 1, delay: index * 0.1 }}
+                      />
+                    </div>
+                  </Item>
+                </motion.div>
+              </Grid>
+            ))}
+          </Grid>
+        </motion.div>
+      </div>
+    </section>
   );
 }
-

@@ -4,17 +4,26 @@ import Navbar from "./components/Navbar";
 import MyWork from './components/MyWork';
 import Contact from './components/Contact';
 import About from './components/About';
-import Skills from "./components/Skills";
+import SkillsAndTechnologies from './components/SkillsAndTechnologies';
 import ContactForm from './components/ContactForm';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {Services} from './components/Services'
-const theme = createTheme({
-  
-    typography: {
-      fontSize: 16,   
-   // Tamaño de fuente base
-    },
+import Profile from './components/Profile';
 
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Space Grotesk, sans-serif',
+  },
+  palette: {
+    background: {
+      default: '#000000',
+      paper: '#000000',
+    },
+    text: {
+      primary: '#FFFFFF',
+      secondary: '#FFFFFF',
+    },
+  },
 });
 
 function App() {
@@ -26,7 +35,8 @@ function App() {
       <div style={{ padding:0, margin:0}} className={classes.root}>
         <Navbar />
         <About title="Inicio" id="about" />
-        <Skills title="Sobre Mi" id="skill" dark={"#00BFA5"} />
+        <Profile id="skill"/>
+        <SkillsAndTechnologies title="Sobre Mi" id="technology" />
         <MyWork title="Trabajos" id="work" dark={false} />
          <Services title="Servicios" id="servic" dark={false} />
    <ContactForm title="Contáctame" id="contact" dark={true} />
@@ -68,4 +78,3 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default App;
-

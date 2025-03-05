@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
-import { makeStyles, Grid, Typography, Dialog, DialogContent, IconButton } from '@material-ui/core';
+import { makeStyles, Grid, Typography, Dialog, DialogContent, IconButton, useTheme, useMediaQuery } from '@material-ui/core';
 import ProjectCard from './ProjectCard';
 import mockData from '../mock/mockData';
 import CloseIcon from '@material-ui/icons/Close';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
 const MyWork = ({ title, id }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
   const handleOpen = (project) => {
     setSelectedProject(project);
@@ -20,125 +27,281 @@ const MyWork = ({ title, id }) => {
     setSelectedProject(null);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 50,
+      scale: 0.9
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+        duration: 0.5
+      }
+    }
+  };
+
   return (
-    <div className={classes.section} id={id}>
-      <Typography variant="h5" className={classes.title}>
-        {title}
-      </Typography>
-      <div className={classes.gridContainer}>
-        <Grid container spacing={3}>
+    <section className={classes.section} id={id} ref={ref}>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8 }}
+        className={classes.titleContainer}
+      >
+        <Typography variant="h2" className={classes.title}>
+          {title}
+        </Typography>
+        <Typography variant="subtitle1" className={classes.subtitle}>
+          Explore my latest projects and creative work
+        </Typography>
+      </motion.div>
+
+      <motion.div
+        className={classes.gridContainer}
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+      >
+        <Grid container spacing={4}>
           {mockData.map((project, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: 'easeInOut' }}
-                viewport={{ once: true, amount: 0.2 + (index * 0.1) }}
+                variants={cardVariants}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <ProjectCard
-                  title={project.title}
-                  /*  description={project.description} */
-                  image={project.image}
+                  project={project}
                   onOpen={() => handleOpen(project)}
-                  isHovered={false}
+                  isMobile={isMobile}
                 />
               </motion.div>
             </Grid>
           ))}
         </Grid>
-      </div>
+      </motion.div>
+
       <Dialog
         open={open}
         onClose={handleClose}
         fullWidth
         maxWidth="md"
         className={classes.dialog}
-        scroll="paper"
-        style={{ overflow: 'hidden' }}
+        TransitionComponent={motion.div}
+        TransitionProps={{
+          initial: { opacity: 0, y: 50 },
+          animate: { opacity: 1, y: 0 },
+          exit: { opacity: 0, y: 50 },
+          transition: { duration: 0.3 }
+        }}
       >
-        <DialogContent style={{ overflow: 'hidden', padding: 0 }}>
-          <IconButton edge="end" color="inherit" onClick={handleClose} className={classes.closeButton}>
+        <DialogContent className={classes.dialogContent}>
+          <IconButton 
+            className={classes.closeButton}
+            onClick={handleClose}
+            aria-label="close"
+          >
             <CloseIcon />
           </IconButton>
-          {selectedProject && (
-            <div className={classes.dialogContent}>
-              <Typography variant="h4" className={classes.dialogTitle}>
-                {selectedProject.title}
-              </Typography>
-              <Typography className={classes.dialogDescription}>
-                {selectedProject.description}
-              </Typography>
-              <Typography className={classes.dialogDescription}>
-                {selectedProject.technology}
-              </Typography>
-              
-              <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className={classes.link} style={{ color: '#007ACC', textDecoration: 'none', fontSize: '1.0rem', fontFamily: 'Space Grotesk, sans-serif' }}>
-              Ir a la página
-            </a>
-            </div>
-          )}
+          <AnimatePresence>
+            {selectedProject && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className={classes.projectDetails}
+              >
+                <img 
+                  src={selectedProject.image} 
+                  alt={selectedProject.title}
+                  className={classes.dialogImage}
+                />
+                <div className={classes.detailsContent}>
+                  <Typography variant="h4" className={classes.dialogTitle}>
+                    {selectedProject.title}
+                  </Typography>
+                  <Typography className={classes.dialogDescription}>
+                    {selectedProject.description}
+                  </Typography>
+                  <div className={classes.techStack}>
+                    {selectedProject.technology.split(',').map((tech, index) => (
+                      <motion.span
+                        key={index}
+                        className={classes.techTag}
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        {tech.trim()}
+                      </motion.span>
+                    ))}
+                  </div>
+                  <motion.a
+                    href={selectedProject.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={classes.projectLink}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    View Project
+                  </motion.a>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </DialogContent>
       </Dialog>
-    </div>
+    </section>
   );
 };
 
 const useStyles = makeStyles((theme) => ({
   section: {
-    padding: theme.spacing(4),
-    backgroundColor: '#000000', // Black background
-    color: '#E0E0E0', // Light gray text
+    minHeight: '100vh',
+    background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
+    padding: theme.spacing(8, 4),
+    color: '#E0E0E0',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(4, 2),
+    },
+  },
+  titleContainer: {
+    textAlign: 'center',
+    marginBottom: theme.spacing(8),
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: theme.spacing(4),
     },
   },
   title: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginBottom: theme.spacing(4),
-    fontSize: '2rem',
     fontFamily: 'Space Grotesk, sans-serif',
-    textTransform: 'uppercase',
-    color: '#FFFFFF', // White text
+    fontWeight: 700,
+    fontSize: '2.5rem',
+    marginBottom: theme.spacing(2),
+    background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2rem',
+    },
+  },
+  subtitle: {
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontFamily: 'Space Grotesk, sans-serif',
+    fontSize: '1.1rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1rem',
+    },
   },
   gridContainer: {
-    maxWidth: '1200px',
     width: '100%',
-    padding: '0 16px',
+    maxWidth: '1200px',
     margin: '0 auto',
-    [theme.breakpoints.down('sm')]: {
-      padding: '0 8px',
-    },
   },
   dialog: {
     '& .MuiDialog-paper': {
-      backgroundColor: '#1E2A38', // Dialog background
-      color: '#E0E0E0', // Light gray text
+      backgroundColor: '#1a1a1a',
+      borderRadius: '15px',
+      overflow: 'hidden',
+    },
+  },
+  dialogContent: {
+    padding: theme.spacing(4),
+    backgroundColor: '#1a1a1a',
+    position: 'relative',
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(2),
-      overflowX: 'hidden', // Remove horizontal scroll
     },
   },
   closeButton: {
     position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: '#FFFFFF', // White close button color
+    right: theme.spacing(2),
+    top: theme.spacing(2),
+    color: '#fff',
+    zIndex: 1,
+    '&:hover': {
+      background: 'rgba(255, 255, 255, 0.1)',
+    },
+  },
+  projectDetails: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing(3),
+  },
+  dialogImage: {
+    width: '100%',
+    height: '300px',
+    objectFit: 'cover',
+    borderRadius: '10px',
+    [theme.breakpoints.down('sm')]: {
+      height: '200px',
+    },
+  },
+  detailsContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing(2),
   },
   dialogTitle: {
-    fontSize: '1.5rem',
-    marginBottom: theme.spacing(2),
-    color: '#FFFFFF', // White title text
+    color: '#fff',
     fontFamily: 'Space Grotesk, sans-serif',
+    fontWeight: 600,
   },
   dialogDescription: {
-    fontSize: '1rem',
-    color: '#E0E0E0', // Light gray text
+    color: 'rgba(255, 255, 255, 0.8)',
     fontFamily: 'Space Grotesk, sans-serif',
+    lineHeight: 1.6,
+  },
+  techStack: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: theme.spacing(1),
+    marginTop: theme.spacing(2),
+  },
+  techTag: {
+    padding: theme.spacing(0.5, 1.5),
+    borderRadius: '20px',
+    background: 'linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(255, 111, 48, 0.1))',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    color: '#fff',
+    fontSize: '0.9rem',
+    fontFamily: 'Space Grotesk, sans-serif',
+  },
+  projectLink: {
+    display: 'inline-block',
+    marginTop: theme.spacing(2),
+    padding: theme.spacing(1.5, 3),
+    background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
+    color: '#fff',
+    textDecoration: 'none',
+    borderRadius: '25px',
+    fontFamily: 'Space Grotesk, sans-serif',
+    fontWeight: 500,
+    textAlign: 'center',
+    transition: 'all 0.3s ease',
+    '&:hover': {
+      transform: 'translateY(-2px)',
+      boxShadow: '0 5px 15px rgba(255, 0, 255, 0.3)',
+    },
   },
 }));
 
 export default MyWork;
-
