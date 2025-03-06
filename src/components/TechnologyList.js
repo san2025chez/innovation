@@ -18,49 +18,47 @@ import express from '../img/ex8.png';
 import nest from '../img/nest8.png';
 
 const technologies = [
-  { img: node, name: 'Node.js', category: 'Backend' },
-  { img: css, name: 'CSS', category: 'Frontend' },
-  { img: javascript, name: 'JavaScript', category: 'Frontend' },
-  { img: mongo, name: 'MongoDB', category: 'Database' },
-  { img: mysql, name: 'MySQL', category: 'Database' },
-  { img: html, name: 'HTML', category: 'Frontend' },
-  { img: react, name: 'React', category: 'Frontend' },
-  { img: git, name: 'Git', category: 'Tools' },
-  { img: ts, name: 'TypeScript', category: 'Frontend' },
-  { img: pg, name: 'PostgreSQL', category: 'Database' },
-  { img: express, name: 'Express', category: 'Backend' },
-  { img: nest, name: 'Nest.js', category: 'Backend' },
+  { img: node, name: 'Node.js' },
+  { img: css, name: 'CSS' },
+  { img: javascript, name: 'JavaScript' },
+  { img: mongo, name: 'MongoDB' },
+  { img: mysql, name: 'MySQL' },
+  { img: html, name: 'HTML' },
+  { img: react, name: 'React' },
+  { img: git, name: 'Git' },
+  { img: ts, name: 'TypeScript' },
+  { img: pg, name: 'PostgreSQL' },
+  { img: express, name: 'Express' },
+  { img: nest, name: 'Nest.js' },
 ];
 
 const useStyles = makeStyles((theme) => ({
-  gridContainer: {
-    marginBottom: theme.spacing(6),
-    [theme.breakpoints.down('sm')]: {
-      marginBottom: theme.spacing(4),
+  container: {
+    padding: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(4),
     },
+    background: 'rgba(255, 255, 255, 0.03)',
+    borderRadius: theme.spacing(2),
+    backdropFilter: 'blur(10px)',
+    boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+  },
+  gridContainer: {
+    width: '100%',
+    margin: 0,
   },
   gridItem: {
+    padding: theme.spacing(1),
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing(1.5),
+    },
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'stretch',
-    [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing(1),
-    },
-  },
-  categorySection: {
-    marginBottom: theme.spacing(4),
-    '& > h3': {
-      color: '#fff',
-      fontFamily: 'Space Grotesk, sans-serif',
-      marginBottom: theme.spacing(2),
-      background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-    },
+    alignItems: 'center',
   },
 }));
 
-export const TechnologyList = ({ controls, isMobile }) => {
+export const TechnologyList = ({ controls }) => {
   const classes = useStyles();
 
   const containerVariants = {
@@ -70,48 +68,37 @@ export const TechnologyList = ({ controls, isMobile }) => {
       y: 0,
       transition: {
         staggerChildren: 0.1,
+        duration: 0.6,
+        ease: "easeOut"
       },
     },
   };
-
-  // Group technologies by category
-  const groupedTechnologies = technologies.reduce((acc, tech) => {
-    if (!acc[tech.category]) {
-      acc[tech.category] = [];
-    }
-    acc[tech.category].push(tech);
-    return acc;
-  }, {});
 
   return (
     <motion.div
       variants={containerVariants}
       initial="hidden"
       animate={controls}
+      className={classes.container}
     >
-      {Object.entries(groupedTechnologies).map(([category, techs]) => (
-        <div key={category} className={classes.categorySection}>
-          <h3>{category}</h3>
-          <Grid container spacing={3} className={classes.gridContainer}>
-            {techs.map((tech, index) => (
-              <Grid 
-                item 
-                xs={6} 
-                sm={4} 
-                md={3} 
-                lg={2} 
-                key={index}
-                className={classes.gridItem}
-              >
-                <TechnologyCard
-                  technology={tech}
-                  isMobile={isMobile}
-                />
-              </Grid>
-            ))}
+      <Grid 
+        container 
+        spacing={0} 
+        className={classes.gridContainer}
+      >
+        {technologies.map((tech, index) => (
+          <Grid 
+            item 
+            xs={4}  // 3 items per row on mobile
+            sm={4}  
+            md={2}  // 6 items per row on desktop
+            key={tech.name} 
+            className={classes.gridItem}
+          >
+            <TechnologyCard technology={tech} />
           </Grid>
-        </div>
-      ))}
+        ))}
+      </Grid>
     </motion.div>
   );
 };

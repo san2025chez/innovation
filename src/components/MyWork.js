@@ -20,11 +20,15 @@ const MyWork = ({ title, id }) => {
   const handleOpen = (project) => {
     setSelectedProject(project);
     setOpen(true);
+    // Prevenir scroll en el body cuando el diálogo está abierto
+    document.body.style.overflow = 'hidden';
   };
 
   const handleClose = () => {
     setOpen(false);
     setSelectedProject(null);
+    // Restaurar scroll en el body cuando el diálogo se cierra
+    document.body.style.overflow = 'unset';
   };
 
   const containerVariants = {
@@ -110,6 +114,13 @@ const MyWork = ({ title, id }) => {
           exit: { opacity: 0, y: 50 },
           transition: { duration: 0.3 }
         }}
+        PaperProps={{
+          style: {
+            overflowY: 'auto',
+            maxHeight: '90vh',
+            WebkitOverflowScrolling: 'touch' // Mejora el scroll en iOS
+          }
+        }}
       >
         <DialogContent className={classes.dialogContent}>
           <IconButton 
@@ -180,6 +191,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    position: 'relative',
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(4, 2),
     },
@@ -218,17 +230,33 @@ const useStyles = makeStyles((theme) => ({
   },
   dialog: {
     '& .MuiDialog-paper': {
+      margin: theme.spacing(2),
       backgroundColor: '#1a1a1a',
       borderRadius: '15px',
       overflow: 'hidden',
+      [theme.breakpoints.down('sm')]: {
+        margin: theme.spacing(1),
+        maxHeight: '95vh',
+      },
     },
   },
   dialogContent: {
-    padding: theme.spacing(4),
-    backgroundColor: '#1a1a1a',
-    position: 'relative',
-    [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(2),
+    padding: theme.spacing(3),
+    overflow: 'auto',
+    '-webkit-overflow-scrolling': 'touch',
+    '&::-webkit-scrollbar': {
+      width: '8px',
+    },
+    '&::-webkit-scrollbar-track': {
+      background: 'rgba(255, 255, 255, 0.1)',
+      borderRadius: '4px',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      background: 'rgba(255, 255, 255, 0.2)',
+      borderRadius: '4px',
+      '&:hover': {
+        background: 'rgba(255, 255, 255, 0.3)',
+      },
     },
   },
   closeButton: {

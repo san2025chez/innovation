@@ -220,9 +220,13 @@ const useStyles = makeStyles((theme) => ({
   description: {
     color: 'rgba(255, 255, 255, 0.9)',
     fontSize: '1rem',
+    fontFamily: 'Space Grotesk, sans-serif',
     lineHeight: 1.6,
     '& p': {
       marginBottom: theme.spacing(2),
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.95rem',
     },
   },
   servicesSection: {
