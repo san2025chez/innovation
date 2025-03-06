@@ -89,7 +89,7 @@ export const TechnologyList = ({ controls }) => {
         {technologies.map((tech, index) => (
           <Grid 
             item 
-            xs={4}  // 3 items per row on mobile
+            xs={6}  // 3 items per row on mobile
             sm={4}  
             md={2}  // 6 items per row on desktop
             key={tech.name} 
