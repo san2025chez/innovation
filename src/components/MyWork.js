@@ -72,7 +72,7 @@ const MyWork = ({ title, id }) => {
           {title}
         </Typography>
         <Typography variant="subtitle1" className={classes.subtitle}>
-          Explore my latest projects and creative work
+          Explora mis proyectos y trabajos creativos
         </Typography>
       </motion.div>
 

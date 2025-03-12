@@ -35,7 +35,7 @@ function App() {
       <div style={{ padding:0, margin:0}} className={classes.root}>
         <Navbar />
         <About title="Inicio" id="about" />
-        <Profile id="skill"/>
+       {/*  <Profile id="skill"/> */}
         <SkillsAndTechnologies title="Sobre Mi" id="technology" />
         <MyWork title="Trabajos" id="work" dark={false} />
          <Services title="Servicios" id="servic" dark={false} />

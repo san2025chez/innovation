@@ -48,22 +48,19 @@ const useStyles = makeStyles((theme) => ({
   },
   gridContainer: {
     width: '100%',
-    maxWidth: '1200px',
+    maxWidth: '1400px',
     margin: '0 auto',
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
+    gridTemplateColumns: 'repeat(3, 1fr)',
     gap: theme.spacing(4),
+    padding: theme.spacing(2),
     [theme.breakpoints.down('md')]: {
-      gridTemplateColumns: 'repeat(3, 1fr)',
+      gridTemplateColumns: 'repeat(2, 1fr)',
       gap: theme.spacing(3),
     },
     [theme.breakpoints.down('sm')]: {
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gap: theme.spacing(2),
-    },
-    [theme.breakpoints.down('xs')]: {
-      gridTemplateColumns: 'repeat(1, 1fr)',
-      gap: theme.spacing(2),
+      gridTemplateColumns: '1fr',
+      gap: theme.spacing(3),
     },
   },
   cardContainer: {
@@ -75,21 +72,22 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     height: '100%',
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
     backgroundColor: 'rgba(30, 42, 56, 0.4)',
-    backdropFilter: 'blur(8px)',
+    backdropFilter: 'blur(10px)',
     background: 'linear-gradient(135deg, rgba(30, 42, 56, 0.4) 0%, rgba(30, 42, 56, 0.1) 100%)',
     border: '1px solid rgba(255, 255, 255, 0.1)',
-    borderRadius: '20px',
+    borderRadius: '24px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     textAlign: 'center',
-    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
     cursor: 'pointer',
     overflow: 'hidden',
     position: 'relative',
+    minHeight: '380px',
     '&:hover': {
       transform: 'translateY(-8px)',
       background: 'linear-gradient(135deg, rgba(255, 0, 255, 0.15) 0%, rgba(255, 111, 48, 0.15) 100%)',
@@ -102,6 +100,10 @@ const useStyles = makeStyles((theme) => ({
         color: 'rgb(255, 0, 255)',
       },
     },
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(3),
+      minHeight: '320px',
+    },
   },
   cardGlow: {
     position: 'absolute',
@@ -109,38 +111,48 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.15), transparent 70%)',
+    background: 'radial-gradient(circle at 50% 0%, rgba(255, 0, 255, 0.2), transparent 70%)',
     opacity: 0,
-    transition: 'opacity 0.3s ease',
+    transition: 'opacity 0.4s ease',
     pointerEvents: 'none',
   },
   icon: {
-    fontSize: '3rem',
-    marginBottom: theme.spacing(2),
+    fontSize: '3.5rem',
+    marginBottom: theme.spacing(3),
     color: '#fff',
-    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+    background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '2.5rem',
-      marginBottom: theme.spacing(1.5),
+      fontSize: '2.8rem',
+      marginBottom: theme.spacing(2),
     },
   },
   serviceTitle: {
     color: '#fff',
-    fontFamily: 'Space Grotesk, sans-serif',
+    fontSize: '1.8rem',
     fontWeight: 600,
-    fontSize: '1.25rem',
     marginBottom: theme.spacing(2),
+    fontFamily: 'Space Grotesk, sans-serif',
+    width: '100%',
+    textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '1.1rem',
+      fontSize: '1.5rem',
     },
   },
   description: {
     color: 'rgba(255, 255, 255, 0.8)',
-    fontFamily: 'Space Grotesk, sans-serif',
-    fontSize: '0.95rem',
+    fontSize: '1.1rem',
     lineHeight: 1.6,
+    marginBottom: theme.spacing(3),
+    textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '0.9rem',
+      fontSize: '1rem',
     },
   },
   dialog: {
@@ -229,96 +241,92 @@ export const Services = ({ title, id }) => {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
+  
+  const cardVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 50,
+      scale: 0.95
     },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
+    visible: { 
       opacity: 1,
+      y: 0,
+      scale: 1,
       transition: {
         type: "spring",
         stiffness: 100,
         damping: 12,
-      },
-    },
+        duration: 0.6
+      }
+    }
   };
 
   return (
     <section className={classes.section} id={id}>
       <div className={classes.titleContainer}>
-        <Typography variant="h2" className={classes.title}>
-          {title}
-        </Typography>
-        <Typography variant="subtitle1" className={classes.subtitle}>
-          Soluciones tecnológicas adaptadas a tus necesidades
-        </Typography>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <Typography variant="h2" className={classes.title}>
+            {title}
+          </Typography>
+          <Typography variant="subtitle1" className={classes.subtitle}>
+            Soluciones tecnológicas innovadoras para impulsar tu negocio
+          </Typography>
+        </motion.div>
       </div>
-      
-      <motion.div
-        ref={ref}
-        className={classes.gridContainer}
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-      >
+
+      <div className={classes.gridContainer}>
         {services.map((service, index) => (
           <motion.div
             key={service.title}
-            className={classes.cardContainer}
-            variants={itemVariants}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            custom={index}
           >
             <div className={classes.card}>
               <div className={classes.cardGlow} />
-              <motion.div 
+              <motion.div
                 className={classes.icon}
-                whileHover={{ 
+                whileHover={{
+                  scale: 1.1,
                   rotate: [0, -10, 10, -10, 0],
                   transition: { duration: 0.5 }
                 }}
               >
                 {service.icon}
               </motion.div>
-              <Typography
-                variant={isMobile ? "h6" : "h5"}
-                component="h3"
-                style={{
-                  fontWeight: 600,
-                  marginBottom: theme.spacing(2),
-                  color: '#fff',
-                }}
-              >
+              <Typography variant="h3" className={classes.serviceTitle}>
                 {service.title}
               </Typography>
-              <Typography
-                variant="body1"
-                style={{
-                  color: 'rgba(255, 255, 255, 0.8)',
-                  lineHeight: 1.6,
-                }}
-              >
+              <Typography className={classes.description}>
                 {service.description}
               </Typography>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{ marginTop: 'auto' }}
+              >
+                <Typography
+                  variant="body2"
+                  style={{
+                    color: 'rgb(255, 0, 255)',
+                    fontWeight: 500,
+                    cursor: 'pointer',
+                  }}
+                >
+                  Saber más →
+                </Typography>
+              </motion.div>
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 };

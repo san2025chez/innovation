@@ -69,7 +69,7 @@ const SkillsAndTechnologies = ({ id }) => {
         <div className={classes.sectionWrapper}>
           <SectionTitle
             title="Skills & Technologies"
-            subtitle="My technical expertise and professional toolset"
+            subtitle="Mi experiencia técnica y mi conjunto de herramientas profesionales"
           />
         </div>
 
