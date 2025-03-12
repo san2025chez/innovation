@@ -81,16 +81,17 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const useStyles = makeStyles((theme) => ({
   section: {
-    padding: theme.spacing(12, 4),
+    padding: theme.spacing(8, 4),
     background: '#000000',
-    minHeight: '100vh',
+    minHeight: '90vh',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     position: 'relative',
     overflow: 'hidden',
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(8, 2),
+      padding: theme.spacing(6, 2),
+      minHeight: '90vh',
     },
   },
   container: {
@@ -99,18 +100,19 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     position: 'relative',
     zIndex: 1,
+    padding: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1),
+    },
   },
   titleContainer: {
     textAlign: 'center',
-    marginBottom: theme.spacing(8),
+    marginBottom: theme.spacing(6),
     [theme.breakpoints.down('sm')]: {
-      marginBottom: theme.spacing(6),
+      marginBottom: theme.spacing(4),
     },
   },
   title: {
-    color: '#FFFFFF',
-    fontFamily: 'Space Grotesk, sans-serif',
-    fontWeight: 700,
     fontSize: '2.5rem',
     marginBottom: theme.spacing(2),
     background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
@@ -121,56 +123,51 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   subtitle: {
-    color: '#FFFFFF',
-    fontFamily: 'Space Grotesk, sans-serif',
     fontSize: '1.1rem',
+    opacity: 0.8,
     maxWidth: '600px',
     margin: '0 auto',
     [theme.breakpoints.down('sm')]: {
       fontSize: '1rem',
+      padding: '0 16px',
     },
   },
-  techName: {
-    marginTop: theme.spacing(1),
-    fontSize: '0.9rem',
-    fontWeight: 600,
-    fontFamily: 'Space Grotesk, sans-serif',
-    background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    textAlign: 'center',
-  },
   image: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     objectFit: 'contain',
     transition: 'all 0.3s ease',
     filter: 'brightness(0.9) contrast(1.1)',
+    marginBottom: theme.spacing(1.5),
     [theme.breakpoints.down('sm')]: {
+      width: 40,
+      height: 40,
+      marginBottom: theme.spacing(1),
+    },
+    [theme.breakpoints.down('xs')]: {
       width: 35,
       height: 35,
     },
   },
-  skillLevel: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    width: '100%',
-    height: '4px',
-    background: 'rgba(255, 255, 255, 0.1)',
-    overflow: 'hidden',
-    opacity: 0,
-    transform: 'translateY(10px)',
-    transition: 'all 0.3s ease',
-  },
-  skillBar: {
-    height: '100%',
-    background: 'linear-gradient(90deg, rgb(255, 0, 255), #FF6F30)',
-    transition: 'width 1s ease-out',
+  techName: {
+    fontSize: '1rem',
+    marginTop: theme.spacing(1),
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.9rem',
+    },
   },
   gridContainer: {
     margin: 0,
     width: '100%',
+    '& .MuiGrid-item': {
+      display: 'flex',
+      justifyContent: 'center',
+      padding: theme.spacing(1.5),
+      [theme.breakpoints.down('sm')]: {
+        padding: theme.spacing(1),
+      },
+    },
   },
 }));
 
@@ -237,13 +234,14 @@ export default function Technologies() {
           initial="hidden"
           animate={controls}
         >
-          <Grid container spacing={2} className={classes.gridContainer}>
+          <Grid container spacing={{ xs: 1, sm: 2, md: 3 }} className={classes.gridContainer}>
             {technologies.map((tech, index) => (
-              <Grid item xs={4} sm={3} md={2} key={index}>
+              <Grid item xs={6} sm={4} md={3} lg={2} key={index}>
                 <motion.div
                   variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  style={{ width: '100%' }}
                 >
                   <Item>
                     <motion.div
@@ -257,7 +255,7 @@ export default function Technologies() {
                         alt={tech.name}
                       />
                     </motion.div>
-                    <Typography className={classes.techName}>
+                    <Typography variant="body2" className={classes.techName}>
                       {tech.name}
                     </Typography>
                     <div className={`${classes.skillLevel} skill-level`}>

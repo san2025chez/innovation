@@ -135,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
   section: {
     padding: theme.spacing(8, 0),
     background: '#000000',
-    minHeight: '100vh',
+   /*  minHeight: '100vh', */
     position: 'relative',
   },
   container: {

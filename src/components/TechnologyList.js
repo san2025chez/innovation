@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, makeStyles } from '@material-ui/core';
+import { Grid, makeStyles, useTheme, useMediaQuery } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { TechnologyCard } from './TechnologyCard';
 
@@ -34,7 +34,7 @@ const technologies = [
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing(4),
     },
@@ -42,24 +42,47 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.spacing(2),
     backdropFilter: 'blur(10px)',
     boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+    transition: 'all 0.3s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.01)',
+      boxShadow: '0 12px 40px 0 rgba(31, 38, 135, 0.25)',
+    },
   },
   gridContainer: {
     width: '100%',
     margin: 0,
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+    gap: theme.spacing(3),
+    rowGap: theme.spacing(4),
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    [theme.breakpoints.down('xs')]: {
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: theme.spacing(2),
+      rowGap: theme.spacing(2),
+      paddingBottom: theme.spacing(4),
+    },
+    [theme.breakpoints.up('sm')]: {
+      paddingBottom: theme.spacing(4),
+    },
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+    },
   },
   gridItem: {
-    padding: theme.spacing(1),
-    [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(1.5),
-    },
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
+    width: '100%',
+    height: '100%',
   },
 }));
 
 export const TechnologyList = ({ controls }) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
 
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -87,16 +110,19 @@ export const TechnologyList = ({ controls }) => {
         className={classes.gridContainer}
       >
         {technologies.map((tech, index) => (
-          <Grid 
-            item 
-            xs={6}  // 3 items per row on mobile
-            sm={4}  
-            md={2}  // 6 items per row on desktop
-            key={tech.name} 
+          <motion.div
+            key={tech.name}
             className={classes.gridItem}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ scale: 1.05 }}
           >
-            <TechnologyCard technology={tech} />
-          </Grid>
+            <TechnologyCard 
+              technology={tech} 
+              isMobile={isMobile}
+            />
+          </motion.div>
         ))}
       </Grid>
     </motion.div>

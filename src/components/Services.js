@@ -50,18 +50,33 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     maxWidth: '1200px',
     margin: '0 auto',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)',
+    gap: theme.spacing(4),
+    [theme.breakpoints.down('md')]: {
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: theme.spacing(3),
+    },
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gap: theme.spacing(2),
+    },
+    [theme.breakpoints.down('xs')]: {
+      gridTemplateColumns: 'repeat(1, 1fr)',
+      gap: theme.spacing(2),
+    },
   },
   cardContainer: {
-    height: '100%',
-    minHeight: 320,
+    width: '100%',
+    aspectRatio: '1',
     [theme.breakpoints.down('sm')]: {
-      minHeight: 280,
+      aspectRatio: '0.9',
     },
   },
   card: {
     height: '100%',
-    padding: theme.spacing(4),
-    backgroundColor: 'transparent',
+    padding: theme.spacing(3),
+    backgroundColor: 'rgba(30, 42, 56, 0.4)',
     backdropFilter: 'blur(8px)',
     background: 'linear-gradient(135deg, rgba(30, 42, 56, 0.4) 0%, rgba(30, 42, 56, 0.1) 100%)',
     border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -71,20 +86,21 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    transition: 'all 0.3s ease-in-out',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     cursor: 'pointer',
     overflow: 'hidden',
     position: 'relative',
     '&:hover': {
-      transform: 'translateY(-5px)',
-      background: 'linear-gradient(135deg, rgba(255, 0, 255, 0.1) 0%, rgba(255, 111, 48, 0.1) 100%)',
-      boxShadow: '0 10px 20px rgba(255, 0, 255, 0.1)',
+      transform: 'translateY(-8px)',
+      background: 'linear-gradient(135deg, rgba(255, 0, 255, 0.15) 0%, rgba(255, 111, 48, 0.15) 100%)',
+      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22)',
       '& $cardGlow': {
         opacity: 1,
       },
-    },
-    [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(3),
+      '& $icon': {
+        transform: 'scale(1.1) translateY(-5px)',
+        color: 'rgb(255, 0, 255)',
+      },
     },
   },
   cardGlow: {
@@ -101,11 +117,11 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     fontSize: '3rem',
     marginBottom: theme.spacing(2),
-    background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
+    color: '#fff',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     [theme.breakpoints.down('sm')]: {
       fontSize: '2.5rem',
+      marginBottom: theme.spacing(1.5),
     },
   },
   serviceTitle: {
@@ -139,6 +155,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4),
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(2),
+      paddingBottom: theme.spacing(4),
     },
   },
   closeButton: {
@@ -210,8 +227,6 @@ const services = [
 
 export const Services = ({ title, id }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [selectedService, setSelectedService] = React.useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [ref, inView] = useInView({
@@ -224,132 +239,86 @@ export const Services = ({ title, id }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   };
 
-  const cardVariants = {
-    hidden: { 
-      opacity: 0,
-      y: 50,
-      scale: 0.9
-    },
-    visible: { 
-      opacity: 1,
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
       y: 0,
-      scale: 1,
+      opacity: 1,
       transition: {
         type: "spring",
         stiffness: 100,
         damping: 12,
-        duration: 0.5
-      }
-    }
-  };
-
-  const handleOpen = (service) => {
-    setSelectedService(service);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setSelectedService(null);
+      },
+    },
   };
 
   return (
-    <section className={classes.section} id={id} ref={ref}>
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8 }}
-        className={classes.titleContainer}
-      >
+    <section className={classes.section} id={id}>
+      <div className={classes.titleContainer}>
         <Typography variant="h2" className={classes.title}>
-          {title || 'Servicios'}
+          {title}
         </Typography>
         <Typography variant="subtitle1" className={classes.subtitle}>
-          Soluciones digitales profesionales para tu negocio
+          Soluciones tecnológicas adaptadas a tus necesidades
         </Typography>
-      </motion.div>
-
+      </div>
+      
       <motion.div
+        ref={ref}
         className={classes.gridContainer}
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
-        <Grid container spacing={4}>
-          {services.map((service, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <motion.div
-                className={classes.cardContainer}
-                variants={cardVariants}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div 
-                  className={classes.card}
-                  onClick={() => handleOpen(service)}
-                >
-                  <div className={classes.cardGlow} />
-                  <div className={classes.icon}>{service.icon}</div>
-                  <Typography variant="h6" className={classes.serviceTitle}>
-                    {service.title}
-                  </Typography>
-                  <Typography className={classes.description}>
-                    {service.description}
-                  </Typography>
-                </div>
-              </motion.div>
-            </Grid>
-          ))}
-        </Grid>
-      </motion.div>
-
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        className={classes.dialog}
-        fullWidth
-        maxWidth="sm"
-        TransitionComponent={motion.div}
-        TransitionProps={{
-          initial: { opacity: 0, y: 50 },
-          animate: { opacity: 1, y: 0 },
-          exit: { opacity: 0, y: 50 },
-          transition: { duration: 0.3 }
-        }}
-      >
-        <DialogContent className={classes.dialogContent}>
-          <IconButton 
-            className={classes.closeButton}
-            onClick={handleClose}
-            aria-label="close"
+        {services.map((service, index) => (
+          <motion.div
+            key={service.title}
+            className={classes.cardContainer}
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <CloseIcon />
-          </IconButton>
-          <AnimatePresence>
-            {selectedService && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
+            <div className={classes.card}>
+              <div className={classes.cardGlow} />
+              <motion.div 
+                className={classes.icon}
+                whileHover={{ 
+                  rotate: [0, -10, 10, -10, 0],
+                  transition: { duration: 0.5 }
+                }}
               >
-                <div className={classes.icon}>{selectedService.icon}</div>
-                <Typography variant="h4" className={classes.dialogTitle}>
-                  {selectedService.title}
-                </Typography>
-                <Typography className={classes.dialogDescription}>
-                  {selectedService.details}
-                </Typography>
+                {service.icon}
               </motion.div>
-            )}
-          </AnimatePresence>
-        </DialogContent>
-      </Dialog>
+              <Typography
+                variant={isMobile ? "h6" : "h5"}
+                component="h3"
+                style={{
+                  fontWeight: 600,
+                  marginBottom: theme.spacing(2),
+                  color: '#fff',
+                }}
+              >
+                {service.title}
+              </Typography>
+              <Typography
+                variant="body1"
+                style={{
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  lineHeight: 1.6,
+                }}
+              >
+                {service.description}
+              </Typography>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
     </section>
   );
 };

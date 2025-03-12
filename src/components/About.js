@@ -1,41 +1,36 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles, useTheme, useMediaQuery } from '@material-ui/core';
 import DesktopAbout from './DesktopAbout';
 import MobileAbout from './MobileAbout';
 
 const About = ({ id }) => {
   const classes = useStyles();
-  const [isMobile, setIsMobile] = useState(checkIfMobile());
-
-  const handleResize = useCallback(() => {
-    setIsMobile(checkIfMobile());
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [handleResize]);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <div className={`${classes.section} ${isMobile ? classes.mobileSection : ''}`} id={id}>
+    <div className={classes.section} id={id}>
       {isMobile ? <MobileAbout /> : <DesktopAbout />}
     </div>
   );
 };
 
-const checkIfMobile = () => window.innerWidth < 860;
-
 const useStyles = makeStyles((theme) => ({
   section: {
     textAlign: 'center',
     padding: theme.spacing(1),
-    height: '100vh',
+    minHeight: '100vh',
     backgroundColor: "#000000",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    overflow: 'hidden',
     [theme.breakpoints.down('sm')]: {
-      height: '90vh',
+      minHeight: '100vh',
+      padding: theme.spacing(2, 1),
     },
   },
 }));
 
 export default About;
-
