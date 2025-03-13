@@ -303,15 +303,17 @@ const useStyles = makeStyles((theme) => ({
     },
     description: {
         color: '#E0E0E0',
-        fontSize: 'clamp(0.75rem, 2.5vw, 0.9rem)',
+        fontSize: 'clamp(0.9rem, 2.2vw, 1.2rem)',
         lineHeight: '1.5',
         fontWeight: '300',
         fontFamily: 'Space Grotesk, sans-serif',
         textAlign: 'center',
         '@media (max-height: 667px)': {
+            fontSize: 'clamp(0.8rem, 2.2vw, 1.1rem)',
             lineHeight: '1.4',
         },
         '@media (max-height: 568px)': {
+            fontSize: 'clamp(0.7rem, 2.2vw, 1rem)',
             lineHeight: '1.3',
         },
     },
