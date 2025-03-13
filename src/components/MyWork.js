@@ -5,6 +5,7 @@ import mockData from '../mock/mockData';
 import CloseIcon from '@material-ui/icons/Close';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { SectionTitle } from './common/SectionTitle';
 
 const MyWork = ({ title, id, dark = false }) => {
   const classes = useStyles();
@@ -62,20 +63,10 @@ const MyWork = ({ title, id, dark = false }) => {
 
   return (
     <section className={classes.section} id={id}>
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-        className={classes.titleContainer}
-      >
-        <Typography variant="h2" className={classes.title}>
-          {title}
-        </Typography>
-        <Typography variant="subtitle1" className={classes.subtitle}>
-          Explora mis proyectos y trabajos creativos
-        </Typography>
-      </motion.div>
+      <SectionTitle
+        title={title}
+        subtitle="Explora mis proyectos y trabajos creativos"
+      />
 
       <motion.div
         ref={ref}
@@ -199,141 +190,82 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     position: 'relative',
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(6, 2),
+      padding: theme.spacing(4, 2),
     },
-  },
-  titleContainer: {
-    textAlign: 'center',
-    marginBottom: theme.spacing(8),
-    [theme.breakpoints.down('sm')]: {
-      marginBottom: theme.spacing(4),
-    },
-  },
-  title: {
-    fontFamily: 'Space Grotesk, sans-serif',
-    fontWeight: 700,
-    fontSize: '2.5rem',
-    marginBottom: theme.spacing(2),
-    background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '2rem',
-    },
-  },
-  subtitle: {
-    color: 'rgba(255, 255, 255, 0.7)',
-    fontFamily: 'Space Grotesk, sans-serif',
-    fontSize: '1.1rem',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '1rem',
+    '@media (max-height: 667px)': {
+      padding: theme.spacing(3, 2),
+      minHeight: 'auto',
     },
   },
   gridContainer: {
     width: '100%',
     maxWidth: '1200px',
     margin: '0 auto',
-  },
-  dialog: {
-    '& .MuiDialog-paper': {
-      margin: theme.spacing(2),
-      backgroundColor: '#1a1a1a',
-      borderRadius: '15px',
-      overflow: 'hidden',
-      [theme.breakpoints.down('sm')]: {
-        margin: theme.spacing(1),
-        maxHeight: '95vh',
-      },
+    '@media (max-height: 667px)': {
+      transform: 'scale(0.95)',
+      transformOrigin: 'top center',
+    },
+    '@media (max-height: 568px)': {
+      transform: 'scale(0.85)',
     },
   },
   dialogContent: {
-    padding: theme.spacing(3),
-    overflow: 'auto',
-    '-webkit-overflow-scrolling': 'touch',
-    '&::-webkit-scrollbar': {
-      width: '8px',
+    padding: theme.spacing(4),
+    fontFamily: 'Space Grotesk, sans-serif',
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(2),
     },
-    '&::-webkit-scrollbar-track': {
-      background: 'rgba(255, 255, 255, 0.1)',
-      borderRadius: '4px',
+    '@media (max-height: 667px)': {
+      padding: theme.spacing(2),
+      '& img': {
+        maxHeight: '180px',
+      },
     },
-    '&::-webkit-scrollbar-thumb': {
-      background: 'rgba(255, 255, 255, 0.2)',
-      borderRadius: '4px',
-      '&:hover': {
-        background: 'rgba(255, 255, 255, 0.3)',
+    '@media (max-height: 568px)': {
+      '& img': {
+        maxHeight: '150px',
       },
     },
   },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(2),
-    top: theme.spacing(2),
-    color: '#fff',
-    zIndex: 1,
-    '&:hover': {
-      background: 'rgba(255, 255, 255, 0.1)',
-    },
-  },
-  projectDetails: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: theme.spacing(3),
-  },
-  dialogImage: {
-    width: '100%',
-    height: '300px',
-    objectFit: 'cover',
-    borderRadius: '10px',
-    [theme.breakpoints.down('sm')]: {
-      height: '200px',
-    },
-  },
-  detailsContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: theme.spacing(2),
-  },
   dialogTitle: {
-    color: '#fff',
-    fontFamily: 'Space Grotesk, sans-serif',
-    fontWeight: 600,
+    fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
+    marginBottom: theme.spacing(2),
+    '@media (max-height: 667px)': {
+      marginBottom: theme.spacing(1),
+    },
   },
   dialogDescription: {
-    color: 'rgba(255, 255, 255, 0.8)',
-    fontFamily: 'Space Grotesk, sans-serif',
+    fontSize: 'clamp(0.85rem, 2vw, 1rem)',
     lineHeight: 1.6,
+    '@media (max-height: 667px)': {
+      lineHeight: 1.4,
+    },
   },
   techStack: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: theme.spacing(1),
+    gap: '8px',
     marginTop: theme.spacing(2),
+    '@media (max-height: 667px)': {
+      marginTop: theme.spacing(1),
+      gap: '6px',
+    },
   },
   techTag: {
-    padding: theme.spacing(0.5, 1.5),
-    borderRadius: '20px',
-    background: 'linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(255, 111, 48, 0.1))',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
-    color: '#fff',
-    fontSize: '0.9rem',
-    fontFamily: 'Space Grotesk, sans-serif',
+    fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
+    padding: '4px 12px',
+    borderRadius: '15px',
+    background: 'rgba(255, 0, 255, 0.1)',
+    color: 'rgb(255, 0, 255)',
+    '@media (max-height: 667px)': {
+      padding: '3px 10px',
+    },
   },
   projectLink: {
-    display: 'inline-block',
-    marginTop: theme.spacing(2),
-    padding: theme.spacing(1.5, 3),
-    background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
-    color: '#fff',
-    textDecoration: 'none',
-    borderRadius: '25px',
-    fontFamily: 'Space Grotesk, sans-serif',
-    fontWeight: 500,
-    textAlign: 'center',
-    transition: 'all 0.3s ease',
-    '&:hover': {
-      transform: 'translateY(-2px)',
-      boxShadow: '0 5px 15px rgba(255, 0, 255, 0.3)',
+    fontSize: 'clamp(0.85rem, 2vw, 1rem)',
+    padding: 'clamp(8px, 2vw, 12px) clamp(20px, 4vw, 35px)',
+    '@media (max-height: 667px)': {
+      padding: 'clamp(6px, 1.5vw, 10px) clamp(15px, 3vw, 30px)',
     },
   },
 }));

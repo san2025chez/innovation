@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { FaDesktop, FaShoppingCart, FaCode, FaDatabase } from 'react-icons/fa';
 import { SiTypescript } from 'react-icons/si';
 import CloseIcon from '@material-ui/icons/Close';
+import { SectionTitle } from './common/SectionTitle';
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -18,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(4, 2),
     },
+    '@media (max-height: 667px)': {
+      padding: theme.spacing(3, 2),
+      minHeight: 'auto',
+    },
   },
   titleContainer: {
     textAlign: 'center',
@@ -25,25 +30,28 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       marginBottom: theme.spacing(4),
     },
+    '@media (max-height: 667px)': {
+      marginBottom: theme.spacing(3),
+    },
   },
   title: {
     fontFamily: 'Space Grotesk, sans-serif',
     fontWeight: 700,
-    fontSize: '2.5rem',
+    fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
     marginBottom: theme.spacing(2),
     background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '2rem',
+    '@media (max-height: 667px)': {
+      marginBottom: theme.spacing(1.5),
     },
   },
   subtitle: {
     color: 'rgba(255, 255, 255, 0.7)',
     fontFamily: 'Space Grotesk, sans-serif',
-    fontSize: '1.1rem',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '1rem',
+    fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)',
+    '@media (max-height: 667px)': {
+      fontSize: 'clamp(0.8rem, 2vw, 1rem)',
     },
   },
   gridContainer: {
@@ -60,7 +68,15 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('sm')]: {
       gridTemplateColumns: '1fr',
-      gap: theme.spacing(3),
+      gap: theme.spacing(2.5),
+    },
+    '@media (max-height: 667px)': {
+      gap: theme.spacing(2),
+      transform: 'scale(0.92)',
+      transformOrigin: 'top center',
+    },
+    '@media (max-height: 568px)': {
+      transform: 'scale(0.85)',
     },
   },
   cardContainer: {
@@ -69,15 +85,18 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       aspectRatio: '0.9',
     },
+    '@media (max-height: 667px)': {
+      aspectRatio: '0.8',
+    },
   },
   card: {
     height: '100%',
-    padding: theme.spacing(4),
+    padding: theme.spacing(3),
     backgroundColor: 'rgba(30, 42, 56, 0.4)',
     backdropFilter: 'blur(10px)',
     background: 'linear-gradient(135deg, rgba(30, 42, 56, 0.4) 0%, rgba(30, 42, 56, 0.1) 100%)',
     border: '1px solid rgba(255, 255, 255, 0.1)',
-    borderRadius: '24px',
+    borderRadius: '20px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -87,22 +106,19 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     overflow: 'hidden',
     position: 'relative',
-    minHeight: '380px',
-    '&:hover': {
-      transform: 'translateY(-8px)',
-      background: 'linear-gradient(135deg, rgba(255, 0, 255, 0.15) 0%, rgba(255, 111, 48, 0.15) 100%)',
-      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22)',
-      '& $cardGlow': {
-        opacity: 1,
-      },
-      '& $icon': {
-        transform: 'scale(1.1) translateY(-5px)',
-        color: 'rgb(255, 0, 255)',
-      },
-    },
+    minHeight: '320px',
+    fontFamily: 'Space Grotesk, sans-serif',
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(3),
-      minHeight: '320px',
+      padding: theme.spacing(2.5),
+      minHeight: '280px',
+    },
+    '@media (max-height: 667px)': {
+      padding: theme.spacing(2),
+      minHeight: '250px',
+    },
+    '@media (max-height: 568px)': {
+      padding: theme.spacing(1.5),
+      minHeight: '220px',
     },
   },
   cardGlow: {
@@ -117,42 +133,40 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: 'none',
   },
   icon: {
-    fontSize: '3.5rem',
-    marginBottom: theme.spacing(3),
+    fontSize: 'clamp(2rem, 4vw, 3rem)',
+    marginBottom: theme.spacing(2.5),
     color: '#fff',
     transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
     background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '2.8rem',
+    '@media (max-height: 667px)': {
       marginBottom: theme.spacing(2),
+      fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)',
     },
   },
   serviceTitle: {
     color: '#fff',
-    fontSize: '1.8rem',
+    fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
     fontWeight: 600,
     marginBottom: theme.spacing(2),
     fontFamily: 'Space Grotesk, sans-serif',
-    width: '100%',
-    textAlign: 'center',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '1.5rem',
+    '@media (max-height: 667px)': {
+      marginBottom: theme.spacing(1.5),
+      fontSize: 'clamp(1rem, 2vw, 1.2rem)',
     },
   },
   description: {
     color: 'rgba(255, 255, 255, 0.8)',
-    fontSize: '1.1rem',
+    fontSize: 'clamp(0.85rem, 2vw, 1.6rem)',
     lineHeight: 1.6,
-    marginBottom: theme.spacing(3),
-    textAlign: 'center',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '1rem',
+    fontWeight: 300,
+    marginBottom: theme.spacing(2),
+    fontFamily: 'Space Grotesk, sans-serif',
+    '@media (max-height: 667px)': {
+      lineHeight: 1.4,
+      marginBottom: theme.spacing(1.5),
+      fontSize: 'clamp(0.8rem, 1.8vw, 0.9rem)',
     },
   },
   dialog: {
@@ -169,6 +183,9 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2),
       paddingBottom: theme.spacing(4),
     },
+    '@media (max-height: 667px)': {
+      padding: theme.spacing(2),
+    },
   },
   closeButton: {
     position: 'absolute',
@@ -184,17 +201,23 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     fontFamily: 'Space Grotesk, sans-serif',
     fontWeight: 600,
-    fontSize: '1.5rem',
+    fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
     marginBottom: theme.spacing(2),
     background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
+    '@media (max-height: 667px)': {
+      marginBottom: theme.spacing(1.5),
+    },
   },
   dialogDescription: {
     color: 'rgba(255, 255, 255, 0.8)',
     fontFamily: 'Space Grotesk, sans-serif',
-    fontSize: '1rem',
+    fontSize: 'clamp(0.85rem, 2vw, 1rem)',
     lineHeight: 1.8,
+    '@media (max-height: 667px)': {
+      lineHeight: 1.6,
+    },
   },
 }));
 
@@ -237,7 +260,7 @@ const services = [
   },
 ];
 
-export const Services = ({ title, id }) => {
+const Services = ({ title, id }) => {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -263,22 +286,11 @@ export const Services = ({ title, id }) => {
 
   return (
     <section className={classes.section} id={id}>
-      <div className={classes.titleContainer}>
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <Typography variant="h2" className={classes.title}>
-            {title}
-          </Typography>
-          <Typography variant="subtitle1" className={classes.subtitle}>
-            Soluciones tecnológicas innovadoras para impulsar tu negocio
-          </Typography>
-        </motion.div>
-      </div>
-
+      <SectionTitle
+        title={title}
+        subtitle="Soluciones tecnológicas adaptadas a tus necesidades"
+      />
+      
       <div className={classes.gridContainer}>
         {services.map((service, index) => (
           <motion.div
@@ -330,3 +342,5 @@ export const Services = ({ title, id }) => {
     </section>
   );
 };
+
+export default Services;

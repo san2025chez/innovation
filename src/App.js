@@ -7,7 +7,7 @@ import About from './components/About';
 import SkillsAndTechnologies from './components/SkillsAndTechnologies';
 import ContactForm from './components/ContactForm';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import {Services} from './components/Services'
+import Services from './components/Services'
 import Profile from './components/Profile';
 
 const theme = createTheme({
