@@ -6,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-const MyWork = ({ title, id }) => {
+const MyWork = ({ title, id, dark = false }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -14,7 +14,7 @@ const MyWork = ({ title, id }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true,
+    triggerOnce: false,
   });
 
   const handleOpen = (project) => {
@@ -45,7 +45,7 @@ const MyWork = ({ title, id }) => {
     hidden: { 
       opacity: 0,
       y: 50,
-      scale: 0.9
+      scale: 0.95
     },
     visible: { 
       opacity: 1,
@@ -55,17 +55,18 @@ const MyWork = ({ title, id }) => {
         type: "spring",
         stiffness: 100,
         damping: 12,
-        duration: 0.5
+        duration: 0.6
       }
     }
   };
 
   return (
-    <section className={classes.section} id={id} ref={ref}>
+    <section className={classes.section} id={id}>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
         className={classes.titleContainer}
       >
         <Typography variant="h2" className={classes.title}>
@@ -77,18 +78,23 @@ const MyWork = ({ title, id }) => {
       </motion.div>
 
       <motion.div
+        ref={ref}
         className={classes.gridContainer}
         variants={containerVariants}
         initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: false, margin: "-50px" }}
       >
         <Grid container spacing={4}>
           {mockData.map((project, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <motion.div
                 variants={cardVariants}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+                custom={index}
+                whileHover={{
+                  scale: 1.03,
+                  transition: { duration: 0.2 }
+                }}
               >
                 <ProjectCard
                   project={project}
@@ -193,7 +199,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     position: 'relative',
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(4, 2),
+      padding: theme.spacing(6, 2),
     },
   },
   titleContainer: {
