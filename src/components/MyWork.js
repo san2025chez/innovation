@@ -113,8 +113,10 @@ const MyWork = ({ title, id, dark = false }) => {
         }}
         PaperProps={{
           style: {
-            overflowY: 'auto',
-            maxHeight: '90vh',
+            overflowY: isMobile ? 'auto' : 'visible',
+            maxHeight: isMobile ? '95vh' : 'none',
+            margin: 'auto',
+            borderRadius: '12px',
             WebkitOverflowScrolling: 'touch' // Mejora el scroll en iOS
           }
         }}
@@ -136,11 +138,13 @@ const MyWork = ({ title, id, dark = false }) => {
                 transition={{ duration: 0.3 }}
                 className={classes.projectDetails}
               >
-                <img 
-                  src={selectedProject.image} 
-                  alt={selectedProject.title}
-                  className={classes.dialogImage}
-                />
+                <div className={classes.imageContainer}>
+                  <img 
+                    src={selectedProject.image} 
+                    alt={selectedProject.title}
+                    className={classes.dialogImage}
+                  />
+                </div>
                 <div className={classes.detailsContent}>
                   <Typography variant="h4" className={classes.dialogTitle}>
                     {selectedProject.title}
@@ -209,27 +213,135 @@ const useStyles = makeStyles((theme) => ({
       transform: 'scale(0.85)',
     },
   },
+  dialog: {
+    '& .MuiDialog-paper': {
+      backgroundColor: '#1c1c1c',
+      color: '#E0E0E0',
+      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+      margin: 'auto',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      [theme.breakpoints.up('md')]: {
+        minHeight: 'auto',
+        maxHeight: 'none',
+        maxWidth: '800px',
+      },
+      [theme.breakpoints.up('lg')]: {
+        maxWidth: '850px',
+      },
+    },
+    [theme.breakpoints.down('sm')]: {
+      '& .MuiDialog-paper': {
+        width: 'calc(100% - 32px)',
+        maxWidth: '500px',
+      }
+    },
+  },
   dialogContent: {
     padding: theme.spacing(4),
     fontFamily: 'Space Grotesk, sans-serif',
+    position: 'relative',
     [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(3),
+    },
+    [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(2),
     },
     '@media (max-height: 667px)': {
       padding: theme.spacing(2),
-      '& img': {
-        maxHeight: '180px',
-      },
     },
-    '@media (max-height: 568px)': {
-      '& img': {
-        maxHeight: '150px',
-      },
+    [theme.breakpoints.up('md')]: {
+      overflowY: 'visible',
+      padding: theme.spacing(3),
+    },
+  },
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: '#E0E0E0',
+    zIndex: 10,
+    '&:hover': {
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    },
+    [theme.breakpoints.down('xs')]: {
+      padding: 4,
+    },
+  },
+  projectDetails: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    gap: theme.spacing(3),
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      minHeight: 'auto',
+      maxHeight: 'none',
+    },
+  },
+  imageContainer: {
+    width: '100%',
+    overflow: 'hidden',
+    borderRadius: '8px',
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    [theme.breakpoints.up('md')]: {
+      width: '48%',
+      minHeight: 'auto',
+      maxHeight: 'none',
+      aspectRatio: '4/3',
+    },
+  },
+  dialogImage: {
+    width: '100%',
+    borderRadius: '8px',
+    display: 'block',
+    objectFit: 'contain',
+    [theme.breakpoints.up('md')]: {
+      width: '100%',
+      height: 'auto',
+      maxHeight: '350px',
+      objectFit: 'cover',
+      borderRadius: '10px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      maxHeight: '40vh',
+      objectFit: 'cover',
+    },
+    [theme.breakpoints.down('xs')]: {
+      maxHeight: '30vh',
+    },
+    '@media (max-height: 667px)': {
+      maxHeight: '25vh',
+    },
+  },
+  detailsContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: theme.spacing(2),
+      maxWidth: '48%',
+      overflow: 'visible',
+      maxHeight: 'none',
     },
   },
   dialogTitle: {
     fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
     marginBottom: theme.spacing(2),
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.1rem',
+      marginBottom: theme.spacing(1),
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.2rem',
+      marginBottom: theme.spacing(1),
+    },
     '@media (max-height: 667px)': {
       marginBottom: theme.spacing(1),
     },
@@ -237,6 +349,14 @@ const useStyles = makeStyles((theme) => ({
   dialogDescription: {
     fontSize: 'clamp(0.85rem, 2vw, 1rem)',
     lineHeight: 1.6,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.85rem',
+      lineHeight: 1.5,
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '0.9rem',
+      lineHeight: 1.5,
+    },
     '@media (max-height: 667px)': {
       lineHeight: 1.4,
     },
@@ -246,6 +366,10 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     gap: '8px',
     marginTop: theme.spacing(2),
+    [theme.breakpoints.up('md')]: {
+      marginTop: theme.spacing(1.5),
+      gap: '6px',
+    },
     '@media (max-height: 667px)': {
       marginTop: theme.spacing(1),
       gap: '6px',

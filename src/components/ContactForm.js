@@ -102,8 +102,8 @@ const useStyles = makeStyles((theme) => ({
 const ContactForm = ({ id }) => {
   const classes = useStyles();
   const [formData, setFormData] = useState({
-    user_name: '',
-    user_email: '',
+    email: '',
+    name: '',
     message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -119,13 +119,13 @@ const ContactForm = ({ id }) => {
     e.preventDefault();
 
     emailjs
-      .sendForm('service_wzijndk', 'template_49qbndc', e.target, {
-        publicKey: 'XT5EO2oI14qIFykvW',
+      .sendForm('service_7pw7ik8', 'template_0mc832r', e.target, {
+        publicKey: 'cVDAzuZPikytEPoeA',
       })
       .then(
         () => {
           setIsSubmitted(true);
-          setFormData({ user_name: '', user_email: '', message: '' });
+          setFormData({ email: '',name: '', message: '' });
           setTimeout(() => setIsSubmitted(false), 5000);
         },
         (error) => {
@@ -151,31 +151,32 @@ const ContactForm = ({ id }) => {
           transition={{ duration: 0.6 }}
         >
           <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+              <TextField
+                className={classes.input}
+                label="Email"
+                variant="outlined"
+                fullWidth
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 className={classes.input}
                 label="Nombre"
                 variant="outlined"
                 fullWidth
-                name="user_name"
-                value={formData.user_name}
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                className={classes.input}
-                label="Email"
-                variant="outlined"
-                fullWidth
-                name="user_email"
-                type="email"
-                value={formData.user_email}
-                onChange={handleChange}
-                required
-              />
-            </Grid>
+        
             <Grid item xs={12}>
               <TextField
                 className={classes.input}
