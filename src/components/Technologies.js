@@ -22,6 +22,8 @@ import ts from '../img/ts9.png';
 import pg from '../img/postgres8.png';
 import express from '../img/ex8.png';
 import nest from '../img/nest8.png';
+import n8n from "../img/n8n.webp"
+import aws from "../img/aws.webp"
 
 const technologies = [
   { img: javascript, name: 'JavaScript', level: 90 },
@@ -36,6 +38,9 @@ const technologies = [
   { img: pg, name: 'PostgreSQL', level: 80 },
   { img: express, name: 'Express', level: 85 },
   { img: nest, name: 'NestJS', level: 80 },
+/*   {img: n8n , name:'N8N', level: 80},
+  {img: aws , name :'AWS', level: 85 },
+  {img: aws , name :'AWS', level: 85 } */
 ];
 
 const Item = styled(Paper)(({ theme }) => ({

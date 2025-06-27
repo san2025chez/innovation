@@ -16,7 +16,8 @@ import ts from '../img/ts9.png';
 import pg from '../img/postgres8.png';
 import express from '../img/ex8.png';
 import nest from '../img/nest8.png';
-
+import n8n from "../img/n8n.webp"
+import aws from "../img/aws.webp"
 const technologies = [
   { img: node, name: 'Node.js' },
   { img: css, name: 'CSS' },
@@ -30,6 +31,9 @@ const technologies = [
   { img: pg, name: 'PostgreSQL' },
   { img: express, name: 'Express' },
   { img: nest, name: 'Nest.js' },
+  /* {img: n8n , name:'N8N'}, */
+ /*  {img: aws , name :'AWS'},
+  {img: aws , name :'AWS'} */
 ];
 
 const useStyles = makeStyles((theme) => ({
