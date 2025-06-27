@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.40ad9780.css",
-    "main.js": "/static/js/main.679da4a9.js",
+    "main.js": "/static/js/main.ebd28e94.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/portadatienda.png": "/static/media/portadatienda.cb9ed6c06fd612eef273.png",
     "static/media/sistemamedico.png": "/static/media/sistemamedico.770bba9f56e37154fc19.png",
@@ -13,13 +13,15 @@
     "static/media/dash.jpeg": "/static/media/dash.bf452871e09835548e3b.jpeg",
     "static/media/dashcommerce.png": "/static/media/dashcommerce.93348be09f00a649e5bb.png",
     "static/media/prestamo.png": "/static/media/prestamo.960dc03c28fd0926f672.png",
+    "static/media/n8n.webp": "/static/media/n8n.5a01861f3a78e49f1a4c.webp",
+    "static/media/aws.webp": "/static/media/aws.1213bad10554a194c20c.webp",
     "index.html": "/index.html",
     "main.40ad9780.css.map": "/static/css/main.40ad9780.css.map",
-    "main.679da4a9.js.map": "/static/js/main.679da4a9.js.map",
+    "main.ebd28e94.js.map": "/static/js/main.ebd28e94.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.40ad9780.css",
-    "static/js/main.679da4a9.js"
+    "static/js/main.ebd28e94.js"
   ]
 }
