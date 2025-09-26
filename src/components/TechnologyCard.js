@@ -37,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     [theme.breakpoints.up('md')]: {
-      width: '70%',
+      width: '58%',
+      maxWidth: 115,
       marginBottom: theme.spacing(2),
     },
   },
@@ -47,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     objectFit: 'contain',
     filter: 'brightness(0.9) contrast(1.1)',
     transition: 'all 0.3s ease',
+    [theme.breakpoints.up('md')]: {
+      maxHeight: 95,
+    },
     '&:hover': {
       filter: 'brightness(1.2) contrast(1.2)',
     },

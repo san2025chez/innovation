@@ -31,9 +31,8 @@ const technologies = [
   { img: pg, name: 'PostgreSQL' },
   { img: express, name: 'Express' },
   { img: nest, name: 'Nest.js' },
-  /* {img: n8n , name:'N8N'}, */
- /*  {img: aws , name :'AWS'},
-  {img: aws , name :'AWS'} */
+  { img: n8n, name: 'n8n' },
+  { img: aws, name: 'AWS' },
 ];
 
 const useStyles = makeStyles((theme) => ({

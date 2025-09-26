@@ -6,6 +6,7 @@ import Contact from './components/Contact';
 import About from './components/About';
 import SkillsAndTechnologies from './components/SkillsAndTechnologies';
 import ContactForm from './components/ContactForm';
+import AboutMe from './components/AboutMe';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Services from './components/Services'
 import Profile from './components/Profile';
@@ -35,6 +36,7 @@ function App() {
       <div style={{ padding:0, margin:0}} className={classes.root}>
         <Navbar />
         <About title="Inicio" id="about" />
+        <AboutMe id="aboutme" />
        {/*  <Profile id="skill"/> */}
         <SkillsAndTechnologies title="Sobre Mi" id="technology" />
         <MyWork title="Trabajos" id="work" dark={false} />

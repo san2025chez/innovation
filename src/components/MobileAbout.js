@@ -113,7 +113,7 @@ const MobileAbout = () => {
                                 ¡Juntos, podemos impulsar tu proyecto!
                             </Typography>
                         </motion.div>
-                   
+
                         <motion.div 
                             className={classes.buttonContainer}
                             initial={{ opacity: 0, y: 20 }}
@@ -138,6 +138,7 @@ const MobileAbout = () => {
         </div>
     );
 };
+
 
 const useStyles = makeStyles((theme) => ({
     root: {

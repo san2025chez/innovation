@@ -17,11 +17,11 @@ const links = [
         text: "Inicio",
         icon: <InfoIcon fontSize="medium" />
     },
-   /*  {
-        id: "skill",
-        text: "Acerca de Mi",
+    {
+        id: "aboutme",
+        text: "Acerca de mí",
         icon: <EmojiObjectsIcon fontSize="medium" />
-    }, */
+    },
     {
         id: "technology",
         text: "Tecnologías",
