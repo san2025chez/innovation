@@ -147,9 +147,9 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
         overflowY: 'auto',
-        padding: '15px 0',
+        padding: '60px 0 15px 0',
         '@media (max-height: 667px)': {
-            padding: '10px 0',
+            padding: '50px 0 10px 0',
         },
     },
     loading: {

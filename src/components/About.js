@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     overflow: 'hidden',
     [theme.breakpoints.down('sm')]: {
-      minHeight: '100vh',
-      padding: theme.spacing(2, 1),
+      minHeight: 'auto',
+      padding: theme.spacing(2, 1, 0, 1),
     },
   },
 }));

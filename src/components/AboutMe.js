@@ -107,10 +107,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(6, 4),
+      padding: theme.spacing(4, 4),
     },
     [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing(5, 4.5),
+      padding: theme.spacing(3, 4.5),
     },
   },
   container: {
@@ -199,10 +199,11 @@ const useStyles = makeStyles((theme) => ({
   approachBlocks: {
     display: 'grid',
     gridTemplateColumns: '1fr',
-    gap: theme.spacing(1.2),
-    marginTop: theme.spacing(1.5),
+    gap: theme.spacing(3),
+    marginTop: theme.spacing(2.5),
     [theme.breakpoints.up('md')]: {
-      gridTemplateColumns: 'repeat(3, 1fr)'
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: theme.spacing(4),
     }
   },
   approachCard: {
@@ -210,10 +211,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 14,
     background: 'linear-gradient(180deg, rgba(255,0,255,0.06) 0%, rgba(10,10,10,0.5) 100%)',
     border: '1px solid rgba(255, 0, 255, 0.16)',
-    padding: theme.spacing(1.1, 1.4, 1.2, 1.4),
+    padding: theme.spacing(2, 2, 2, 2.5),
     backdropFilter: 'blur(4px)',
     boxShadow: '0 6px 18px rgba(0,0,0,0.25)',
     overflow: 'hidden',
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(2.5, 2.5, 2.5, 3),
+    },
     '&:before': {
       content: '""',
       position: 'absolute',
@@ -229,8 +233,11 @@ const useStyles = makeStyles((theme) => ({
     color: '#ffffff',
     fontFamily: 'Space Grotesk, sans-serif',
     fontWeight: 700,
-    marginBottom: theme.spacing(0.5),
-    fontSize: 'clamp(0.95rem, 3.2vw, 1.05rem)'
+    marginBottom: theme.spacing(1.5),
+    fontSize: 'clamp(0.95rem, 3.2vw, 1.05rem)',
+    [theme.breakpoints.up('md')]: {
+      marginBottom: theme.spacing(2),
+    }
   },
   bulletList: {
     margin: 0,
