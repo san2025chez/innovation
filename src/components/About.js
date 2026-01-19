@@ -2,14 +2,23 @@ import React from 'react';
 import { makeStyles, useTheme, useMediaQuery } from '@material-ui/core';
 import DesktopAbout from './DesktopAbout';
 import MobileAbout from './MobileAbout';
+import { useAppTheme } from '../hooks/useAppTheme';
 
 const About = ({ id }) => {
+  const appTheme = useAppTheme();
+  const muiTheme = useTheme();
+  const isMobile = useMediaQuery(muiTheme.breakpoints.down('sm'));
   const classes = useStyles();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <div className={classes.section} id={id}>
+    <div 
+      className={classes.section} 
+      id={id}
+      style={{
+        backgroundColor: appTheme.colors.background,
+        transition: 'background-color 0.3s ease',
+      }}
+    >
       {isMobile ? <MobileAbout /> : <DesktopAbout />}
     </div>
   );
@@ -20,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     padding: theme.spacing(1),
     minHeight: '100vh',
-    backgroundColor: "#000000",
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

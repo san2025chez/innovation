@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, makeStyles, useTheme, useMediaQuery } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { TechnologyCard } from './TechnologyCard';
+import { useAppTheme } from '../hooks/useAppTheme';
 
 // Import your technology icons
 import node from '../img/node10.png';
@@ -41,14 +42,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing(4),
     },
-    background: 'rgba(255, 255, 255, 0.03)',
     borderRadius: theme.spacing(2),
     backdropFilter: 'blur(10px)',
-    boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
     transition: 'all 0.3s ease-in-out',
     '&:hover': {
       transform: 'scale(1.01)',
-      boxShadow: '0 12px 40px 0 rgba(31, 38, 135, 0.25)',
     },
   },
   gridContainer: {
@@ -83,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const TechnologyList = ({ controls }) => {
+  const appTheme = useAppTheme();
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
@@ -106,6 +105,15 @@ export const TechnologyList = ({ controls }) => {
       initial="hidden"
       animate={controls}
       className={classes.container}
+      style={{
+        background: appTheme.darkMode
+          ? 'rgba(255, 255, 255, 0.03)'
+          : 'rgba(99, 102, 241, 0.03)',
+        boxShadow: appTheme.darkMode
+          ? '0 8px 32px 0 rgba(31, 38, 135, 0.15)'
+          : '0 8px 32px 0 rgba(99, 102, 241, 0.15)',
+        transition: 'all 0.3s ease-in-out',
+      }}
     >
       <Grid 
         container 

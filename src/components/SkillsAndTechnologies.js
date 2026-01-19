@@ -6,11 +6,11 @@ import { TechnologyList } from './TechnologyList';
 import { SkillsList } from './SkillsList';
 import { SectionTitle } from './common/SectionTitle';
 import { useResponsiveStyles } from '../hooks/useResponsiveStyles';
+import { useAppTheme } from '../hooks/useAppTheme';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     minHeight: '100vh',
-    background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
     padding: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
@@ -78,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SkillsAndTechnologies = ({ id }) => {
+  const appTheme = useAppTheme();
   const classes = useStyles();
   const controls = useAnimation();
   const [ref, inView] = useInView({
@@ -93,7 +94,15 @@ const SkillsAndTechnologies = ({ id }) => {
   }, [controls, inView]);
 
   return (
-    <section id={id} className={classes.container} ref={ref}>
+    <section 
+      id={id} 
+      className={classes.container} 
+      ref={ref}
+      style={{
+        background: appTheme.colors.gradientBackground,
+        transition: 'background 0.3s ease',
+      }}
+    >
       <motion.div
         className={classes.content}
         initial="hidden"

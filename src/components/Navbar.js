@@ -10,6 +10,7 @@ import ContactsRoundedIcon from '@material-ui/icons/ContactsRounded';
 import MenuIcon from "@mui/icons-material/Menu";
 import CancelIcon from "@mui/icons-material/Cancel";
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { useAppTheme } from '../hooks/useAppTheme';
 
 const links = [
     {
@@ -34,8 +35,8 @@ const links = [
     },
     {
         id: "servic",
-        text: "Servicios",
-        icon: <BuildTwoToneIcon fontSize="medium" />
+        text: "Experiencia",
+        icon: <WorkRoundedIcon fontSize="medium" />
     },
     {
         id: "contact",
@@ -51,6 +52,7 @@ const links = [
 ];
 
 const Navbar = () => {
+    const appTheme = useAppTheme();
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -101,11 +103,34 @@ const Navbar = () => {
                 animate="visible"
                 variants={navVariants}
             >
-                <AppBar position='fixed' className={`${classes.root} ${scrolled ? classes.scrolled : ''}`}>
+                <AppBar 
+                    position='fixed' 
+                    className={`${classes.root} ${scrolled ? classes.scrolled : ''}`}
+                    style={{
+                        background: scrolled 
+                            ? (appTheme.darkMode 
+                                ? 'rgba(10, 10, 10, 0.95)' 
+                                : 'linear-gradient(135deg, rgba(91, 33, 182, 0.85) 0%, rgba(245, 158, 11, 0.75) 100%)')
+                            : 'transparent',
+                        backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
+                        boxShadow: scrolled 
+                            ? (appTheme.darkMode 
+                                ? '0 4px 30px rgba(0, 0, 0, 0.3)' 
+                                : '0 8px 32px rgba(91, 33, 182, 0.2), 0 0 0 1px rgba(245, 158, 11, 0.1)')
+                            : 'none',
+                        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    }}
+                >
                     <Toolbar className={classes.toolbar}>
                         <motion.div
                             className={classes.logo}
-                            whileHover={{ scale: 1.05 }}
+                            style={{
+                                background: appTheme.colors.gradient,
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                transition: 'all 0.3s ease',
+                            }}
+                            whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
                             whileTap={{ scale: 0.95 }}
                         >
                             <ScrollLink to="about" smooth={true} duration={500} offset={-70}>
@@ -124,7 +149,24 @@ const Navbar = () => {
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     {id === "download" ? (
-                                        <a href={link} target="_blank" rel="noopener noreferrer" className={classes.navLink}>
+                                        <a 
+                                            href={link} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            className={classes.navLink}
+                                            style={{
+                                                color: appTheme.colors.textPrimary,
+                                                transition: 'color 0.3s ease',
+                                                '--gradient': appTheme.colors.gradient,
+                                                '--hover-color': appTheme.colors.orange,
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.color = appTheme.colors.orange;
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.color = appTheme.colors.textPrimary;
+                                            }}
+                                        >
                                             {text}
                                         </a>
                                     ) : (
@@ -136,6 +178,20 @@ const Navbar = () => {
                                             duration={500}
                                             offset={-70}
                                             className={classes.navLink}
+                                            style={{
+                                                color: appTheme.colors.textPrimary,
+                                                transition: 'color 0.3s ease',
+                                                '--gradient': appTheme.colors.gradient,
+                                                '--hover-color': appTheme.colors.orange,
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.color = appTheme.colors.orange;
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                if (!e.currentTarget.classList.contains('active')) {
+                                                    e.currentTarget.style.color = appTheme.colors.textPrimary;
+                                                }
+                                            }}
                                         >
                                             {text}
                                         </ScrollLink>
@@ -147,6 +203,12 @@ const Navbar = () => {
                             edge="end"
                             className={classes.menuIcon}
                             onClick={() => setOpen(!open)}
+                            style={{
+                                color: appTheme.darkMode 
+                                    ? 'rgba(255, 0, 255, 0.7)' 
+                                    : appTheme.colors.primary,
+                                transition: 'color 0.3s ease',
+                            }}
                         >
                             <MenuIcon />
                         </IconButton>
@@ -161,6 +223,15 @@ const Navbar = () => {
                         open={open}
                         onClose={() => setOpen(false)}
                         classes={{ paper: classes.drawerPaper }}
+                        PaperProps={{
+                            style: {
+                                background: appTheme.darkMode
+                                    ? 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)'
+                                    : 'linear-gradient(135deg, rgba(91, 33, 182, 0.98) 0%, rgba(245, 158, 11, 0.95) 100%)',
+                                backdropFilter: 'blur(20px)',
+                                transition: 'background 0.3s ease',
+                            }
+                        }}
                     >
                         <motion.div
                             className={classes.sidebarWrapper}
@@ -169,10 +240,27 @@ const Navbar = () => {
                             exit={{ x: 300 }}
                             transition={{ type: "spring", stiffness: 100, damping: 20 }}
                         >
-                            <IconButton onClick={() => setOpen(false)} className={classes.closeButton}>
+                            <IconButton 
+                                onClick={() => setOpen(false)} 
+                                className={classes.closeButton}
+                                style={{
+                                    color: appTheme.darkMode 
+                                        ? 'rgba(255, 0, 255, 0.7)' 
+                                        : appTheme.colors.textPrimary,
+                                    transition: 'color 0.3s ease',
+                                }}
+                            >
                                 <CancelIcon fontSize="medium" />
                             </IconButton>
-                            <Divider className={classes.divider} />
+                            <Divider 
+                                className={classes.divider}
+                                style={{
+                                    background: appTheme.darkMode
+                                        ? 'rgba(255, 255, 255, 0.1)'
+                                        : 'rgba(255, 255, 255, 0.2)',
+                                    transition: 'background 0.3s ease',
+                                }}
+                            />
                             {links.map(({ id, text, icon, link }, index) => (
                                 <motion.div
                                     key={index}
@@ -227,12 +315,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         background: 'transparent',
         boxShadow: 'none',
-        transition: 'all 0.3s ease',
     },
     scrolled: {
-        background: 'rgba(10, 10, 10, 0.95)',
-        backdropFilter: 'blur(10px)',
-        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+        // Los estilos se aplican dinámicamente via style prop
     },
     toolbar: {
         display: 'flex',
@@ -243,12 +328,10 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     logo: {
-        color: '#fff',
         fontFamily: 'Space Grotesk, sans-serif',
         fontSize: '1.5rem',
         fontWeight: 700,
         cursor: 'pointer',
-        background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         '& a': {
@@ -264,7 +347,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     navLink: {
-        color: '#FFFFFF',
         fontSize: "0.9rem",
         fontWeight: 500,
         marginLeft: theme.spacing(4),
@@ -273,6 +355,8 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: 'none',
         position: 'relative',
         padding: theme.spacing(0.5, 0),
+        transition: 'color 0.3s ease',
+        display: 'block',
         '&::after': {
             content: '""',
             position: 'absolute',
@@ -280,24 +364,17 @@ const useStyles = makeStyles((theme) => ({
             left: 0,
             width: '0%',
             height: '2px',
-            background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
+            background: 'var(--gradient)',
             transition: 'width 0.3s ease',
         },
-        '&:hover': {
-            color: '#FF6F30',
-            '&::after': {
-                width: '100%',
-            },
+        '&:hover::after, &.active::after': {
+            width: '100%',
         },
         '&.active': {
-            color: '#FF6F30',
-            '&::after': {
-                width: '100%',
-            },
+            color: 'var(--hover-color)',
         },
     },
     menuIcon: {
-        color: 'rgba(255, 0, 255, 0.5)',
         fontSize: '2rem',
         [theme.breakpoints.up('md')]: {
             display: 'none',
@@ -311,7 +388,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     drawerPaper: {
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
         width: 280,
     },
     sidebarWrapper: {
@@ -319,14 +395,13 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
     },
     closeButton: {
-        color: 'rgba(255, 0, 255, 0.5)',
         marginBottom: theme.spacing(2),
+        transition: 'color 0.3s ease, transform 0.2s ease',
         '&:hover': {
-            color: '#FF6F30',
+            transform: 'rotate(90deg)',
         },
     },
     divider: {
-        background: 'rgba(255, 255, 255, 0.1)',
         margin: theme.spacing(2, 0),
     },
     drawerLink: {
@@ -339,23 +414,20 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1.5, 2),
         borderRadius: theme.spacing(1),
         transition: 'all 0.3s ease',
-        '&:hover': {
-            background: 'rgba(255, 255, 255, 0.05)',
-            color: '#FF6F30',
-        },
-        color: '#fff',
         fontFamily: 'Space Grotesk, sans-serif',
         fontSize: '0.9rem',
         fontWeight: 500,
         textTransform: 'uppercase',
+        '&:hover': {
+            transform: 'translateX(5px)',
+        },
     },
     drawerIcon: {
-        color: '#FFFFFF',
         fontSize: '1.5rem',
         marginRight: theme.spacing(1),
-        transition: 'color 0.3s ease',
+        transition: 'color 0.3s ease, transform 0.3s ease',
         '&:hover': {
-            color: 'rgba(255, 0, 255, 0.5)',
+            transform: 'scale(1.2)',
         },
     },
     listIcon: {

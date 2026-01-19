@@ -6,8 +6,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { SectionTitle } from './common/SectionTitle';
+import { useAppTheme } from '../hooks/useAppTheme';
 
 const MyWork = ({ title, id, dark = false }) => {
+  const appTheme = useAppTheme();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -62,7 +64,15 @@ const MyWork = ({ title, id, dark = false }) => {
   };
 
   return (
-    <section className={classes.section} id={id}>
+    <section 
+      className={classes.section} 
+      id={id}
+      style={{
+        background: appTheme.colors.gradientBackground,
+        color: appTheme.colors.textSecondary,
+        transition: 'background 0.3s ease, color 0.3s ease',
+      }}
+    >
       <SectionTitle
         title={title}
         subtitle="Explora mis proyectos y trabajos creativos"
@@ -117,7 +127,10 @@ const MyWork = ({ title, id, dark = false }) => {
             maxHeight: isMobile ? '95vh' : 'none',
             margin: 'auto',
             borderRadius: '12px',
-            WebkitOverflowScrolling: 'touch' // Mejora el scroll en iOS
+            WebkitOverflowScrolling: 'touch', // Mejora el scroll en iOS
+            backgroundColor: appTheme.colors.paper,
+            color: appTheme.colors.textPrimary,
+            transition: 'background-color 0.3s ease, color 0.3s ease',
           }
         }}
       >
@@ -186,9 +199,7 @@ const MyWork = ({ title, id, dark = false }) => {
 const useStyles = makeStyles((theme) => ({
   section: {
     minHeight: '100vh',
-    background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
     padding: theme.spacing(8, 4),
-    color: '#E0E0E0',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -215,8 +226,6 @@ const useStyles = makeStyles((theme) => ({
   },
   dialog: {
     '& .MuiDialog-paper': {
-      backgroundColor: '#1c1c1c',
-      color: '#E0E0E0',
       boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
       margin: 'auto',
       position: 'absolute',

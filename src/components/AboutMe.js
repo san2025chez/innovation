@@ -2,12 +2,21 @@ import React from 'react';
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { SectionTitle } from './common/SectionTitle';
+import { useAppTheme } from '../hooks/useAppTheme';
 
 const AboutMe = ({ id = 'aboutme' }) => {
+  const appTheme = useAppTheme();
   const classes = useStyles();
 
   return (
-    <section id={id} className={classes.section}>
+    <section 
+      id={id} 
+      className={classes.section}
+      style={{
+        background: appTheme.colors.gradientBackground,
+        transition: 'background 0.3s ease',
+      }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -17,7 +26,14 @@ const AboutMe = ({ id = 'aboutme' }) => {
       >
         <SectionTitle title="Acerca de mí" />
 
-        <Typography variant="body1" className={classes.lead}>
+        <Typography 
+          variant="body1" 
+          className={classes.lead}
+          style={{
+            color: appTheme.colors.textSecondary,
+            transition: 'color 0.3s ease',
+          }}
+        >
           Como <strong>Ingeniera Informática con especialización en desarrollo Full-Stack</strong>,
           combino expertise técnico con comprensión de negocio para crear productos digitales que
           resuelven problemas reales.
@@ -40,9 +56,43 @@ const AboutMe = ({ id = 'aboutme' }) => {
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.995 }}
             transition={{ duration: 0.3 }}
+            style={{
+              background: appTheme.darkMode
+                ? 'linear-gradient(180deg, rgba(255,0,255,0.06) 0%, rgba(10,10,10,0.5) 100%)'
+                : 'linear-gradient(180deg, rgba(99, 102, 241, 0.06) 0%, rgba(248, 250, 252, 0.5) 100%)',
+              border: `1px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.16)' : 'rgba(99, 102, 241, 0.16)'}`,
+              transition: 'all 0.3s ease',
+            }}
           >
-            <Typography variant="subtitle1" className={classes.approachTitle}>💻 Excelencia técnica con propósito</Typography>
-            <ul className={classes.bulletList}>
+            <div
+              style={{
+                position: 'absolute',
+                top: 8,
+                bottom: 8,
+                left: 6,
+                width: 3,
+                borderRadius: 3,
+                background: appTheme.colors.gradient,
+                transition: 'background 0.3s ease',
+              }}
+            />
+            <Typography 
+              variant="subtitle1" 
+              className={classes.approachTitle}
+              style={{
+                color: appTheme.colors.textPrimary,
+                transition: 'color 0.3s ease',
+              }}
+            >
+              💻 Excelencia técnica con propósito
+            </Typography>
+            <ul 
+              className={classes.bulletList}
+              style={{
+                color: appTheme.colors.textSecondary,
+                transition: 'color 0.3s ease',
+              }}
+            >
               <li>2+ años desarrollando con React y Node.js</li>
               <li>Arquitectura y escalabilidad como pilares</li>
               <li>Código limpio y mejores prácticas</li>
@@ -56,9 +106,43 @@ const AboutMe = ({ id = 'aboutme' }) => {
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.995 }}
             transition={{ duration: 0.3, delay: 0.05 }}
+            style={{
+              background: appTheme.darkMode
+                ? 'linear-gradient(180deg, rgba(255,0,255,0.06) 0%, rgba(10,10,10,0.5) 100%)'
+                : 'linear-gradient(180deg, rgba(99, 102, 241, 0.06) 0%, rgba(248, 250, 252, 0.5) 100%)',
+              border: `1px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.16)' : 'rgba(99, 102, 241, 0.16)'}`,
+              transition: 'all 0.3s ease',
+            }}
           >
-            <Typography variant="subtitle1" className={classes.approachTitle}>🎨 Experiencia de usuario como prioridad</Typography>
-            <ul className={classes.bulletList}>
+            <div
+              style={{
+                position: 'absolute',
+                top: 8,
+                bottom: 8,
+                left: 6,
+                width: 3,
+                borderRadius: 3,
+                background: appTheme.colors.gradient,
+                transition: 'background 0.3s ease',
+              }}
+            />
+            <Typography 
+              variant="subtitle1" 
+              className={classes.approachTitle}
+              style={{
+                color: appTheme.colors.textPrimary,
+                transition: 'color 0.3s ease',
+              }}
+            >
+              🎨 Experiencia de usuario como prioridad
+            </Typography>
+            <ul 
+              className={classes.bulletList}
+              style={{
+                color: appTheme.colors.textSecondary,
+                transition: 'color 0.3s ease',
+              }}
+            >
               <li>Diseño y desarrollo centrado en el usuario</li>
               <li>Performance optimizada en cada entrega</li>
               <li>Trabajo conjunto y fluido con equipos de diseño</li>
@@ -72,9 +156,43 @@ const AboutMe = ({ id = 'aboutme' }) => {
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.995 }}
             transition={{ duration: 0.3, delay: 0.1 }}
+            style={{
+              background: appTheme.darkMode
+                ? 'linear-gradient(180deg, rgba(255,0,255,0.06) 0%, rgba(10,10,10,0.5) 100%)'
+                : 'linear-gradient(180deg, rgba(99, 102, 241, 0.06) 0%, rgba(248, 250, 252, 0.5) 100%)',
+              border: `1px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.16)' : 'rgba(99, 102, 241, 0.16)'}`,
+              transition: 'all 0.3s ease',
+            }}
           >
-            <Typography variant="subtitle1" className={classes.approachTitle}>🤝 Colaboración y crecimiento continuo</Typography>
-            <ul className={classes.bulletList}>
+            <div
+              style={{
+                position: 'absolute',
+                top: 8,
+                bottom: 8,
+                left: 6,
+                width: 3,
+                borderRadius: 3,
+                background: appTheme.colors.gradient,
+                transition: 'background 0.3s ease',
+              }}
+            />
+            <Typography 
+              variant="subtitle1" 
+              className={classes.approachTitle}
+              style={{
+                color: appTheme.colors.textPrimary,
+                transition: 'color 0.3s ease',
+              }}
+            >
+              🤝 Colaboración y crecimiento continuo
+            </Typography>
+            <ul 
+              className={classes.bulletList}
+              style={{
+                color: appTheme.colors.textSecondary,
+                transition: 'color 0.3s ease',
+              }}
+            >
               <li>Experiencia en metodologías ágiles</li>
               <li>Mentalidad abierta al feedback y aprendizaje</li>
               <li>Comunicación clara con equipos multidisciplinares</li>
@@ -91,7 +209,14 @@ const AboutMe = ({ id = 'aboutme' }) => {
           ))}
         </div> */}
 
-        <Typography variant="body1" className={classes.objective}>
+        <Typography 
+          variant="body1" 
+          className={classes.objective}
+          style={{
+            color: appTheme.colors.textSecondary,
+            transition: 'color 0.3s ease',
+          }}
+        >
           <strong>Mi objetivo:</strong> Unirme a un equipo innovador donde pueda contribuir con mis habilidades técnicas
           mientras continúo mi crecimiento profesional.
         </Typography>
@@ -102,7 +227,6 @@ const AboutMe = ({ id = 'aboutme' }) => {
 
 const useStyles = makeStyles((theme) => ({
   section: {
-    background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
     padding: theme.spacing(8, 2),
     display: 'flex',
     justifyContent: 'center',
@@ -209,8 +333,6 @@ const useStyles = makeStyles((theme) => ({
   approachCard: {
     position: 'relative',
     borderRadius: 14,
-    background: 'linear-gradient(180deg, rgba(255,0,255,0.06) 0%, rgba(10,10,10,0.5) 100%)',
-    border: '1px solid rgba(255, 0, 255, 0.16)',
     padding: theme.spacing(2, 2, 2, 2.5),
     backdropFilter: 'blur(4px)',
     boxShadow: '0 6px 18px rgba(0,0,0,0.25)',
@@ -218,16 +340,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       padding: theme.spacing(2.5, 2.5, 2.5, 3),
     },
-    '&:before': {
-      content: '""',
-      position: 'absolute',
-      top: 8,
-      bottom: 8,
-      left: 6,
-      width: 3,
-      borderRadius: 3,
-      background: 'linear-gradient(180deg, rgb(255,0,255), #FF6F30)'
-    }
   },
   approachTitle: {
     color: '#ffffff',

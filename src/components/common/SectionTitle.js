@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 import { motion } from 'framer-motion';
+import { useAppTheme } from '../../hooks/useAppTheme';
 
 const useStyles = makeStyles((theme) => ({
   titleContainer: {
@@ -18,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
     marginBottom: theme.spacing(1.5),
-    background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     textTransform: 'uppercase',
@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   subtitle: {
-    color: '#E0E0E0',
     margin: '0 auto',
     fontSize: '1.25rem',
     maxWidth: '600px',
@@ -58,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const SectionTitle = ({ title, subtitle }) => {
   const classes = useStyles();
+  const appTheme = useAppTheme();
 
   return (
     <motion.div
@@ -67,11 +67,26 @@ export const SectionTitle = ({ title, subtitle }) => {
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
     >
-      <Typography variant="h2" className={classes.title}>
+      <Typography 
+        variant="h2" 
+        className={classes.title}
+        style={{
+          background: appTheme.colors.gradient,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}
+      >
         {title}
       </Typography>
       {subtitle && (
-        <Typography variant="subtitle1" className={classes.subtitle}>
+        <Typography 
+          variant="subtitle1" 
+          className={classes.subtitle}
+          style={{
+            color: appTheme.colors.textSecondary,
+            transition: 'color 0.3s ease',
+          }}
+        >
           {subtitle}
         </Typography>
       )}

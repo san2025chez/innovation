@@ -3,49 +3,98 @@ import { Typography, Card, CardContent, Grid, CardMedia, Box } from "@material-u
 import { makeStyles } from '@material-ui/core/styles';
 import portada from "../img/original-ana.png";
 import { motion } from 'framer-motion';
+import { useAppTheme } from '../hooks/useAppTheme';
 
 const DesktopAbout = () => {
-    const [fullStackText, setFullStackText] = useState('');
-    const [developerText, setDeveloperText] = useState('');
-    const [isTypingDeveloper, setIsTypingDeveloper] = useState(true);
+    const [line1Text, setLine1Text] = useState(''); // "Ingeniera en Informática" - se escribe una vez y queda fijo
+    const [line2Text, setLine2Text] = useState(''); // "FullStack Developer" - se borra y reescribe
+    const [showCursor, setShowCursor] = useState(true);
+    const [line1Complete, setLine1Complete] = useState(false); // Indica si línea 1 está completa
 
-    const fullStack = "Software";
-    const developer = "Engineer";
+    const line1 = "Ingeniera en Informática";
+    const line2 = "FullStack Developer";
     const whatsappLink = "https://wa.link/cns6bw";
 
     useEffect(() => {
-        const typeFullStack = () => {
-            setFullStackText(fullStack.substring(0, fullStackText.length + 1));
-        };
+        let typingTimeout;
+        let cursorInterval;
+        let currentIndex = 0;
+        let isDeletingLocal = false;
+        let isWritingLine1 = true; // Primero escribimos línea 1
+        let pauseTimeout;
 
-        if (fullStackText !== fullStack) {
-            setTimeout(typeFullStack, 100);
-        }
-    }, [fullStackText]);
-
-    useEffect(() => {
-        const typeDeveloper = () => {
-            if (isTypingDeveloper) {
-                setDeveloperText(developer.substring(0, developerText.length + 1));
-                if (developerText === developer) {
-                    setTimeout(() => setIsTypingDeveloper(false), 1000);
+        const typeText = () => {
+            if (isWritingLine1) {
+                // Escribiendo línea 1 (una sola vez)
+                if (currentIndex < line1.length) {
+                    setLine1Text(line1.substring(0, currentIndex + 1));
+                    currentIndex++;
+                    typingTimeout = setTimeout(typeText, 50);
+                } else {
+                    // Línea 1 completa, ahora empezamos con línea 2
+                    setLine1Complete(true);
+                    isWritingLine1 = false;
+                    currentIndex = 0;
+                    pauseTimeout = setTimeout(() => {
+                        typeText(); // Empezar con línea 2
+                    }, 500);
                 }
             } else {
-                setDeveloperText(developer.substring(0, developerText.length - 1));
-                if (developerText === '') {
-                    setTimeout(() => setIsTypingDeveloper(true), 1000);
+                // Trabajando con línea 2 (borrar y reescribir)
+                if (!isDeletingLocal) {
+                    // Escribiendo línea 2
+                    if (currentIndex < line2.length) {
+                        setLine2Text(line2.substring(0, currentIndex + 1));
+                        currentIndex++;
+                        typingTimeout = setTimeout(typeText, 50);
+                    } else {
+                        // Completado, esperar antes de borrar
+                        pauseTimeout = setTimeout(() => {
+                            isDeletingLocal = true;
+                            typingTimeout = setTimeout(typeText, 30);
+                        }, 2000); // Esperar 2 segundos antes de borrar
+                    }
+                } else {
+                    // Borrando línea 2
+                    if (currentIndex > 0) {
+                        setLine2Text(line2.substring(0, currentIndex - 1));
+                        currentIndex--;
+                        typingTimeout = setTimeout(typeText, 30);
+                    } else {
+                        // Borrado completo, volver a escribir
+                        isDeletingLocal = false;
+                        currentIndex = 0;
+                        pauseTimeout = setTimeout(() => {
+                            typeText(); // Volver a escribir línea 2
+                        }, 500);
+                    }
                 }
             }
         };
 
-        const typingTimeout = setTimeout(typeDeveloper, 100);
-        return () => clearTimeout(typingTimeout);
-    }, [developerText, isTypingDeveloper]);
+        // Iniciar después de un pequeño delay
+        const startDelay = setTimeout(() => {
+            typeText();
+        }, 300);
+
+        // Cursor parpadeante
+        cursorInterval = setInterval(() => {
+            setShowCursor(prev => !prev);
+        }, 530);
+
+        return () => {
+            clearTimeout(startDelay);
+            clearTimeout(typingTimeout);
+            clearTimeout(pauseTimeout);
+            clearInterval(cursorInterval);
+        };
+    }, []);
 
     const handleClick = () => {
         window.open(whatsappLink, '_blank');
     };
 
+    const appTheme = useAppTheme();
     const classes = useStyles();
 
     return (
@@ -55,6 +104,10 @@ const DesktopAbout = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
                 className={classes.backgroundGradient}
+                style={{
+                    background: appTheme.colors.gradientBackground,
+                    transition: 'background 0.3s ease',
+                }}
             />
             <CardContent className={classes.cardContent}>
                 <Grid container spacing={0} className={classes.gridContainer}>
@@ -65,19 +118,77 @@ const DesktopAbout = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.2 }}
                             >
-                                <Typography variant="h4" className={classes.title}>
+                                <Typography 
+                                    variant="h4" 
+                                    className={classes.title}
+                                    style={{
+                                        color: appTheme.colors.textPrimary,
+                                        transition: 'color 0.3s ease',
+                                    }}
+                                >
                                     Soy Ana
                                 </Typography>
+                                <div 
+                                    style={{
+                                        position: 'absolute',
+                                        bottom: '-8px',
+                                        left: '50%',
+                                        transform: 'translateX(-50%)',
+                                        width: '60px',
+                                        height: '3px',
+                                        background: appTheme.colors.gradient,
+                                        borderRadius: '2px',
+                                        transition: 'background 0.3s ease',
+                                    }}
+                                />
                             </motion.div>
                            
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, delay: 0.4 }}
+                                transition={{ duration: 0.6, delay: 0.2 }}
+                                className={classes.typingContainer}
                             >
-                                <span className={classes.typingText}>
-                                    {fullStackText} {developerText}
-                                </span>
+                                <div className={classes.typingLine}>
+                                    <span 
+                                        className={classes.typingText}
+                                        style={{
+                                            color: appTheme.colors.magenta,
+                                            textShadow: appTheme.darkMode 
+                                                ? '0 0 15px rgba(255, 0, 255, 0.5)'
+                                                : '0 0 15px rgba(236, 72, 153, 0.5)',
+                                            transition: 'color 0.3s ease, text-shadow 0.3s ease',
+                                        }}
+                                    >
+                                        {line1Text || line1}
+                                    </span>
+                                </div>
+                                <div className={classes.typingLine}>
+                                    <span 
+                                        className={classes.typingText}
+                                        style={{
+                                            color: appTheme.colors.magenta,
+                                            textShadow: appTheme.darkMode 
+                                                ? '0 0 15px rgba(255, 0, 255, 0.5)'
+                                                : '0 0 15px rgba(236, 72, 153, 0.5)',
+                                            transition: 'color 0.3s ease, text-shadow 0.3s ease',
+                                        }}
+                                    >
+                                        {line2Text}
+                                        {line1Complete && (
+                                            <span 
+                                                className={classes.cursor}
+                                                style={{
+                                                    opacity: showCursor ? 1 : 0,
+                                                    color: appTheme.colors.magenta,
+                                                    transition: 'opacity 0.1s ease',
+                                                }}
+                                            >
+                                                |
+                                            </span>
+                                        )}
+                                    </span>
+                                </div>
                             </motion.div>
 
                             <Description />
@@ -91,9 +202,18 @@ const DesktopAbout = () => {
                                 <motion.button
                                     className={classes.contactButton}
                                     onClick={handleClick}
+                                    style={{
+                                        background: appTheme.colors.gradient,
+                                        boxShadow: appTheme.darkMode
+                                            ? '0 4px 15px rgba(255, 0, 255, 0.3)'
+                                            : '0 4px 15px rgba(99, 102, 241, 0.3)',
+                                        transition: 'all 0.3s ease',
+                                    }}
                                     whileHover={{ 
                                         scale: 1.05,
-                                        boxShadow: "0 0 25px rgba(0, 122, 204, 0.5)"
+                                        boxShadow: appTheme.darkMode
+                                            ? "0 6px 20px rgba(255, 0, 255, 0.4)"
+                                            : "0 6px 20px rgba(99, 102, 241, 0.4)"
                                     }}
                                     whileTap={{ scale: 0.95 }}
                                 >
@@ -108,13 +228,27 @@ const DesktopAbout = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1, delay: 0.2 }}
                             className={classes.imageWrapper}
+                            style={{
+                                boxShadow: appTheme.darkMode
+                                    ? '0 0 30px rgba(223, 33, 255, 0.2)'
+                                    : '0 0 30px rgba(91, 33, 182, 0.3)',
+                                transition: 'box-shadow 0.3s ease',
+                            }}
                         >
                             <CardMedia
                                 className={classes.media}
                                 image={portada}
                                 title="Ana Sanchez"
                             />
-                            <div className={classes.imageGlow} />
+                            <div 
+                                className={classes.imageGlow}
+                                style={{
+                                    background: appTheme.darkMode
+                                        ? 'radial-gradient(circle at center, rgba(223, 33, 255, 0.2) 0%, rgba(0,0,0,0) 70%)'
+                                        : 'radial-gradient(circle at center, rgba(91, 33, 182, 0.2) 0%, rgba(0,0,0,0) 70%)',
+                                    transition: 'background 0.3s ease',
+                                }}
+                            />
                         </motion.div>
                     </Grid>
                 </Grid>
@@ -124,6 +258,7 @@ const DesktopAbout = () => {
 };
 
 const Description = () => {
+    const appTheme = useAppTheme();
     const classes = useStyles();
     return (
         <motion.div
@@ -131,11 +266,40 @@ const Description = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className={classes.descriptionContainer}
+            style={{
+                borderLeft: `3px solid ${appTheme.colors.magenta}`,
+                borderRight: `3px solid ${appTheme.colors.magenta}`,
+                background: appTheme.darkMode 
+                    ? 'rgba(255, 0, 255, 0.05)'
+                    : 'rgba(236, 72, 153, 0.05)',
+                transition: 'all 0.3s ease',
+            }}
         >
-            <Typography variant="body1" className={classes.description}>
-                Soy Ingeniera de Software, especialista en crear soluciones 
-                tecnológicas usando nuevas tecnologías.
-                Me gusta transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
+            <Typography 
+                component="div"
+                variant="body1" 
+                className={classes.description}
+                style={{
+                    color: appTheme.colors.textSecondary,
+                    transition: 'color 0.3s ease',
+                }}
+            >
+                <p style={{ 
+                    color: appTheme.colors.textSecondary, 
+                    margin: 0,
+                    padding: 0,
+                    transition: 'color 0.3s ease',
+                }}>
+                    Profesional en tecnología con experiencia en desarrollo de software utilizando JavaScript, React y Node.js, y trayectoria en administración de redes y soporte informático.
+                </p>
+                <p style={{ 
+                    color: appTheme.colors.textSecondary, 
+                    margin: '0.5rem 0 0 0',
+                    padding: 0,
+                    transition: 'color 0.3s ease',
+                }}>
+                    Actualmente enfocada en reinsertarme en el sector IT, aportando una visión integral, capacidad de adaptación y fuerte compromiso con el trabajo técnico de calidad.
+                </p>
             </Typography>
         </motion.div>
     );
@@ -159,8 +323,18 @@ const useStyles = makeStyles((theme) => ({
         left: 0,
         right: 0,
         bottom: 0,
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
         zIndex: -1,
+    },
+    imageWrapper: {
+        position: 'relative',
+        width: '450px',
+        height: '450px',
+        borderRadius: '50%',
+        overflow: 'hidden',
+        boxShadow: appTheme => appTheme.darkMode
+            ? '0 0 30px rgba(223, 33, 255, 0.2)'
+            : '0 0 30px rgba(91, 33, 182, 0.3)',
+        transition: 'box-shadow 0.3s ease',
     },
     cardContent: {
         height: '100%',
@@ -172,6 +346,8 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         display: 'flex',
         alignItems: 'center',
+        position: 'relative',
+        overflow: 'hidden', // Previene overflow que pueda mover elementos
     },
     contentBox: {
         padding: '0 4rem',
@@ -181,82 +357,168 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        width: '100%',
+        maxWidth: '100%',
+        position: 'relative',
+        paddingTop: '2rem',
+        paddingBottom: '2rem',
+        [theme.breakpoints.down('md')]: {
+            padding: '0 3rem',
+            paddingTop: '1.5rem',
+            paddingBottom: '1.5rem',
+        },
+        [theme.breakpoints.down('sm')]: {
+            padding: '0 2rem',
+            paddingTop: '1rem',
+            paddingBottom: '1rem',
+        },
     },
     title: {
-        color: '#FFFFFF',
         fontSize: '2.8rem',
         fontWeight: '900',
         textTransform: 'uppercase',
         fontFamily: 'Space Grotesk, sans-serif',
-        marginBottom: '0.8rem',
+        marginBottom: '1.5rem',
+        marginTop: '1rem',
         position: 'relative',
-        '&:after': {
-            content: '""',
-            position: 'absolute',
-            bottom: '-8px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '60px',
-            height: '3px',
-            background: 'linear-gradient(90deg, rgb(255, 0, 255), #FF6F30)',
-            borderRadius: '2px',
+        [theme.breakpoints.down('md')]: {
+            marginBottom: '1.2rem',
+            marginTop: '0.5rem',
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginBottom: '1rem',
+            marginTop: '0.3rem',
+        },
+    },
+    typingContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        minHeight: '100px', // Altura fija para evitar movimiento
+        maxHeight: '100px', // Altura máxima fija
+        marginBottom: '1rem',
+        marginTop: '0.5rem',
+        textAlign: 'center',
+        position: 'relative',
+        [theme.breakpoints.down('md')]: {
+            minHeight: '90px',
+            maxHeight: '90px',
+            marginBottom: '0.8rem',
+        },
+        [theme.breakpoints.down('sm')]: {
+            minHeight: '80px',
+            maxHeight: '80px',
+            marginBottom: '0.6rem',
+        },
+    },
+    typingLine: {
+        display: 'block',
+        width: '100%',
+        height: '50px', // Altura fija por línea (reducida)
+        lineHeight: '50px',
+        textAlign: 'center',
+        position: 'relative',
+        [theme.breakpoints.down('md')]: {
+            height: '45px',
+            lineHeight: '45px',
+        },
+        [theme.breakpoints.down('sm')]: {
+            height: '40px',
+            lineHeight: '40px',
         },
     },
     typingText: {
-        display: 'block',
-        fontSize: '1.9rem',
-        fontWeight: '700',
-        color: 'rgb(255, 0, 255)',
+        display: 'inline-block',
+        fontSize: '1.6rem',
+        fontWeight: '600',
         textTransform: 'uppercase',
-        marginBottom: '1.5rem',
         fontFamily: 'Space Grotesk, sans-serif',
         letterSpacing: '1px',
-        textShadow: '0 0 15px rgba(255, 0, 255, 0.5)',
-        animation: '$glowPulse 2s infinite',
+        whiteSpace: 'nowrap', // Evita que el texto se divida
+        position: 'relative',
+        minHeight: '1.2em', // Altura mínima para mantener espacio
+        verticalAlign: 'middle',
+        [theme.breakpoints.down('md')]: {
+            fontSize: '1.3rem',
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '1.1rem',
+        },
     },
-    '@keyframes glowPulse': {
-        '0%': {
-            textShadow: '0 0 15px rgba(255, 0, 255, 0.5)',
+    cursor: {
+        display: 'inline-block',
+        fontWeight: '300',
+        animation: '$blink 1s infinite',
+        marginLeft: '2px',
+    },
+    '@keyframes blink': {
+        '0%, 50%': {
+            opacity: 1,
         },
-        '50%': {
-            textShadow: '0 0 25px rgba(255, 0, 255, 0.8)',
-        },
-        '100%': {
-            textShadow: '0 0 15px rgba(255, 0, 255, 0.5)',
+        '51%, 100%': {
+            opacity: 0,
         },
     },
     descriptionContainer: {
-        marginTop: '0.8rem',
+        marginTop: '0.5rem',
+        marginBottom: '0.5rem',
         position: 'relative',
-        padding: '1.5rem',
-        borderLeft: '3px solid rgb(255, 0, 255)',
-        borderRight: '3px solid rgb(255, 0, 255)',
-        background: 'rgba(255, 0, 255, 0.05)',
+        padding: '1.2rem',
         borderRadius: '10px',
         maxWidth: '90%',
         textAlign: 'center',
         backdropFilter: 'blur(5px)',
+        [theme.breakpoints.down('md')]: {
+            padding: '1rem',
+            maxWidth: '95%',
+            marginTop: '0.4rem',
+            marginBottom: '0.4rem',
+        },
+        [theme.breakpoints.down('sm')]: {
+            padding: '0.9rem',
+            maxWidth: '98%',
+            marginTop: '0.3rem',
+            marginBottom: '0.3rem',
+        },
     },
     description: {
-        color: '#E0E0E0',
-        fontSize: '1rem',
+        fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
         lineHeight: '1.6',
         fontWeight: '300',
         fontFamily: 'Space Grotesk, sans-serif',
         textAlign: 'center',
         maxWidth: '600px',
         margin: '0 auto',
+        color: 'inherit',
+        '@media (max-width: 768px)': {
+            fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+            lineHeight: '1.5',
+        },
+        '@media (max-width: 480px)': {
+            fontSize: 'clamp(0.8rem, 1.8vw, 0.9rem)',
+            lineHeight: '1.4',
+        },
     },
     buttonContainer: {
-        marginTop: '2rem',
+        marginTop: '1rem',
+        marginBottom: '1rem',
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        [theme.breakpoints.down('md')]: {
+            marginTop: '0.8rem',
+            marginBottom: '0.8rem',
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginTop: '0.6rem',
+            marginBottom: '0.6rem',
+        },
     },
     contactButton: {
         color: '#FFFFFF',
-        background: 'linear-gradient(45deg, rgb(255, 0, 255), #FF6F30)',
         borderRadius: '25px',
         padding: '14px 40px',
         fontSize: '0.95rem',
@@ -268,11 +530,8 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: '1px',
         position: 'relative',
         overflow: 'hidden',
-        boxShadow: '0 4px 15px rgba(255, 0, 255, 0.3)',
         '&:hover': {
-            background: 'linear-gradient(45deg, #FF6F30, rgb(255, 0, 255))',
             transform: 'translateY(-2px)',
-            boxShadow: '0 6px 20px rgba(255, 0, 255, 0.4)',
         },
         '&:after': {
             content: '""',
@@ -300,6 +559,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         height: '100%',
         position: 'relative',
+        flexShrink: 0, // Evita que se comprima
     },
     imageWrapper: {
         position: 'relative',
@@ -307,7 +567,15 @@ const useStyles = makeStyles((theme) => ({
         height: '450px',
         borderRadius: '50%',
         overflow: 'hidden',
-        boxShadow: '0 0 30px rgba(223, 33, 255, 0.2)',
+        flexShrink: 0, // Evita que se comprima
+        [theme.breakpoints.down('md')]: {
+            width: '350px',
+            height: '350px',
+        },
+        [theme.breakpoints.down('sm')]: {
+            width: '280px',
+            height: '280px',
+        },
     },
     media: {
         width: '100%',

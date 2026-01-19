@@ -6,13 +6,12 @@ import { FaDesktop, FaShoppingCart, FaCode, FaDatabase } from 'react-icons/fa';
 import { SiTypescript } from 'react-icons/si';
 import CloseIcon from '@material-ui/icons/Close';
 import { SectionTitle } from './common/SectionTitle';
+import { useAppTheme } from '../hooks/useAppTheme';
 
 const useStyles = makeStyles((theme) => ({
   section: {
     minHeight: '100vh',
-    background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
     padding: theme.spacing(8, 4),
-    color: '#FFFFFF',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -261,6 +260,7 @@ const services = [
 ];
 
 const Services = ({ title, id }) => {
+  const appTheme = useAppTheme();
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -285,7 +285,15 @@ const Services = ({ title, id }) => {
   };
 
   return (
-    <section className={classes.section} id={id}>
+    <section 
+      className={classes.section} 
+      id={id}
+      style={{
+        background: appTheme.colors.gradientBackground,
+        color: appTheme.colors.textPrimary,
+        transition: 'background 0.3s ease, color 0.3s ease',
+      }}
+    >
       <SectionTitle
         title={title}
         subtitle="Soluciones tecnológicas adaptadas a tus necesidades"

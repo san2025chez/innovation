@@ -5,11 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { SectionTitle } from './common/SectionTitle';
 import emailjs from '@emailjs/browser';
 import { FiSend, FiCheckCircle } from 'react-icons/fi';
+import { useAppTheme } from '../hooks/useAppTheme';
 
 const useStyles = makeStyles((theme) => ({
   section: {
     minHeight: '100vh',
-    background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)',
     padding: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
@@ -40,17 +40,16 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: 'rgba(255, 255, 255, 0.23)',
+        borderColor: 'rgba(128, 128, 128, 0.3)',
       },
       '&:hover fieldset': {
-        borderColor: 'rgba(255, 255, 255, 0.5)',
+        borderColor: 'rgba(128, 128, 128, 0.5)',
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#FF6F30',
+        borderColor: theme.palette.primary?.main || '#6366F1',
       },
     },
     '& .MuiOutlinedInput-input': {
-      color: '#fff',
       fontFamily: 'Space Grotesk, sans-serif',
       fontSize: 'clamp(0.85rem, 2vw, 1rem)',
       '@media (max-height: 667px)': {
@@ -58,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     '& .MuiInputLabel-root': {
-      color: 'rgba(255, 255, 255, 0.7)',
       fontFamily: 'Space Grotesk, sans-serif',
       fontSize: 'clamp(0.85rem, 2vw, 1rem)',
       '@media (max-height: 667px)': {
@@ -70,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   submitButton: {
-    background: 'linear-gradient(135deg, rgb(255, 0, 255), #FF6F30)',
     color: '#fff',
     padding: theme.spacing(1.5, 4),
     fontSize: 'clamp(0.9rem, 2vw, 1rem)',
@@ -80,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
     transition: 'all 0.3s ease-in-out',
     '&:hover': {
       transform: 'translateY(-2px)',
-      boxShadow: '0 5px 15px rgba(255, 111, 48, 0.4)',
     },
     '@media (max-height: 667px)': {
       padding: theme.spacing(1.2, 3),
@@ -90,16 +86,15 @@ const useStyles = makeStyles((theme) => ({
   successMessage: {
     textAlign: 'center',
     padding: theme.spacing(4),
-    color: '#FFFFFF',
   },
   successIcon: {
     fontSize: '3rem',
-    color: '#FF6F30',
     marginBottom: theme.spacing(2),
   },
 }));
 
 const ContactForm = ({ id }) => {
+  const appTheme = useAppTheme();
   const classes = useStyles();
   const [formData, setFormData] = useState({
     email: '',
@@ -135,7 +130,14 @@ const ContactForm = ({ id }) => {
   };
 
   return (
-    <section className={classes.section} id={id}>
+    <section 
+      className={classes.section} 
+      id={id}
+      style={{
+        background: appTheme.colors.gradientBackground,
+        transition: 'background 0.3s ease',
+      }}
+    >
       <SectionTitle
         title="Contáctame"
         subtitle="¿Tienes un proyecto en mente? ¡Hablemos!"
@@ -201,15 +203,33 @@ const ContactForm = ({ id }) => {
                     exit={{ opacity: 0, scale: 0.8 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <FiCheckCircle className={classes.successIcon} />
-                    <Typography variant="h6">¡Mensaje enviado con éxito!</Typography>
-                    <Typography>Me pondré en contacto contigo pronto.</Typography>
+                    <FiCheckCircle 
+                      className={classes.successIcon}
+                      style={{ color: appTheme.colors.orange }}
+                    />
+                    <Typography 
+                      variant="h6"
+                      style={{ color: appTheme.colors.textPrimary }}
+                    >
+                      ¡Mensaje enviado con éxito!
+                    </Typography>
+                    <Typography
+                      style={{ color: appTheme.colors.textSecondary }}
+                    >
+                      Me pondré en contacto contigo pronto.
+                    </Typography>
                   </motion.div>
                 ) : (
                   <Button
                     type="submit"
                     variant="contained"
                     className={classes.submitButton}
+                    style={{
+                      background: appTheme.colors.gradient,
+                      boxShadow: appTheme.darkMode
+                        ? '0 5px 15px rgba(255, 111, 48, 0.4)'
+                        : '0 5px 15px rgba(99, 102, 241, 0.4)',
+                    }}
                   >
                     Enviar Mensaje
                     <FiSend style={{ marginLeft: '8px' }} />
