@@ -69,7 +69,7 @@ const Contact = () => {
       style={{
         background: appTheme.darkMode
           ? appTheme.colors.gradientBackground
-          : 'linear-gradient(135deg, rgba(91, 33, 182, 0.08) 0%, rgba(245, 158, 11, 0.06) 50%, rgba(14, 165, 233, 0.04) 100%)',
+          : 'linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(6, 182, 212, 0.04) 50%, rgba(139, 92, 246, 0.03) 100%)',
         position: 'relative',
         overflow: 'hidden',
         transition: 'background 0.3s ease',
@@ -85,7 +85,7 @@ const Contact = () => {
               right: '-10%',
               width: '500px',
               height: '500px',
-              background: 'radial-gradient(circle, rgba(91, 33, 182, 0.1) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%)',
               borderRadius: '50%',
               filter: 'blur(60px)',
               animation: 'float 20s ease-in-out infinite',
@@ -98,7 +98,7 @@ const Contact = () => {
               left: '-5%',
               width: '400px',
               height: '400px',
-              background: 'radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%)',
               borderRadius: '50%',
               filter: 'blur(50px)',
               animation: 'float 15s ease-in-out infinite reverse',
@@ -170,14 +170,14 @@ const Contact = () => {
             style={{
               background: appTheme.darkMode
                 ? 'rgba(255, 0, 255, 0.03)'
-                : 'linear-gradient(135deg, rgba(91, 33, 182, 0.12) 0%, rgba(245, 158, 11, 0.1) 50%, rgba(14, 165, 233, 0.08) 100%)',
+                : 'linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(6, 182, 212, 0.1) 50%, rgba(139, 92, 246, 0.08) 100%)',
               border: appTheme.darkMode
                 ? '1px solid rgba(255, 0, 255, 0.1)'
-                : '1px solid rgba(91, 33, 182, 0.25)',
+                : '1px solid rgba(99, 102, 241, 0.25)',
               backdropFilter: 'blur(20px) saturate(180%)',
               boxShadow: appTheme.darkMode
                 ? 'none'
-                : '0 8px 32px rgba(91, 33, 182, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                : '0 8px 32px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
               transition: 'all 0.3s ease',
               position: 'relative',
               overflow: 'hidden',
@@ -248,20 +248,20 @@ const Contact = () => {
                           '--hover-color': social.color,
                           background: appTheme.darkMode
                             ? 'linear-gradient(135deg, rgba(30, 42, 56, 0.4) 0%, rgba(30, 42, 56, 0.1) 100%)'
-                            : 'linear-gradient(135deg, rgba(91, 33, 182, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%)',
-                          border: `1px solid ${appTheme.darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(91, 33, 182, 0.2)'}`,
+                            : 'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%)',
+                          border: `1px solid ${appTheme.darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(99, 102, 241, 0.2)'}`,
                           color: appTheme.colors.textPrimary,
                           transition: 'all 0.3s ease',
                         }}
                         whileHover={{ 
                           backgroundColor: appTheme.darkMode 
                             ? 'rgba(255, 255, 255, 0.1)' 
-                            : 'rgba(91, 33, 182, 0.15)',
+                            : 'rgba(99, 102, 241, 0.15)',
                           scale: 1.15,
                           rotate: 360,
                           boxShadow: appTheme.darkMode
                             ? '0 0 20px rgba(255, 0, 255, 0.4)'
-                            : '0 0 20px rgba(91, 33, 182, 0.4)',
+                            : '0 0 20px rgba(99, 102, 241, 0.4)',
                         }}
                         whileTap={{ scale: 0.9 }}
                         transition={{ duration: 0.4, type: "spring", stiffness: 200 }}

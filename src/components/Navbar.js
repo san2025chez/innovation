@@ -1,5 +1,5 @@
 import { AppBar, Toolbar, makeStyles, List, IconButton, Drawer, Divider, ListItem, ListItemIcon } from '@material-ui/core';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link as ScrollLink } from "react-scroll";
 import { motion, AnimatePresence } from 'framer-motion';
 import InfoIcon from '@mui/icons-material/Info';
@@ -46,7 +46,7 @@ const links = [
     {
         id: "download",
         text: "CV",
-        link: "https://cvdesignr.com/p/674630e02f2e9",
+        link: "https://cvdesignr.com/p/679d7e320d244",
         icon: <FileDownloadIcon fontSize="medium" />
     },
 ];
@@ -56,6 +56,7 @@ const Navbar = () => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const logoRef = useRef(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -70,6 +71,29 @@ const Navbar = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, [scrolled]);
+
+    // Forzar actualización del gradiente del logo cuando cambia el tema
+    useEffect(() => {
+        if (logoRef.current) {
+            // Buscar el elemento ScrollLink dentro del logo
+            const scrollLink = logoRef.current.querySelector('a');
+            if (scrollLink) {
+                scrollLink.style.background = appTheme.colors.gradient;
+                scrollLink.style.webkitBackgroundClip = 'text';
+                scrollLink.style.webkitTextFillColor = 'transparent';
+                scrollLink.style.backgroundClip = 'text';
+                scrollLink.style.color = 'transparent';
+            }
+            // También actualizar el contenedor motion.div
+            const logoContainer = logoRef.current.closest(`.${classes.logo.split(' ')[0]}`);
+            if (logoContainer) {
+                logoContainer.style.background = appTheme.colors.gradient;
+                logoContainer.style.webkitBackgroundClip = 'text';
+                logoContainer.style.webkitTextFillColor = 'transparent';
+                logoContainer.style.backgroundClip = 'text';
+            }
+        }
+    }, [appTheme.darkMode, appTheme.colors.gradient, classes.logo]);
 
     const navVariants = {
         hidden: { y: -100 },
@@ -110,32 +134,51 @@ const Navbar = () => {
                         background: scrolled 
                             ? (appTheme.darkMode 
                                 ? 'rgba(10, 10, 10, 0.95)' 
-                                : 'linear-gradient(135deg, rgba(91, 33, 182, 0.85) 0%, rgba(245, 158, 11, 0.75) 100%)')
+                                : 'linear-gradient(135deg, rgba(99, 102, 241, 0.85) 0%, rgba(6, 182, 212, 0.75) 100%)')
                             : 'transparent',
                         backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
                         boxShadow: scrolled 
                             ? (appTheme.darkMode 
                                 ? '0 4px 30px rgba(0, 0, 0, 0.3)' 
-                                : '0 8px 32px rgba(91, 33, 182, 0.2), 0 0 0 1px rgba(245, 158, 11, 0.1)')
+                                : '0 8px 32px rgba(99, 102, 241, 0.2), 0 0 0 1px rgba(6, 182, 212, 0.1)')
                             : 'none',
                         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                     }}
                 >
                     <Toolbar className={classes.toolbar}>
                         <motion.div
+                            key={`navbar-logo-${appTheme.darkMode}`}
                             className={classes.logo}
                             style={{
                                 background: appTheme.colors.gradient,
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
-                                transition: 'all 0.3s ease',
+                                backgroundClip: 'text',
+                                color: 'transparent', // Asegurar que el color de texto sea transparente
+                                transition: 'background 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                             }}
                             whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <ScrollLink to="about" smooth={true} duration={500} offset={-70}>
-                                AS
-                            </ScrollLink>
+                            <div ref={logoRef} style={{ display: 'inline-block' }}>
+                                <ScrollLink 
+                                    to="about" 
+                                    smooth={true} 
+                                    duration={500} 
+                                    offset={-70}
+                                    style={{
+                                        background: appTheme.colors.gradient,
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent',
+                                        backgroundClip: 'text',
+                                        color: 'transparent',
+                                        textDecoration: 'none',
+                                        display: 'inline-block',
+                                    }}
+                                >
+                                    AS
+                                </ScrollLink>
+                            </div>
                         </motion.div>
                         <List className={classes.menu}>
                             {links.map(({ id, text, link }, index) => (
@@ -227,7 +270,7 @@ const Navbar = () => {
                             style: {
                                 background: appTheme.darkMode
                                     ? 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)'
-                                    : 'linear-gradient(135deg, rgba(91, 33, 182, 0.98) 0%, rgba(245, 158, 11, 0.95) 100%)',
+                                    : 'linear-gradient(135deg, rgba(99, 102, 241, 0.98) 0%, rgba(6, 182, 212, 0.95) 100%)',
                                 backdropFilter: 'blur(20px)',
                                 transition: 'background 0.3s ease',
                             }
@@ -332,11 +375,13 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '1.5rem',
         fontWeight: 700,
         cursor: 'pointer',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
+        display: 'inline-block',
         '& a': {
             textDecoration: 'none',
-            color: 'inherit',
+            color: 'transparent',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
         },
     },
     menu: {

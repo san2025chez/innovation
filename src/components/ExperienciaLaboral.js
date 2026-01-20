@@ -337,7 +337,7 @@ const ExperienciaCard = ({ experiencia, appTheme, classes, isMobile }) => {
         border: `1px solid ${appTheme.darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
         boxShadow: appTheme.darkMode
           ? `0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px ${appTheme.colors.magenta}20`
-          : `0 8px 32px rgba(91, 33, 182, 0.15), 0 0 0 1px rgba(245, 158, 11, 0.1)`,
+          : `0 8px 32px rgba(99, 102, 241, 0.15), 0 0 0 1px rgba(6, 182, 212, 0.1)`,
         color: appTheme.colors.textPrimary,
       }}
       className={classes.timelineContent}
@@ -459,9 +459,9 @@ const ExperienciaCard = ({ experiencia, appTheme, classes, isMobile }) => {
               style={{
                 backgroundColor: appTheme.darkMode
                   ? 'rgba(255, 0, 255, 0.15)'
-                  : 'rgba(91, 33, 182, 0.1)',
+                  : 'rgba(99, 102, 241, 0.1)',
                 color: appTheme.colors.textPrimary,
-                border: `1px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.3)' : 'rgba(91, 33, 182, 0.3)'}`,
+                border: `1px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.3)' : 'rgba(99, 102, 241, 0.3)'}`,
               }}
             />
           </motion.div>
@@ -575,7 +575,7 @@ const ExperienciaLaboral = ({ title, id }) => {
                   border: `1px solid ${appTheme.darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
                   boxShadow: appTheme.darkMode
                     ? `0 4px 20px rgba(0, 0, 0, 0.2)`
-                    : `0 4px 20px rgba(91, 33, 182, 0.1)`,
+                    : `0 4px 20px rgba(99, 102, 241, 0.1)`,
                 }}
               >
                 <AccordionSummary
@@ -729,9 +729,9 @@ const ExperienciaLaboral = ({ title, id }) => {
                           style={{
                             backgroundColor: appTheme.darkMode
                               ? 'rgba(255, 0, 255, 0.15)'
-                              : 'rgba(91, 33, 182, 0.1)',
+                              : 'rgba(99, 102, 241, 0.1)',
                             color: appTheme.colors.textPrimary,
-                            border: `1px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.3)' : 'rgba(91, 33, 182, 0.3)'}`,
+                            border: `1px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.3)' : 'rgba(99, 102, 241, 0.3)'}`,
                           }}
                         />
                       </motion.div>

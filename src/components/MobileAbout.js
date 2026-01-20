@@ -90,7 +90,7 @@ const MobileAbout = () => {
                                 style={{
                                     boxShadow: appTheme.darkMode
                                         ? '0 0 30px rgba(223, 33, 255, 0.2)'
-                                        : '0 0 30px rgba(91, 33, 182, 0.3)',
+                                        : '0 0 30px rgba(99, 102, 241, 0.3)',
                                     transition: 'box-shadow 0.3s ease',
                                 }}
                                 whileHover={{ scale: 1.05 }}
@@ -154,8 +154,8 @@ const MobileAbout = () => {
                             style={{
                                 background: appTheme.darkMode
                                     ? 'rgba(255, 0, 255, 0.05)'
-                                    : 'rgba(91, 33, 182, 0.08)',
-                                border: `2px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.1)' : 'rgba(91, 33, 182, 0.2)'}`,
+                                    : 'rgba(99, 102, 241, 0.08)',
+                                border: `2px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.1)' : 'rgba(99, 102, 241, 0.2)'}`,
                                 transition: 'all 0.3s ease',
                             }}
                         >
@@ -184,14 +184,14 @@ const MobileAbout = () => {
                                     background: appTheme.colors.gradient,
                                     boxShadow: appTheme.darkMode
                                         ? '0 4px 15px rgba(255, 0, 255, 0.3)'
-                                        : '0 4px 15px rgba(91, 33, 182, 0.3)',
+                                        : '0 4px 15px rgba(99, 102, 241, 0.3)',
                                     transition: 'all 0.3s ease',
                                 }}
                                 whileHover={{ 
                                     scale: 1.05,
                                     boxShadow: appTheme.darkMode
                                         ? "0 0 25px rgba(255, 0, 255, 0.5)"
-                                        : "0 0 25px rgba(91, 33, 182, 0.5)"
+                                        : "0 0 25px rgba(99, 102, 241, 0.5)"
                                 }}
                                 whileTap={{ scale: 0.95 }}
                             >

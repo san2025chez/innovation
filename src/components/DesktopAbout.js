@@ -156,7 +156,7 @@ const DesktopAbout = () => {
                                             color: appTheme.colors.magenta,
                                             textShadow: appTheme.darkMode 
                                                 ? '0 0 15px rgba(255, 0, 255, 0.5)'
-                                                : '0 0 15px rgba(236, 72, 153, 0.5)',
+                                                : '0 0 15px rgba(99, 102, 241, 0.5)',
                                             transition: 'color 0.3s ease, text-shadow 0.3s ease',
                                         }}
                                     >
@@ -170,7 +170,7 @@ const DesktopAbout = () => {
                                             color: appTheme.colors.magenta,
                                             textShadow: appTheme.darkMode 
                                                 ? '0 0 15px rgba(255, 0, 255, 0.5)'
-                                                : '0 0 15px rgba(236, 72, 153, 0.5)',
+                                                : '0 0 15px rgba(99, 102, 241, 0.5)',
                                             transition: 'color 0.3s ease, text-shadow 0.3s ease',
                                         }}
                                     >
@@ -231,7 +231,7 @@ const DesktopAbout = () => {
                             style={{
                                 boxShadow: appTheme.darkMode
                                     ? '0 0 30px rgba(223, 33, 255, 0.2)'
-                                    : '0 0 30px rgba(91, 33, 182, 0.3)',
+                                    : '0 0 30px rgba(99, 102, 241, 0.3)',
                                 transition: 'box-shadow 0.3s ease',
                             }}
                         >
@@ -245,7 +245,7 @@ const DesktopAbout = () => {
                                 style={{
                                     background: appTheme.darkMode
                                         ? 'radial-gradient(circle at center, rgba(223, 33, 255, 0.2) 0%, rgba(0,0,0,0) 70%)'
-                                        : 'radial-gradient(circle at center, rgba(91, 33, 182, 0.2) 0%, rgba(0,0,0,0) 70%)',
+                                        : 'radial-gradient(circle at center, rgba(99, 102, 241, 0.2) 0%, rgba(0,0,0,0) 70%)',
                                     transition: 'background 0.3s ease',
                                 }}
                             />
@@ -271,7 +271,7 @@ const Description = () => {
                 borderRight: `3px solid ${appTheme.colors.magenta}`,
                 background: appTheme.darkMode 
                     ? 'rgba(255, 0, 255, 0.05)'
-                    : 'rgba(236, 72, 153, 0.05)',
+                    : 'rgba(99, 102, 241, 0.05)',
                 transition: 'all 0.3s ease',
             }}
         >
@@ -333,7 +333,7 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden',
         boxShadow: appTheme => appTheme.darkMode
             ? '0 0 30px rgba(223, 33, 255, 0.2)'
-            : '0 0 30px rgba(91, 33, 182, 0.3)',
+            : '0 0 30px rgba(99, 102, 241, 0.3)',
         transition: 'box-shadow 0.3s ease',
     },
     cardContent: {

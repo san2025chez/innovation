@@ -123,19 +123,19 @@ export const TechnologyCard = ({ technology, isMobile }) => {
         style={{
           background: appTheme.darkMode
             ? 'linear-gradient(135deg, rgba(30, 42, 56, 0.4) 0%, rgba(30, 42, 56, 0.1) 100%)'
-            : 'linear-gradient(135deg, rgba(91, 33, 182, 0.08) 0%, rgba(245, 158, 11, 0.08) 100%)',
-          border: `1px solid ${appTheme.darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(91, 33, 182, 0.2)'}`,
+            : 'linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%)',
+          border: `1px solid ${appTheme.darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(99, 102, 241, 0.2)'}`,
           transition: 'all 0.3s ease-in-out',
         }}
         whileHover={{
           background: appTheme.darkMode
             ? 'linear-gradient(135deg, rgba(255, 0, 255, 0.15) 0%, rgba(255, 111, 48, 0.15) 100%)'
-            : 'linear-gradient(135deg, rgba(91, 33, 182, 0.2) 0%, rgba(245, 158, 11, 0.2) 100%)',
+            : 'linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%)',
           y: -8,
           boxShadow: appTheme.darkMode
             ? '0 15px 30px rgba(255, 0, 255, 0.2), 0 0 40px rgba(255, 111, 48, 0.1)'
-            : '0 15px 30px rgba(91, 33, 182, 0.2), 0 0 40px rgba(245, 158, 11, 0.1)',
-          border: `1px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.4)' : 'rgba(91, 33, 182, 0.4)'}`,
+            : '0 15px 30px rgba(99, 102, 241, 0.2), 0 0 40px rgba(6, 182, 212, 0.1)',
+          border: `1px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.4)' : 'rgba(99, 102, 241, 0.4)'}`,
         }}
         animate={floatAnimation}
       >
@@ -157,7 +157,7 @@ export const TechnologyCard = ({ technology, isMobile }) => {
             style={{
               background: appTheme.darkMode
                 ? 'radial-gradient(circle, rgba(255, 0, 255, 0.2) 0%, transparent 70%)'
-                : 'radial-gradient(circle, rgba(91, 33, 182, 0.2) 0%, transparent 70%)',
+                : 'radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%)',
             }}
             animate={{
               opacity: [0.3, 0.7, 0.3],

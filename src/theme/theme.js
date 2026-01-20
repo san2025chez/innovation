@@ -53,42 +53,54 @@ export const darkTheme = createTheme({
   },
 });
 
-// Tema Claro - Diseño moderno, tecnológico e innovador
-// Paleta optimizada para UX: transmite innovación, responsividad y profesionalismo
-// Colores elegidos para crear contraste perfecto con la foto de perfil
+// Tema Claro - Diseño ultra moderno, tecnológico e innovador
+// Paleta inspirada en interfaces de vanguardia: transmite innovación, tecnología avanzada y elegancia
+// Combinación de azul índigo cibernético + cyan eléctrico para un look futurista y limpio
 export const lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#5B21B6', // Violeta profundo - transmite innovación y tecnología
-      light: '#7C3AED',
-      dark: '#4C1D95',
+      main: '#6366F1', // Índigo cibernético - tecnología avanzada y confianza
+      light: '#818CF8', // Índigo claro para hover states
+      dark: '#4F46E5', // Índigo profundo para elementos activos
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#F59E0B', // Ámbar vibrante - transmite energía y responsividad
-      light: '#FBBF24',
-      dark: '#D97706',
+      main: '#06B6D4', // Cyan eléctrico - innovación y modernidad
+      light: '#22D3EE', // Cyan brillante para acentos
+      dark: '#0891B2', // Cyan profundo para profundidad
       contrastText: '#FFFFFF',
     },
     background: {
-      default: '#F1F5F9', // Gris azulado suave - fondo principal que contrasta con foto
+      default: '#FAFBFC', // Blanco casi puro con toque de gris - limpio y espacioso
       paper: '#FFFFFF', // Blanco puro para cards y elementos elevados
     },
     text: {
-      primary: '#0F172A', // Casi negro azulado - máximo contraste y legibilidad
-      secondary: '#475569', // Gris azulado medio - excelente para texto secundario
+      primary: '#111827', // Gris carbón profundo - máximo contraste y legibilidad
+      secondary: '#6B7280', // Gris medio elegante - excelente para texto secundario
     },
-    // Colores personalizados optimizados para UX y contraste con foto
+    // Colores personalizados optimizados para UX moderna y tecnológica
     custom: {
-      gradient: 'linear-gradient(135deg, #5B21B6, #F59E0B)', // Violeta a ámbar - innovación y energía
-      gradientBackground: 'linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 50%, #CBD5E1 100%)', // Gradiente sutil con profundidad
-      magenta: '#9333EA', // Violeta vibrante (equivalente al magenta en claro)
-      orange: '#F59E0B', // Ámbar (equivalente al naranja en claro)
-      darkBackground: '#E2E8F0', // Gris azulado medio para secciones alternas
-      scrolledNavbar: 'rgba(241, 245, 249, 0.95)', // Navbar con blur en modo claro
-      cardBackground: 'linear-gradient(135deg, rgba(91, 33, 182, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%)', // Fondo sutil para cards
-      photoBackground: 'linear-gradient(135deg, #CBD5E1 0%, #94A3B8 100%)', // Fondo que contrasta perfectamente con foto
+      // Gradiente principal: Índigo a Cyan - transmite tecnología avanzada
+      gradient: 'linear-gradient(135deg, #6366F1 0%, #06B6D4 100%)',
+      // Gradiente de fondo: Blanco con toques sutiles de índigo y cyan
+      gradientBackground: 'linear-gradient(135deg, #FAFBFC 0%, #F3F4F6 50%, #E5E7EB 100%)',
+      // Equivalente al magenta en modo claro: Índigo vibrante
+      magenta: '#6366F1',
+      // Equivalente al naranja en modo claro: Cyan eléctrico
+      orange: '#06B6D4',
+      // Fondo alterno: Gris muy suave con toque de índigo
+      darkBackground: '#F3F4F6',
+      // Navbar con blur: Blanco translúcido elegante
+      scrolledNavbar: 'rgba(250, 251, 252, 0.95)',
+      // Fondo de cards: Gradiente sutil índigo-cyan con opacidad muy baja
+      cardBackground: 'linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, rgba(6, 182, 212, 0.02) 100%)',
+      // Fondo para foto: Gradiente suave que contrasta perfectamente
+      photoBackground: 'linear-gradient(135deg, #E5E7EB 0%, #D1D5DB 50%, #F3F4F6 100%)',
+      // Colores adicionales para efectos innovadores
+      accent1: '#8B5CF6', // Púrpura suave para acentos
+      accent2: '#10B981', // Verde esmeralda para elementos destacados
+      shadow: 'rgba(99, 102, 241, 0.1)', // Sombra suave con tinte índigo
     },
   },
   typography: {
@@ -102,8 +114,8 @@ export const lightTheme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: '#F8FAFC',
-          color: '#1E293B',
+          backgroundColor: '#FAFBFC',
+          color: '#111827',
         },
       },
     },

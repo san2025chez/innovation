@@ -77,20 +77,20 @@ const ThemeToggle = () => {
               height: isMobile ? 52 : 56,
               backgroundColor: darkMode 
                 ? 'rgba(255, 0, 255, 0.15)' 
-                : 'rgba(91, 33, 182, 0.15)',
+                : 'rgba(99, 102, 241, 0.15)',
               backdropFilter: 'blur(10px)',
-              border: `2px solid ${darkMode ? 'rgba(255, 0, 255, 0.4)' : 'rgba(91, 33, 182, 0.4)'}`,
+              border: `2px solid ${darkMode ? 'rgba(255, 0, 255, 0.4)' : 'rgba(99, 102, 241, 0.4)'}`,
               boxShadow: darkMode
                 ? '0 4px 20px rgba(255, 0, 255, 0.4), 0 0 0 1px rgba(255, 0, 255, 0.15)'
-                : '0 4px 20px rgba(91, 33, 182, 0.4), 0 0 0 1px rgba(91, 33, 182, 0.15)',
+                : '0 4px 20px rgba(99, 102, 241, 0.4), 0 0 0 1px rgba(99, 102, 241, 0.15)',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               '&:hover': {
                 backgroundColor: darkMode
                   ? 'rgba(255, 0, 255, 0.25)'
-                  : 'rgba(91, 33, 182, 0.25)',
+                  : 'rgba(99, 102, 241, 0.25)',
                 boxShadow: darkMode
                   ? '0 6px 30px rgba(255, 0, 255, 0.5), 0 0 0 1px rgba(255, 0, 255, 0.25)'
-                  : '0 6px 30px rgba(91, 33, 182, 0.5), 0 0 0 1px rgba(91, 33, 182, 0.25)',
+                  : '0 6px 30px rgba(99, 102, 241, 0.5), 0 0 0 1px rgba(99, 102, 241, 0.25)',
                 transform: 'scale(1.05)',
               },
               '&:active': {
@@ -127,7 +127,7 @@ const ThemeToggle = () => {
                     sx={{ 
                       fontSize: isMobile ? 30 : 32,
                       color: muiTheme.palette.primary.main,
-                      filter: 'drop-shadow(0 0 8px rgba(91, 33, 182, 0.6))',
+                      filter: 'drop-shadow(0 0 8px rgba(99, 102, 241, 0.6))',
                     }} 
                   />
                 </motion.div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { useAppTheme } from '../../hooks/useAppTheme';
@@ -58,9 +58,24 @@ const useStyles = makeStyles((theme) => ({
 export const SectionTitle = ({ title, subtitle }) => {
   const classes = useStyles();
   const appTheme = useAppTheme();
+  const titleRef = useRef(null);
+
+  // Forzar actualización del gradiente cuando cambia el tema
+  useEffect(() => {
+    if (titleRef.current) {
+      const element = titleRef.current;
+      // Aplicar todas las propiedades necesarias
+      element.style.background = appTheme.colors.gradient;
+      element.style.webkitBackgroundClip = 'text';
+      element.style.webkitTextFillColor = 'transparent';
+      element.style.backgroundClip = 'text';
+      element.style.color = 'transparent';
+    }
+  }, [appTheme.darkMode, appTheme.colors.gradient]);
 
   return (
     <motion.div
+      key={`section-title-${appTheme.darkMode}`}
       className={classes.titleContainer}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -68,12 +83,16 @@ export const SectionTitle = ({ title, subtitle }) => {
       transition={{ duration: 0.6 }}
     >
       <Typography 
+        ref={titleRef}
         variant="h2" 
         className={classes.title}
         style={{
           background: appTheme.colors.gradient,
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          color: 'transparent',
+          transition: 'background 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
         }}
       >
         {title}
@@ -84,7 +103,7 @@ export const SectionTitle = ({ title, subtitle }) => {
           className={classes.subtitle}
           style={{
             color: appTheme.colors.textSecondary,
-            transition: 'color 0.3s ease',
+            transition: 'color 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
           {subtitle}
