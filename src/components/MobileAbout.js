@@ -591,7 +591,7 @@ const Description = () => {
                     padding: 0,
                     transition: 'color 0.3s ease',
                 }}>
-                    Profesional en tecnología con experiencia en desarrollo de software utilizando JavaScript, React y Node.js, y trayectoria en administración de redes y soporte informático.
+                    Desarrolladora Full Stack e Ingeniera Informática, con experiencia en JavaScript, React y Node.js, y sólida base en soporte técnico y administración de sistemas.
                 </p>
                 <p style={{ 
                     color: appTheme.colors.textSecondary, 
@@ -599,7 +599,7 @@ const Description = () => {
                     padding: 0,
                     transition: 'color 0.3s ease',
                 }}>
-                    Actualmente enfocada en reinsertarme en el sector IT, aportando una visión integral, capacidad de adaptación y fuerte compromiso con el trabajo técnico de calidad.
+                    Enfocada en aportar soluciones eficientes, adaptabilidad y calidad técnica en entornos IT.
                 </p>
             </Typography>
         </motion.div>

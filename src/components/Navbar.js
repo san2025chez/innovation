@@ -213,7 +213,7 @@ const Navbar = () => {
                                             rel="noopener noreferrer" 
                                             className={classes.navLink}
                                             style={{
-                                                color: appTheme.colors.textPrimary,
+                                                color: appTheme.darkMode ? '#FFFFFF' : '#1F2937',
                                                 transition: 'color 0.3s ease',
                                                 '--gradient': appTheme.colors.gradient,
                                                 '--hover-color': appTheme.colors.orange,
@@ -222,7 +222,7 @@ const Navbar = () => {
                                                 e.currentTarget.style.color = appTheme.colors.orange;
                                             }}
                                             onMouseLeave={(e) => {
-                                                e.currentTarget.style.color = appTheme.colors.textPrimary;
+                                                e.currentTarget.style.color = appTheme.darkMode ? '#FFFFFF' : '#1F2937';
                                             }}
                                         >
                                             {text}
@@ -237,7 +237,7 @@ const Navbar = () => {
                                             offset={-70}
                                             className={classes.navLink}
                                             style={{
-                                                color: appTheme.colors.textPrimary,
+                                                color: appTheme.darkMode ? '#FFFFFF' : '#1F2937',
                                                 transition: 'color 0.3s ease',
                                                 '--gradient': appTheme.colors.gradient,
                                                 '--hover-color': appTheme.colors.orange,
@@ -247,7 +247,7 @@ const Navbar = () => {
                                             }}
                                             onMouseLeave={(e) => {
                                                 if (!e.currentTarget.classList.contains('active')) {
-                                                    e.currentTarget.style.color = appTheme.colors.textPrimary;
+                                                    e.currentTarget.style.color = appTheme.darkMode ? '#FFFFFF' : '#1F2937';
                                                 }
                                             }}
                                         >
@@ -332,9 +332,22 @@ const Navbar = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className={classes.drawerLink}
+                                            style={{
+                                                color: appTheme.darkMode ? '#FFFFFF' : '#FFFFFF',
+                                            }}
                                         >
-                                            <ListItem className={classes.listItem}>
-                                                <ListItemIcon className={classes.drawerIcon}>
+                                            <ListItem 
+                                                className={classes.listItem}
+                                                style={{
+                                                    color: appTheme.darkMode ? '#FFFFFF' : '#FFFFFF',
+                                                }}
+                                            >
+                                                <ListItemIcon 
+                                                    className={classes.drawerIcon}
+                                                    style={{
+                                                        color: appTheme.darkMode ? 'rgba(255, 0, 255, 0.8)' : 'rgba(255, 255, 255, 0.9)',
+                                                    }}
+                                                >
                                                     {icon}
                                                 </ListItemIcon>
                                                 {text}
@@ -350,9 +363,22 @@ const Navbar = () => {
                                             smooth={true}
                                             duration={500}
                                             offset={-70}
+                                            style={{
+                                                color: appTheme.darkMode ? '#FFFFFF' : '#FFFFFF',
+                                            }}
                                         >
-                                            <ListItem className={classes.listItem}>
-                                                <ListItemIcon className={classes.drawerIcon}>
+                                            <ListItem 
+                                                className={classes.listItem}
+                                                style={{
+                                                    color: appTheme.darkMode ? '#FFFFFF' : '#FFFFFF',
+                                                }}
+                                            >
+                                                <ListItemIcon 
+                                                    className={classes.drawerIcon}
+                                                    style={{
+                                                        color: appTheme.darkMode ? 'rgba(255, 0, 255, 0.8)' : 'rgba(255, 255, 255, 0.9)',
+                                                    }}
+                                                >
                                                     {icon}
                                                 </ListItemIcon>
                                                 {text}
@@ -469,6 +495,11 @@ const useStyles = makeStyles((theme) => ({
         color: 'inherit',
         display: 'block',
         marginBottom: theme.spacing(2),
+        '&:hover': {
+            '& $listItem': {
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            },
+        },
     },
     listItem: {
         padding: theme.spacing(1.5, 2),
@@ -480,12 +511,17 @@ const useStyles = makeStyles((theme) => ({
         textTransform: 'uppercase',
         '&:hover': {
             transform: 'translateX(5px)',
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        },
+        '&.active': {
+            backgroundColor: 'rgba(255, 255, 255, 0.15)',
         },
     },
     drawerIcon: {
         fontSize: '1.5rem',
         marginRight: theme.spacing(1),
         transition: 'color 0.3s ease, transform 0.3s ease',
+        minWidth: '40px',
         '&:hover': {
             transform: 'scale(1.2)',
         },
