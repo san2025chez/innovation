@@ -27,15 +27,23 @@ function App() {
       }} 
       className={classes.root}
     >
-      <Navbar />
-      <About title="Inicio" id="about" />
-      <AboutMe id="aboutme" />
-      {/* <Profile id="skill"/> */}
-      <SkillsAndTechnologies title="Sobre Mi" id="technology" />
-      <MyWork title="Trabajos" id="work" dark={false} />
-      <ExperienciaLaboral title="Experiencia Laboral" id="servic" />
-      <ContactForm title="Contáctame" id="contact" dark={true} />
-      <Contact />
+      {/* SEO: Header semántico para navegación */}
+      <header role="banner">
+        <Navbar />
+      </header>
+      
+      {/* SEO: Contenido principal con estructura semántica */}
+      <main role="main">
+        <About title="Inicio" id="about" />
+        <AboutMe id="aboutme" />
+        {/* <Profile id="skill"/> */}
+        <SkillsAndTechnologies title="Sobre Mi" id="technology" />
+        <MyWork title="Trabajos" id="work" dark={false} />
+        <ExperienciaLaboral title="Experiencia Laboral" id="servic" />
+        <ContactForm title="Contáctame" id="contact" dark={true} />
+        <Contact />
+      </main>
+      
       <ThemeToggle />
     </div>
   );

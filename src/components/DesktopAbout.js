@@ -125,8 +125,23 @@ const DesktopAbout = () => {
                                         color: appTheme.colors.textPrimary,
                                         transition: 'color 0.3s ease',
                                     }}
+                                    component="h1"
                                 >
                                     Soy Ana
+                                    {/* SEO: Nombre completo para motores de búsqueda */}
+                                    <span style={{ 
+                                        position: 'absolute',
+                                        width: '1px',
+                                        height: '1px',
+                                        padding: 0,
+                                        margin: '-1px',
+                                        overflow: 'hidden',
+                                        clip: 'rect(0, 0, 0, 0)',
+                                        whiteSpace: 'nowrap',
+                                        border: 0
+                                    }}>
+                                        Ana María Vanesa Sánchez - Ingeniera en Informática | Ingeniera de Software
+                                    </span>
                                 </Typography>
                                 <div 
                                     style={{

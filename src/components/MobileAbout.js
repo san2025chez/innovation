@@ -7,47 +7,93 @@ import { motion } from 'framer-motion';
 import { useAppTheme } from '../hooks/useAppTheme';
 
 const MobileAbout = () => {
-    const [fullStackText, setFullStackText] = React.useState('');
-    const [developerText, setDeveloperText] = React.useState('');
-    const [isTypingDeveloper, setIsTypingDeveloper] = React.useState(true);
+    const [line1Text, setLine1Text] = useState(''); // "Ingeniera en Informática" - se escribe una vez y queda fijo
+    const [line2Text, setLine2Text] = useState(''); // "FullStack Developer" - se borra y reescribe
+    const [showCursor, setShowCursor] = useState(true);
+    const [line1Complete, setLine1Complete] = useState(false); // Indica si línea 1 está completa
 
-    const fullStack = "Software";
-    const developer = "Engineer";
+    const line1 = "Ingeniera en Informática";
+    const line2 = "FullStack Developer";
     const whatsappLink = "https://wa.link/cns6bw";
 
-    const handleClick = React.useCallback(() => {
-        window.open(whatsappLink, '_blank');
-    }, [whatsappLink]);
+    useEffect(() => {
+        let typingTimeout;
+        let cursorInterval;
+        let currentIndex = 0;
+        let isDeletingLocal = false;
+        let isWritingLine1 = true; // Primero escribimos línea 1
+        let pauseTimeout;
 
-    React.useEffect(() => {
-        const typeFullStack = () => {
-            setFullStackText(fullStack.substring(0, fullStackText.length + 1));
-        };
-
-        if (fullStackText !== fullStack) {
-            const timerId = setTimeout(typeFullStack, 100);
-            return () => clearTimeout(timerId);
-        }
-    }, [fullStackText]);
-
-    React.useEffect(() => {
-        const typeDeveloper = () => {
-            if (isTypingDeveloper) {
-                setDeveloperText(developer.substring(0, developerText.length + 1));
-                if (developerText === developer) {
-                    setTimeout(() => setIsTypingDeveloper(false), 1000);
+        const typeText = () => {
+            if (isWritingLine1) {
+                // Escribiendo línea 1 (una sola vez)
+                if (currentIndex < line1.length) {
+                    setLine1Text(line1.substring(0, currentIndex + 1));
+                    currentIndex++;
+                    typingTimeout = setTimeout(typeText, 50);
+                } else {
+                    // Línea 1 completa, ahora empezamos con línea 2
+                    setLine1Complete(true);
+                    isWritingLine1 = false;
+                    currentIndex = 0;
+                    pauseTimeout = setTimeout(() => {
+                        typeText(); // Empezar con línea 2
+                    }, 500);
                 }
             } else {
-                setDeveloperText(developer.substring(0, developerText.length - 1));
-                if (developerText === '') {
-                    setTimeout(() => setIsTypingDeveloper(true), 1000);
+                // Trabajando con línea 2 (borrar y reescribir)
+                if (!isDeletingLocal) {
+                    // Escribiendo línea 2
+                    if (currentIndex < line2.length) {
+                        setLine2Text(line2.substring(0, currentIndex + 1));
+                        currentIndex++;
+                        typingTimeout = setTimeout(typeText, 50);
+                    } else {
+                        // Completado, esperar antes de borrar
+                        pauseTimeout = setTimeout(() => {
+                            isDeletingLocal = true;
+                            typingTimeout = setTimeout(typeText, 30);
+                        }, 2000); // Esperar 2 segundos antes de borrar
+                    }
+                } else {
+                    // Borrando línea 2
+                    if (currentIndex > 0) {
+                        setLine2Text(line2.substring(0, currentIndex - 1));
+                        currentIndex--;
+                        typingTimeout = setTimeout(typeText, 30);
+                    } else {
+                        // Borrado completo, volver a escribir
+                        isDeletingLocal = false;
+                        currentIndex = 0;
+                        pauseTimeout = setTimeout(() => {
+                            typeText(); // Volver a escribir línea 2
+                        }, 500);
+                    }
                 }
             }
         };
 
-        const typingTimeoutId = setTimeout(typeDeveloper, 100);
-        return () => clearTimeout(typingTimeoutId);
-    }, [developerText, isTypingDeveloper]);
+        // Iniciar después de un pequeño delay
+        const startDelay = setTimeout(() => {
+            typeText();
+        }, 300);
+
+        // Cursor parpadeante
+        cursorInterval = setInterval(() => {
+            setShowCursor(prev => !prev);
+        }, 530);
+
+        return () => {
+            clearTimeout(startDelay);
+            clearTimeout(typingTimeout);
+            clearTimeout(pauseTimeout);
+            clearInterval(cursorInterval);
+        };
+    }, []);
+
+    const handleClick = React.useCallback(() => {
+        window.open(whatsappLink, '_blank');
+    }, [whatsappLink]);
 
     const appTheme = useAppTheme();
     const classes = useStyles();
@@ -110,8 +156,23 @@ const MobileAbout = () => {
                                     color: appTheme.colors.textPrimary,
                                     transition: 'color 0.3s ease',
                                 }}
+                                component="h1"
                             >
                                 Soy Ana
+                                {/* SEO: Nombre completo para motores de búsqueda */}
+                                <span style={{ 
+                                    position: 'absolute',
+                                    width: '1px',
+                                    height: '1px',
+                                    padding: 0,
+                                    margin: '-1px',
+                                    overflow: 'hidden',
+                                    clip: 'rect(0, 0, 0, 0)',
+                                    whiteSpace: 'nowrap',
+                                    border: 0
+                                }}>
+                                    Ana María Vanesa Sánchez - Ingeniera en Informática | Ingeniera de Software
+                                </span>
                                 <span
                                     style={{
                                         position: 'absolute',
@@ -131,45 +192,52 @@ const MobileAbout = () => {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                            className={classes.typingText}
-                            style={{
-                                color: appTheme.colors.magenta,
-                                textShadow: appTheme.darkMode
-                                    ? '0 0 15px rgba(255, 0, 255, 0.5)'
-                                    : '0 0 15px rgba(147, 51, 234, 0.5)',
-                                transition: 'color 0.3s ease, text-shadow 0.3s ease',
-                            }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className={classes.typingContainer}
                         >
-                            <span>
-                                {fullStackText} {developerText}
-                            </span>
+                            <div className={classes.typingLine}>
+                                <span 
+                                    className={classes.typingText}
+                                    style={{
+                                        color: appTheme.colors.magenta,
+                                        textShadow: appTheme.darkMode 
+                                            ? '0 0 15px rgba(255, 0, 255, 0.5)'
+                                            : '0 0 15px rgba(99, 102, 241, 0.5)',
+                                        transition: 'color 0.3s ease, text-shadow 0.3s ease',
+                                    }}
+                                >
+                                    {line1Text || line1}
+                                </span>
+                            </div>
+                            <div className={classes.typingLine}>
+                                <span 
+                                    className={classes.typingText}
+                                    style={{
+                                        color: appTheme.colors.magenta,
+                                        textShadow: appTheme.darkMode 
+                                            ? '0 0 15px rgba(255, 0, 255, 0.5)'
+                                            : '0 0 15px rgba(99, 102, 241, 0.5)',
+                                        transition: 'color 0.3s ease, text-shadow 0.3s ease',
+                                    }}
+                                >
+                                    {line2Text}
+                                    {line1Complete && (
+                                        <span 
+                                            className={classes.cursor}
+                                            style={{
+                                                opacity: showCursor ? 1 : 0,
+                                                color: appTheme.colors.magenta,
+                                                transition: 'opacity 0.1s ease',
+                                            }}
+                                        >
+                                            |
+                                        </span>
+                                    )}
+                                </span>
+                            </div>
                         </motion.div>
 
-                        <motion.div
-                            className={classes.descriptionContainer}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.6 }}
-                            style={{
-                                background: appTheme.darkMode
-                                    ? 'rgba(255, 0, 255, 0.05)'
-                                    : 'rgba(99, 102, 241, 0.08)',
-                                border: `2px solid ${appTheme.darkMode ? 'rgba(255, 0, 255, 0.1)' : 'rgba(99, 102, 241, 0.2)'}`,
-                                transition: 'all 0.3s ease',
-                            }}
-                        >
-                            <Typography 
-                                variant="body1" 
-                                className={classes.description}
-                                style={{
-                                    color: appTheme.colors.textSecondary,
-                                    transition: 'color 0.3s ease',
-                                }}
-                            >
-                                Soy Ingeniera de Software, especialista en crear soluciones tecnológicas usando nuevas tecnologías. Me gusta transformar ideas en productos digitales innovadores y eficientes. ¡Juntos, podemos impulsar tu proyecto!
-                            </Typography>
-                        </motion.div>
+                        <Description />
 
                         <motion.div 
                             className={classes.buttonContainer}
@@ -309,38 +377,78 @@ const useStyles = makeStyles((theme) => ({
             fontSize: 'clamp(1rem, 3.5vw, 1.5rem)',
         },
     },
-    typingText: {
-        fontSize: 'clamp(0.9rem, 3vw, 1.3rem)',
-        fontWeight: "700",
-        textTransform: 'uppercase',
+    typingContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        minHeight: '80px',
+        maxHeight: '80px',
+        marginBottom: '0.8rem',
+        marginTop: '0.5rem',
         textAlign: 'center',
-        marginTop: '0.8rem',
-        marginBottom: '1.2rem',
-        fontFamily: 'Space Grotesk, sans-serif',
-        animation: '$glowPulse 2s infinite',
+        position: 'relative',
         '@media (max-height: 667px)': {
-            marginTop: '0.6rem',
-            marginBottom: '1rem',
+            minHeight: '70px',
+            maxHeight: '70px',
+            marginBottom: '0.6rem',
+        },
+        '@media (max-height: 568px)': {
+            minHeight: '60px',
+            maxHeight: '60px',
+            marginBottom: '0.5rem',
+        },
+    },
+    typingLine: {
+        display: 'block',
+        width: '100%',
+        height: '40px',
+        lineHeight: '40px',
+        textAlign: 'center',
+        position: 'relative',
+        '@media (max-height: 667px)': {
+            height: '35px',
+            lineHeight: '35px',
+        },
+        '@media (max-height: 568px)': {
+            height: '30px',
+            lineHeight: '30px',
+        },
+    },
+    typingText: {
+        display: 'inline-block',
+        fontSize: 'clamp(0.9rem, 3vw, 1.3rem)',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        fontFamily: 'Space Grotesk, sans-serif',
+        letterSpacing: '1px',
+        whiteSpace: 'nowrap',
+        position: 'relative',
+        minHeight: '1.2em',
+        verticalAlign: 'middle',
+        '@media (max-height: 667px)': {
             fontSize: 'clamp(0.85rem, 2.8vw, 1.2rem)',
         },
         '@media (max-height: 568px)': {
-            marginTop: '0.4rem',
-            marginBottom: '0.8rem',
             fontSize: 'clamp(0.8rem, 2.5vw, 1.1rem)',
         },
         '@media (max-width: 360px)': {
             fontSize: 'clamp(0.75rem, 2.2vw, 1rem)',
         },
     },
-    '@keyframes glowPulse': {
-        '0%': {
-            textShadow: '0 0 15px rgba(255, 0, 255, 0.5)',
+    cursor: {
+        display: 'inline-block',
+        fontWeight: '300',
+        animation: '$blink 1s infinite',
+        marginLeft: '2px',
+    },
+    '@keyframes blink': {
+        '0%, 50%': {
+            opacity: 1,
         },
-        '50%': {
-            textShadow: '0 0 25px rgba(255, 0, 255, 0.8)',
-        },
-        '100%': {
-            textShadow: '0 0 15px rgba(255, 0, 255, 0.5)',
+        '51%, 100%': {
+            opacity: 0,
         },
     },
     descriptionContainer: {
@@ -449,5 +557,53 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
+
+const Description = () => {
+    const appTheme = useAppTheme();
+    const classes = useStyles();
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className={classes.descriptionContainer}
+            style={{
+                borderLeft: `3px solid ${appTheme.colors.magenta}`,
+                borderRight: `3px solid ${appTheme.colors.magenta}`,
+                background: appTheme.darkMode 
+                    ? 'rgba(255, 0, 255, 0.05)'
+                    : 'rgba(99, 102, 241, 0.05)',
+                transition: 'all 0.3s ease',
+            }}
+        >
+            <Typography 
+                component="div"
+                variant="body1" 
+                className={classes.description}
+                style={{
+                    color: appTheme.colors.textSecondary,
+                    transition: 'color 0.3s ease',
+                }}
+            >
+                <p style={{ 
+                    color: appTheme.colors.textSecondary, 
+                    margin: 0,
+                    padding: 0,
+                    transition: 'color 0.3s ease',
+                }}>
+                    Profesional en tecnología con experiencia en desarrollo de software utilizando JavaScript, React y Node.js, y trayectoria en administración de redes y soporte informático.
+                </p>
+                <p style={{ 
+                    color: appTheme.colors.textSecondary, 
+                    margin: '0.5rem 0 0 0',
+                    padding: 0,
+                    transition: 'color 0.3s ease',
+                }}>
+                    Actualmente enfocada en reinsertarme en el sector IT, aportando una visión integral, capacidad de adaptación y fuerte compromiso con el trabajo técnico de calidad.
+                </p>
+            </Typography>
+        </motion.div>
+    );
+};
 
 export default MobileAbout;

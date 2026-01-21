@@ -175,10 +175,25 @@ const Navbar = () => {
                                         textDecoration: 'none',
                                         display: 'inline-block',
                                     }}
+                                    aria-label="Ana María Vanesa Sánchez - Ingeniera en Informática"
                                 >
                                     AS
                                 </ScrollLink>
                             </div>
+                            {/* SEO: Nombre completo oculto visualmente pero visible para motores de búsqueda */}
+                            <span style={{ 
+                                position: 'absolute',
+                                width: '1px',
+                                height: '1px',
+                                padding: 0,
+                                margin: '-1px',
+                                overflow: 'hidden',
+                                clip: 'rect(0, 0, 0, 0)',
+                                whiteSpace: 'nowrap',
+                                border: 0
+                            }}>
+                                Ana María Vanesa Sánchez - Ingeniera en Informática | Ingeniera de Software | FullStack Developer | Soluciones Informáticas
+                            </span>
                         </motion.div>
                         <List className={classes.menu}>
                             {links.map(({ id, text, link }, index) => (
