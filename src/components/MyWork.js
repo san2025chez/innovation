@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, Grid, Typography, Dialog, DialogContent, IconButton, useTheme, useMediaQuery, Box } from '@material-ui/core';
 import ProjectCard from './ProjectCard';
 import mockData from '../mock/mockData';
@@ -21,6 +21,13 @@ const MyWork = ({ title, id, dark = false }) => {
     triggerOnce: false,
   });
 
+  useEffect(() => {
+    return () => {
+      // Cleanup: evitar que el body quede bloqueado si el componente se desmonta
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   const handleOpen = (project) => {
     setSelectedProject(project);
     setOpen(true);
@@ -30,7 +37,7 @@ const MyWork = ({ title, id, dark = false }) => {
   const handleClose = () => {
     setOpen(false);
     setSelectedProject(null);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = '';
   };
 
   // Animaciones mejoradas
@@ -170,6 +177,7 @@ const MyWork = ({ title, id, dark = false }) => {
             onClose={handleClose}
             fullWidth
             maxWidth="lg"
+            disableScrollLock={true}
             className={classes.dialog}
             PaperProps={{
               style: {

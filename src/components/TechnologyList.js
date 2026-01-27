@@ -32,13 +32,19 @@ const technologies = [
   { img: pg, name: 'PostgreSQL' },
   { img: express, name: 'Express' },
   { img: nest, name: 'Nest.js' },
-  { img: n8n, name: 'n8n' },
-  { img: aws, name: 'AWS' },
+  // Estos dos logos tienen “bloques” visuales más grandes; los bajamos un poco en mobile
+  { img: n8n, name: 'n8n', mobileIconWidth: '44%' },
+  { img: aws, name: 'AWS', mobileIconWidth: '44%' },
 ];
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: theme.spacing(1),
+    // En mobile este panel se veía muy “pegado” a los bordes.
+    // Le damos más aire lateral para que quede consistente con otras secciones.
+    padding: theme.spacing(2),
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(3),
+    },
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing(4),
     },
@@ -62,6 +68,8 @@ const useStyles = makeStyles((theme) => ({
       gridTemplateColumns: 'repeat(3, 1fr)',
       gap: theme.spacing(2),
       rowGap: theme.spacing(2),
+      // Un poco de padding interno extra para evitar sensación “a ras” en mobile
+      padding: theme.spacing(0, 1),
       paddingBottom: theme.spacing(4),
     },
     [theme.breakpoints.up('sm')]: {
@@ -127,7 +135,8 @@ export const TechnologyList = ({ controls }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ scale: 1.05 }}
+            // En mobile evitamos "hover pegajoso" (en touch a veces queda activado y tapa a los demás)
+            whileHover={isMobile ? undefined : { scale: 1.05 }}
           >
             <TechnologyCard 
               technology={tech} 

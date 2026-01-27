@@ -17,10 +17,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(4, 2),
+      // Consistencia con otras secciones (ej. "Trabajos") en mobile
+      padding: theme.spacing(6, 3),
     },
     '@media (max-height: 667px)': {
-      padding: theme.spacing(3, 2),
+      // En pantallas bajas reducimos vertical, pero mantenemos buen aire lateral
+      padding: theme.spacing(4, 2.5),
       minHeight: 'auto',
     },
   },
