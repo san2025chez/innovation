@@ -19,6 +19,7 @@ import express from '../img/ex8.png';
 import nest from '../img/nest8.png';
 import n8n from "../img/n8n.webp"
 import aws from "../img/aws.webp"
+import supabase from "../img/supabase.png"
 const technologies = [
   { img: node, name: 'Node.js' },
   { img: css, name: 'CSS' },
@@ -32,9 +33,10 @@ const technologies = [
   { img: pg, name: 'PostgreSQL' },
   { img: express, name: 'Express' },
   { img: nest, name: 'Nest.js' },
-  // Estos dos logos tienen “bloques” visuales más grandes; los bajamos un poco en mobile
-  { img: n8n, name: 'n8n', mobileIconWidth: '44%' },
-  { img: aws, name: 'AWS', mobileIconWidth: '44%' },
+  // Estos dos logos tienen "bloques" visuales más grandes; los ajustamos para que sean del mismo tamaño
+  { img: n8n, name: 'n8n', mobileIconWidth: '38%', mobileMaxHeight: 50 },
+  { img: aws, name: 'AWS', mobileIconWidth: '38%', mobileMaxHeight: 50 },
+  { img: supabase, name: 'Supabase', mobileIconWidth: '58%' },
 ];
 
 const useStyles = makeStyles((theme) => ({

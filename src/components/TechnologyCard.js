@@ -88,6 +88,7 @@ export const TechnologyCard = ({ technology, isMobile }) => {
   const classes = useStyles({ isMobile });
   const { img, name } = technology;
   const mobileIconWidth = technology?.mobileIconWidth;
+  const mobileMaxHeight = technology?.mobileMaxHeight;
 
   // Efectos innovadores: movimiento flotante y rotación 3D
   const floatAnimation = isMobile
@@ -168,7 +169,13 @@ export const TechnologyCard = ({ technology, isMobile }) => {
         <motion.div 
           className={classes.imageContainer}
           style={
-            isMobile && mobileIconWidth ? { width: mobileIconWidth } : undefined
+            isMobile && mobileIconWidth
+              ? { width: mobileIconWidth }
+              : (name === 'n8n' || name === 'AWS')
+              ? { width: '50%', maxWidth: 90 }
+              : name === 'Supabase'
+              ? { width: '65%', maxWidth: 115 }
+              : undefined
           }
           whileHover={
             isMobile
@@ -206,6 +213,15 @@ export const TechnologyCard = ({ technology, isMobile }) => {
             src={img}
             alt={name}
             className={classes.image}
+            style={
+              isMobile && mobileMaxHeight
+                ? { maxHeight: `${mobileMaxHeight}px` }
+                : name === 'n8n' || name === 'AWS'
+                ? { maxHeight: '75px' }
+                : name === 'Supabase'
+                ? { maxHeight: '95px', width: '100%', objectFit: 'contain' }
+                : undefined
+            }
             whileHover={
               isMobile
                 ? undefined

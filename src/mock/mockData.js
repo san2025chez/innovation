@@ -7,7 +7,15 @@ import ada from "../img/newada.png"
 import medico from "../img/sistemamedico.png"
 import microservicio from "../img/microservicios.png"
 import deepseek from "../img/deepseek.avif"
+import profesionalesoficios from "../img/profesionalesoficios.png"
 const mockData=[
+    {
+        title: "Profesionales y Oficios",
+        image: profesionalesoficios,
+        description: 'Proyecto personal – Plataforma web de servicios locales',
+        technology: 'Next.js, Supabase, Tailwind, Mercado Pago',
+        link: "https://profesionalesoficios.vercel.app/"
+    },
     {
         title: "Prestamos Personales",
         image: personales ,
