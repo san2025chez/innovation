@@ -1,11 +1,12 @@
 {
   "files": {
     "main.css": "/innovation/static/css/main.f88709af.css",
-    "main.js": "/innovation/static/js/main.ac5e8eca.js",
+    "main.js": "/innovation/static/js/main.23e3a16d.js",
     "static/js/787.1ed0c42c.chunk.js": "/innovation/static/js/787.1ed0c42c.chunk.js",
     "static/media/portadatienda.png": "/innovation/static/media/portadatienda.cb9ed6c06fd612eef273.png",
     "static/media/sistemamedico.png": "/innovation/static/media/sistemamedico.770bba9f56e37154fc19.png",
     "static/media/newada.png": "/innovation/static/media/newada.a608c91bb4b7e501b353.png",
+    "static/media/profesionalesoficios.png": "/innovation/static/media/profesionalesoficios.40ea3e845a100a6aa4a2.png",
     "static/media/original-ana.png": "/innovation/static/media/original-ana.00833341e12d3496eab7.png",
     "static/media/personales.jpeg": "/innovation/static/media/personales.4024f3e32f21724ef4e7.jpeg",
     "static/media/deepseek.avif": "/innovation/static/media/deepseek.c2f574ded675799c6323.avif",
@@ -17,11 +18,11 @@
     "index.html": "/innovation/index.html",
     "static/media/aws.webp": "/innovation/static/media/aws.1213bad10554a194c20c.webp",
     "main.f88709af.css.map": "/innovation/static/css/main.f88709af.css.map",
-    "main.ac5e8eca.js.map": "/innovation/static/js/main.ac5e8eca.js.map",
+    "main.23e3a16d.js.map": "/innovation/static/js/main.23e3a16d.js.map",
     "787.1ed0c42c.chunk.js.map": "/innovation/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f88709af.css",
-    "static/js/main.ac5e8eca.js"
+    "static/js/main.23e3a16d.js"
   ]
 }
